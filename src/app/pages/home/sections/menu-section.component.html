@@ -1,0 +1,33 @@
+<article class="card" role="region" [attr.aria-label]="section().title">
+  <header class="card__header">
+    <h3 class="card__title">{{ section().title }}</h3>
+    @if (section().subtitle) {
+      <p class="card__subtitle">{{ section().subtitle }}</p>
+    }
+  </header>
+
+  <ul class="items" aria-label="Liste d'articles">
+    @for (item of section().items; track item.id) {
+      <li class="item">
+        <div class="item__left">
+          <div class="item__name">
+            {{ item.name }}
+            @if (item.tags?.length) {
+              <span class="tags" aria-label="Tags">
+                @for (t of item.tags; track t) {
+                  <span class="tag">{{ t }}</span>
+                }
+              </span>
+            }
+          </div>
+
+          @if (item.description) {
+            <div class="item__desc">{{ item.description }}</div>
+          }
+        </div>
+
+        <div class="item__price">{{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
+      </li>
+    }
+  </ul>
+</article>

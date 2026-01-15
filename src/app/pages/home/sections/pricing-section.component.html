@@ -1,0 +1,17 @@
+<div class="pricing" role="list" aria-label="Prix mis en avant">
+  @for (p of items(); track p.id) {
+    <article class="priceCard" role="listitem">
+      <div class="priceCard__top">
+        @if (p.badge) {
+          <span class="priceCard__badge">{{ p.badge }}</span>
+        }
+        <div class="priceCard__value">{{ p.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
+      </div>
+
+      <div class="priceCard__title">{{ p.title }}</div>
+      @if (p.description) {
+        <div class="priceCard__desc">{{ p.description }}</div>
+      }
+    </article>
+  }
+</div>

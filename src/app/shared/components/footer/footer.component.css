@@ -1,0 +1,51 @@
+/* Footer — Style Fast Food thème clair */
+
+.footer {
+  margin-top: 4rem;
+  padding: 2rem 1.5rem;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footer__inner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer__brand {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+  color: #2d2d2d;
+}
+
+.footer__muted {
+  color: #888888;
+  font-size: 0.9rem;
+}
+
+.footer__right {
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer__right {
+    text-align: center;
+  }
+}

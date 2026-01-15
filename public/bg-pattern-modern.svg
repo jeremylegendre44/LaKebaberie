@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Fond blanc chaud -->
+  <rect width="500" height="500" fill="#fefcf8"/>
+
+  <!-- Glow subtil chaud -->
+  <ellipse cx="100" cy="100" rx="200" ry="200" fill="#fff5eb" opacity="0.6"/>
+  <ellipse cx="450" cy="420" rx="180" ry="180" fill="#fff5eb" opacity="0.5"/>
+
+  <!-- ========== HAMBURGER ========== -->
+  <g transform="translate(60, 50)" opacity="0.12">
+    <!-- Pain du haut -->
+    <ellipse cx="50" cy="15" rx="52" ry="22" fill="#e8a54b"/>
+    <ellipse cx="50" cy="10" rx="45" ry="16" fill="#d4923a"/>
+    <!-- Graines sésame -->
+    <ellipse cx="30" cy="6" rx="4" ry="2.5" fill="#f5e6c8"/>
+    <ellipse cx="50" cy="3" rx="3.5" ry="2" fill="#f5e6c8"/>
+    <ellipse cx="70" cy="7" rx="4" ry="2.5" fill="#f5e6c8"/>
+    <!-- Salade -->
+    <path d="M0 32 Q15 42 30 32 Q45 44 60 32 Q75 44 90 32 Q100 40 100 35" fill="#5cb85c" opacity="0.9"/>
+    <!-- Tomate -->
+    <ellipse cx="50" cy="45" rx="45" ry="8" fill="#e67e22"/>
+    <!-- Steak -->
+    <ellipse cx="50" cy="58" rx="48" ry="12" fill="#6d4c3d"/>
+    <ellipse cx="50" cy="55" rx="44" ry="9" fill="#8b5a42"/>
+    <!-- Fromage qui dépasse -->
+    <path d="M0 65 Q10 80 25 68 Q40 82 55 68 Q70 82 85 68 Q95 78 100 65" fill="#f9ca24"/>
+    <!-- Pain du bas -->
+    <ellipse cx="50" cy="82" rx="52" ry="18" fill="#e8a54b"/>
+  </g>
+
+  <!-- ========== TACOS ========== -->
+  <g transform="translate(320, 80)" opacity="0.12">
+    <!-- Galette -->
+    <path d="M0 50 Q50 -20 100 50 Q80 65 50 60 Q20 65 0 50 Z" fill="#e8c87a"/>
+    <path d="M5 48 Q50 -10 95 48" fill="#dbb768" opacity="0.6"/>
+    <!-- Viande -->
+    <ellipse cx="50" cy="42" rx="35" ry="12" fill="#8b5a42"/>
+    <!-- Garnitures qui dépassent -->
+    <circle cx="25" cy="30" r="8" fill="#5cb85c"/>
+    <circle cx="50" cy="25" r="6" fill="#e74c3c"/>
+    <circle cx="70" cy="32" r="7" fill="#f9ca24"/>
+    <circle cx="40" cy="35" r="5" fill="#e74c3c" opacity="0.8"/>
+    <!-- Sauce -->
+    <ellipse cx="50" cy="38" rx="20" ry="5" fill="#f4f4f4" opacity="0.7"/>
+  </g>
+
+  <!-- ========== KEBAB ========== -->
+  <g transform="translate(380, 280)" opacity="0.12">
+    <!-- Broche verticale -->
+    <rect x="22" y="0" width="6" height="130" fill="#c0c0c0" rx="2"/>
+    <!-- Viande empilée -->
+    <ellipse cx="25" cy="20" rx="30" ry="18" fill="#c1694f"/>
+    <ellipse cx="25" cy="20" rx="22" ry="12" fill="#a0522d"/>
+    <ellipse cx="25" cy="45" rx="35" ry="20" fill="#b5573a"/>
+    <ellipse cx="25" cy="45" rx="26" ry="14" fill="#9c4529"/>
+    <ellipse cx="25" cy="75" rx="32" ry="18" fill="#c1694f"/>
+    <ellipse cx="25" cy="75" rx="24" ry="12" fill="#a0522d"/>
+    <ellipse cx="25" cy="100" rx="28" ry="15" fill="#b5573a"/>
+    <ellipse cx="25" cy="100" rx="20" ry="10" fill="#9c4529"/>
+  </g>
+
+  <!-- ========== FRITES ========== -->
+  <g transform="translate(50, 320)" opacity="0.12">
+    <!-- Cornet -->
+    <path d="M20 40 L50 120 L80 40 Z" fill="#d35400"/>
+    <path d="M25 45 L50 115 L75 45 Z" fill="#b84700"/>
+    <!-- Frites qui dépassent -->
+    <rect x="28" y="0" width="10" height="55" rx="3" fill="#f9ca24" transform="rotate(-18 33 27)"/>
+    <rect x="40" y="-8" width="10" height="60" rx="3" fill="#e8b830"/>
+    <rect x="52" y="-5" width="10" height="58" rx="3" fill="#f9ca24" transform="rotate(12 57 25)"/>
+    <rect x="62" y="5" width="9" height="48" rx="3" fill="#e8b830" transform="rotate(22 66 30)"/>
+    <rect x="22" y="10" width="9" height="45" rx="3" fill="#f9ca24" transform="rotate(-25 26 32)"/>
+  </g>
+
+  <!-- ========== PIZZA SLICE ========== -->
+  <g transform="translate(200, 350)" opacity="0.1">
+    <path d="M50 0 L100 90 L0 90 Z" fill="#e8a54b"/>
+    <path d="M50 10 L90 85 L10 85 Z" fill="#f9ca24"/>
+    <!-- Pepperoni -->
+    <circle cx="40" cy="50" r="10" fill="#c0392b"/>
+    <circle cx="60" cy="65" r="8" fill="#c0392b"/>
+    <circle cx="50" cy="35" r="7" fill="#c0392b"/>
+  </g>
+
+  <!-- ========== BOISSON ========== -->
+  <g transform="translate(160, 140)" opacity="0.1">
+    <!-- Gobelet -->
+    <path d="M10 0 L0 80 L60 80 L50 0 Z" fill="#d35400"/>
+    <ellipse cx="30" cy="0" rx="25" ry="8" fill="#b84700"/>
+    <!-- Paille -->
+    <rect x="35" y="-25" width="5" height="50" fill="#f39c12" transform="rotate(15 37 0)"/>
+    <!-- Couvercle -->
+    <ellipse cx="30" cy="5" rx="27" ry="9" fill="#e67e22"/>
+  </g>
+
+  <!-- ========== SAUCE DROPS ========== -->
+  <g opacity="0.08">
+    <circle cx="280" cy="220" r="8" fill="#d35400"/>
+    <circle cx="120" cy="280" r="6" fill="#f39c12"/>
+    <circle cx="450" cy="180" r="7" fill="#5cb85c"/>
+    <circle cx="350" cy="420" r="6" fill="#e67e22"/>
+    <circle cx="80" cy="450" r="8" fill="#f39c12"/>
+  </g>
+
+  <!-- ========== PETITS ELEMENTS ========== -->
+  <g opacity="0.06">
+    <!-- Oignons rings -->
+    <circle cx="300" cy="480" r="18" stroke="#e8a54b" stroke-width="8" fill="none"/>
+    <circle cx="330" cy="470" r="14" stroke="#d4923a" stroke-width="6" fill="none"/>
+
+    <!-- Graines sésame éparpillées -->
+    <ellipse cx="180" cy="50" rx="4" ry="2.5" fill="#d4923a"/>
+    <ellipse cx="420" cy="60" rx="3.5" ry="2" fill="#d4923a"/>
+    <ellipse cx="250" cy="480" rx="4" ry="2.5" fill="#d4923a"/>
+    <ellipse cx="480" cy="350" rx="3.5" ry="2" fill="#d4923a"/>
+  </g>
+</svg>

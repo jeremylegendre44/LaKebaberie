@@ -1,0 +1,107 @@
+<div class="shell">
+  <app-header
+    [brandName]="restaurant.name"
+    [brandCity]="restaurant.city"
+    [navLinks]="navLinks"
+  />
+
+  <main class="main" aria-label="Contenu principal">
+    <section class="hero" aria-label="Présentation">
+      <div class="hero__content">
+        <h1 class="hero__title">Kebabs, tacos & burgers</h1>
+        <p class="hero__subtitle">Fait maison, servi chaud, à {{ restaurant.city }}</p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#carte">Voir la carte</a>
+          <a class="btn btn--ghost" [href]="'tel:' + restaurant.phone.replace(' ', '')">
+            📞 {{ restaurant.phone }}
+          </a>
+        </div>
+
+        <div class="hero__badges" aria-label="Points forts">
+          <span class="badge">Sur place</span>
+          <span class="badge">À emporter</span>
+          <span class="badge">Paiement CB</span>
+        </div>
+      </div>
+
+      <div class="hero__panel" aria-label="Horaires">
+        <div class="hero__panelCard">
+          <div class="hero__panelLine hero__panelLine--strong">Horaires</div>
+          <div class="hero__panelLine">Midi : {{ restaurant.hours.lunch }}</div>
+          <div class="hero__panelLine">Soir : {{ restaurant.hours.dinner }}</div>
+          <div class="hero__panelLine hero__panelLine--muted">Fermé le {{ restaurant.hours.closed }}</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prix" class="section" aria-label="Prix">
+      <app-section-header title="Nos prix" />
+      <app-pricing-section [items]="pricingHighlights" />
+    </section>
+
+    <section id="carte" class="section" aria-label="La carte">
+      <app-section-header title="La carte" />
+      <div class="grid">
+        @for (section of menuSections; track section.id) {
+          <app-menu-section [section]="section" />
+        }
+      </div>
+    </section>
+
+    <section id="choix" class="section" aria-label="Choix disponibles">
+      <app-section-header title="Personnalise ta commande" />
+      <app-choices-section [choices]="choices" />
+    </section>
+
+    <section id="infos" class="section" aria-label="Infos pratiques">
+      <app-section-header title="Infos pratiques" />
+
+      <div class="infos">
+        <div class="info-card">
+          <div class="info-card__icon">📍</div>
+          <div class="info-card__title">Adresse</div>
+          <div class="info-card__content">
+            {{ restaurant.address }}<br>
+            {{ restaurant.postalCode }} {{ restaurant.city }}
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__icon">🕐</div>
+          <div class="info-card__title">Horaires</div>
+          <div class="info-card__content">
+            Midi : {{ restaurant.hours.lunch }}<br>
+            Soir : {{ restaurant.hours.dinner }}<br>
+            <strong>Fermé le {{ restaurant.hours.closed }}</strong>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__icon">📞</div>
+          <div class="info-card__title">Téléphone</div>
+          <div class="info-card__content">
+            <a [href]="'tel:' + restaurant.phone.replace(' ', '')">{{ restaurant.phone }}</a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__icon">💳</div>
+          <div class="info-card__title">Paiement</div>
+          <div class="info-card__content">
+            Espèces<br>
+            Carte bancaire<br>
+            Tickets restaurant
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer
+    [brandName]="restaurant.name"
+    [city]="restaurant.city"
+    [year]="currentYear()"
+    [rightText]="restaurant.address + ' — ' + restaurant.phone"
+  />
+</div>

@@ -1,0 +1,19 @@
+<header class="topbar" aria-label="En-tête">
+  <div class="brand" [attr.aria-label]="brandName()">
+    <div class="brand__mark" aria-hidden="true">LK</div>
+    <div class="brand__text">
+      <div class="brand__name">{{ brandName() }}</div>
+      @if (brandCity()) {
+        <div class="brand__city">{{ brandCity() }}</div>
+      }
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Navigation principale">
+    @for (link of navLinks(); track link.href) {
+      <a [class]="link.isCta ? 'nav__cta' : 'nav__link'" [href]="link.href">
+        {{ link.label }}
+      </a>
+    }
+  </nav>
+</header>

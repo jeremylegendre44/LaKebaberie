@@ -1,0 +1,14 @@
+<div class="choices" role="list" aria-label="Choix disponibles">
+  @for (choice of choices(); track choice.id) {
+    <div class="choice" role="listitem">
+      <div class="choice__title">{{ choice.label }}</div>
+      @if (choice.examples?.length) {
+        <div class="choice__examples">
+          @for (ex of choice.examples; track ex) {
+            <span class="pill">{{ ex }}</span>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

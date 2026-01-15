@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Design system global — La Kebaberie
+   Style Fast Food thème clair, chaleureux, gourmand */
+
+/* Google Fonts importé dans index.html pour de meilleures performances */
+
+:root {
+  color-scheme: light;
+
+  /* Couleurs principales */
+  --lk-bg: #fefcf8;
+  --lk-surface: #ffffff;
+  --lk-text: #2d2d2d;
+  --lk-text-muted: #888888;
+
+  /* Accent Fast Food - Palette chaleureuse */
+  --lk-primary: #d35400;
+  --lk-primary-dark: #b84700;
+  --lk-orange: #e67e22;
+  --lk-yellow: #f39c12;
+  --lk-brown: #8b5a2b;
+
+  /* Fonts */
+  --lk-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --lk-font-display: 'Bebas Neue', Impact, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--lk-font);
+  background: var(--lk-bg);
+  color: var(--lk-text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+:where(a, button, [role='button'], input, select, textarea):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230, 48, 39, 0.3);
+  border-radius: 8px;
+}
+
+::selection {
+  background: rgba(230, 48, 39, 0.2);
+}
