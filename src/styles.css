@@ -1,29 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Design system global — La Kebaberie
-   Style Fast Food thème clair, chaleureux, gourmand */
+   Inspiré du style O'Tacos : sombre, bold, gourmand */
 
-/* Google Fonts importé dans index.html pour de meilleures performances */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@font-face {
+  font-family: 'BlockBerthold';
+  src: url('/fonts/BlockBerthold.woff2') format('woff2'),
+       url('/fonts/BlockBerthold.woff') format('woff'),
+       url('/fonts/BlockBerthold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
   /* Couleurs principales */
-  --lk-bg: #fefcf8;
-  --lk-surface: #ffffff;
-  --lk-text: #2d2d2d;
+  --lk-bg: #0a0a0a;
+  --lk-surface: #141414;
+  --lk-surface-light: #1e1e1e;
+  --lk-text: #ffffff;
   --lk-text-muted: #888888;
 
-  /* Accent Fast Food - Palette chaleureuse */
-  --lk-primary: #d35400;
-  --lk-primary-dark: #b84700;
-  --lk-orange: #e67e22;
-  --lk-yellow: #f39c12;
-  --lk-brown: #8b5a2b;
+  /* Accent */
+  --lk-primary: #f5a623;
+  --lk-primary-light: #ffc857;
+  --lk-primary-dark: #d4890c;
+  --lk-accent: #ff6b35;
 
   /* Fonts */
   --lk-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --lk-font-display: 'Bebas Neue', Impact, sans-serif;
+  --lk-font-display: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+
+  /* Spacing */
+  --lk-radius: 16px;
+  --lk-radius-sm: 8px;
 }
 
 * {
@@ -42,10 +56,12 @@ body {
 body {
   margin: 0;
   font-family: var(--lk-font);
-  background-color: var(--lk-bg);
-  background-image: url('/bg-pattern-modern.svg');
-  background-repeat: repeat;
-  background-size: 500px 500px;
+  background-color: #0a0a0a;
+  background-image: url('assets/bg-dark.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--lk-text);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -53,16 +69,17 @@ body {
   line-height: 1.5;
 }
 
+
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 :where(a, button, [role='button'], input, select, textarea):focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(230, 48, 39, 0.3);
-  border-radius: 8px;
+  outline: 2px solid var(--lk-primary);
+  outline-offset: 2px;
 }
 
 ::selection {
-  background: rgba(230, 48, 39, 0.2);
+  background: rgba(245, 166, 35, 0.3);
 }

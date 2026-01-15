@@ -30,6 +30,9 @@ export interface MenuItem {
   /** Tags marketing (ex: Menu, Best-seller, Épicé…). */
   readonly tags?: readonly string[];
 
+  /** Image du plat (chemin relatif ou URL) */
+  readonly image?: string;
+
   /** Allergènes potentiels (à compléter si besoin). */
   readonly allergens?: readonly Allergens[];
 }

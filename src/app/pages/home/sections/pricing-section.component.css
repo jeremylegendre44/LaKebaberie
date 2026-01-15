@@ -1,27 +1,26 @@
-/* Pricing Section — Style Fast Food thème clair */
+/* Pricing Section — Style O'Tacos : sombre, bold */
 
 :host {
   display: block;
   font-family: 'Inter', system-ui, sans-serif;
-  color: #2d2d2d;
+  color: #ffffff;
 }
 
 .pricing {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
 .priceCard {
   position: relative;
-  border-radius: 16px;
-  padding: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  background: #ffffff;
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid #1e1e1e;
+  background: #141414;
   text-align: center;
   transition: all 0.25s ease;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .priceCard::before {
@@ -31,12 +30,13 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  background: #f5a623;
 }
 
 .priceCard:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.08);
+  background: #1a1a1a;
+  border-color: rgba(245, 166, 35, 0.3);
+  transform: translateY(-6px);
 }
 
 .priceCard__top {
@@ -53,34 +53,34 @@
   padding: 0 0.75rem;
   border-radius: 50px;
   font-weight: 800;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #ffffff;
-  background: linear-gradient(135deg, #ffc72c, #f5a623);
+  color: #0a0a0a;
+  background: #f5a623;
 }
 
 .priceCard__value {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 3rem;
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+  font-size: 3.5rem;
   letter-spacing: 0.02em;
-  color: #d35400;
+  color: #ffffff;
   line-height: 1;
 }
 
 .priceCard__title {
-  margin-top: 0.75rem;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 1.4rem;
+  margin-top: 1rem;
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+  font-size: 1.5rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #2d2d2d;
+  color: #f5a623;
 }
 
 .priceCard__desc {
   margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #888888;
+  color: #666666;
   line-height: 1.5;
 }
 

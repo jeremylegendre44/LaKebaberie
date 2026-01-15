@@ -8,7 +8,13 @@
 
   <ul class="items" aria-label="Liste d'articles">
     @for (item of section().items; track item.id) {
-      <li class="item">
+      <li class="item" [class.item--has-image]="item.image">
+        @if (item.image) {
+          <div class="item__image">
+            <img [src]="item.image" [alt]="item.name" loading="lazy" />
+          </div>
+        }
+
         <div class="item__left">
           <div class="item__name">
             {{ item.name }}

@@ -7,54 +7,40 @@
 
   <main class="main" aria-label="Contenu principal">
     <section class="hero" aria-label="Présentation">
-      <!-- Décorations food -->
-      <span class="hero__deco hero__deco--kebab" aria-hidden="true">🥙</span>
-      <span class="hero__deco hero__deco--fries" aria-hidden="true">🍟</span>
+      <p class="hero__kicker">🔥 Saint-Étienne-de-Montluc</p>
 
-      <div class="hero__content">
-        <p class="hero__kicker">🔥 Saint-Étienne-de-Montluc</p>
-        <h1 class="hero__title">
-          Le goût<br>
-          <span class="hero__title-highlight">authentique</span>
-        </h1>
-        <p class="hero__subtitle">
-          Kebabs généreux, tacos gourmands et burgers maison.
-          Préparés minute avec des produits frais.
-        </p>
+      <h1 class="hero__title">
+        La Kebaberie
+        <span class="hero__title-highlight">Le goût authentique</span>
+      </h1>
 
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#carte">Découvrir la carte</a>
-          <a class="btn btn--ghost" [href]="'tel:' + restaurant.phone.replace(' ', '')">
-            📞 Appeler
-          </a>
-        </div>
+      <p class="hero__subtitle">
+        Kebabs généreux, tacos gourmands et burgers faits maison. Produits frais, préparés minute.
+      </p>
 
-        <div class="hero__badges" aria-label="Points forts">
-          <span class="badge">
-            <span class="badge__icon">🍽️</span> Sur place
-          </span>
-          <span class="badge">
-            <span class="badge__icon">🥡</span> À emporter
-          </span>
-          <span class="badge">
-            <span class="badge__icon">💳</span> CB
-          </span>
-          <span class="badge">
-            <span class="badge__icon">💵</span> Espèces
-          </span>
-          <span class="badge">
-            <span class="badge__icon">🎫</span> Ticket resto
-          </span>
-        </div>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#carte">Voir la carte</a>
+        <a class="btn btn--ghost" [href]="'tel:' + restaurant.phone.replace(' ', '')">
+          📞 Appeler
+        </a>
       </div>
 
-      <div class="hero__panel" aria-label="Horaires">
-        <div class="hero__panelCard">
-          <div class="hero__panelLine hero__panelLine--strong">Ouvert</div>
-          <div class="hero__panelLine">Midi · {{ restaurant.hours.lunch }}</div>
-          <div class="hero__panelLine">Soir · {{ restaurant.hours.dinner }}</div>
-          <div class="hero__panelLine hero__panelLine--muted">Fermé le {{ restaurant.hours.closed }}</div>
-        </div>
+      <div class="hero__badges" aria-label="Points forts">
+        <span class="badge">
+          <span class="badge__icon">🍽️</span> Sur place
+        </span>
+        <span class="badge">
+          <span class="badge__icon">🥡</span> À emporter
+        </span>
+        <span class="badge">
+          <span class="badge__icon">💳</span> CB
+        </span>
+        <span class="badge">
+          <span class="badge__icon">💵</span> Espèces
+        </span>
+        <span class="badge">
+          <span class="badge__icon">🎫</span> Ticket resto
+        </span>
       </div>
     </section>
 
