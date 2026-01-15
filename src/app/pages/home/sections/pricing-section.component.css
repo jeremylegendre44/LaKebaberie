@@ -14,14 +14,14 @@
 
 .priceCard {
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   background: #ffffff;
   text-align: center;
   transition: all 0.25s ease;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .priceCard::before {
@@ -35,9 +35,8 @@
 }
 
 .priceCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 50px rgba(211, 84, 0, 0.15);
-  border-color: rgba(211, 84, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .priceCard__top {

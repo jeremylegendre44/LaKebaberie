@@ -42,7 +42,10 @@ body {
 body {
   margin: 0;
   font-family: var(--lk-font);
-  background: var(--lk-bg);
+  background-color: var(--lk-bg);
+  background-image: url('/bg-pattern-modern.svg');
+  background-repeat: repeat;
+  background-size: 500px 500px;
   color: var(--lk-text);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

@@ -13,18 +13,17 @@
 }
 
 .choice {
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   background: #ffffff;
   padding: 1.25rem;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .choice:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(211, 84, 0, 0.1);
-  border-color: rgba(211, 84, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .choice__title {
