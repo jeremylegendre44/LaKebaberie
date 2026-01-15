@@ -8,21 +8,52 @@
 }
 
 .card {
+  position: relative;
   border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  background: #ffffff;
+  border: 1px solid rgba(211, 84, 0, 0.1);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,248,240,0.95) 100%);
   padding: 1.25rem;
   transition: all 0.25s ease;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 20px rgba(211, 84, 0, 0.06),
+    inset 0 0 60px rgba(211, 84, 0, 0.02);
+  overflow: hidden;
+}
+
+.card::before {
+  content: '🍔';
+  position: absolute;
+  top: 20%;
+  right: 8%;
+  font-size: 3rem;
+  opacity: 0.1;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.card::after {
+  content: '🌮';
+  position: absolute;
+  bottom: 15%;
+  right: 20%;
+  font-size: 2.5rem;
+  opacity: 0.08;
+  transform: rotate(-10deg);
+  pointer-events: none;
 }
 
 .card:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 8px 30px rgba(211, 84, 0, 0.12),
+    inset 0 0 60px rgba(211, 84, 0, 0.03);
+  border-color: rgba(211, 84, 0, 0.18);
 }
 
 .card__header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(211, 84, 0, 0.1);
   padding-bottom: 0.75rem;
   margin-bottom: 0.75rem;
 }
@@ -30,7 +61,7 @@
 .card__title {
   margin: 0;
   font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #d35400;
@@ -43,6 +74,8 @@
 }
 
 .items {
+  position: relative;
+  z-index: 1;
   list-style: none;
   padding: 0;
   margin: 0;

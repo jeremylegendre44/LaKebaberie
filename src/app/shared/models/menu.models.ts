@@ -38,6 +38,7 @@ export interface MenuSection {
   readonly id: string;
   readonly title: string;
   readonly subtitle?: string;
+  readonly icon?: string;
   readonly items: readonly MenuItem[];
 }
 

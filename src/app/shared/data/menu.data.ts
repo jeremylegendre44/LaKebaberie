@@ -28,6 +28,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'kebabs',
     title: 'Kebabs',
+    icon: '🥙',
     items: [
       {
         id: 'kebab-classique',
@@ -60,6 +61,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'tacos',
     title: 'Tacos',
+    icon: '🌮',
     subtitle: 'Galette de blé, sauce fromagère, frites',
     items: [
       {
@@ -89,6 +91,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'burgers',
     title: 'Burgers',
+    icon: '🍔',
     items: [
       {
         id: 'burger-classique',
@@ -120,6 +123,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'assiettes',
     title: 'Assiettes',
+    icon: '🍽️',
     subtitle: 'Servies avec frites et salade',
     items: [
       {
@@ -149,6 +153,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'menus',
     title: 'Menus',
+    icon: '🍟',
     subtitle: 'Sandwich + frites + boisson 33cl',
     items: [
       {
@@ -187,6 +192,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'snacks',
     title: 'Snacks & Paninis',
+    icon: '🥪',
     items: [
       {
         id: 'panini-kebab',
@@ -223,6 +229,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'accompagnements',
     title: 'Accompagnements',
+    icon: '🍟',
     items: [
       { id: 'frites', name: 'Frites', priceEuros: 3 },
       { id: 'frites-cheddar', name: 'Frites cheddar', priceEuros: 4.5 },
@@ -234,6 +241,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'boissons',
     title: 'Boissons',
+    icon: '🥤',
     items: [
       { id: 'coca-33', name: 'Coca-Cola 33cl', priceEuros: 2 },
       { id: 'coca-50', name: 'Coca-Cola 50cl', priceEuros: 2.8 },
@@ -248,6 +256,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
   {
     id: 'desserts',
     title: 'Desserts',
+    icon: '🍨',
     items: [
       { id: 'tiramisu', name: 'Tiramisu', priceEuros: 3.5 },
       { id: 'mousse-chocolat', name: 'Mousse au chocolat', priceEuros: 3 },
