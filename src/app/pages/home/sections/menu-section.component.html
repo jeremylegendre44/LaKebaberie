@@ -27,11 +27,12 @@
           [class.item--has-image]="item.image"
           [class.item--has-prices]="item.prices"
           [class.item--clickable]="item.image || item.description"
-          (click)="openItemDetail(item)"
-          (keydown.enter)="openItemDetail(item)"
-          [attr.tabindex]="item.image || item.description ? 0 : null"
-          [attr.role]="item.image || item.description ? 'button' : null"
-          [attr.aria-label]="'Voir les détails de ' + item.name">
+          [class.item--single-choice]="isSingleChoice(item)"
+          (click)="onItemClick(item, $event)"
+          (keydown.enter)="onItemClick(item, $event)"
+          [attr.tabindex]="0"
+          [attr.role]="isSingleChoice(item) ? 'button' : (item.image || item.description ? 'button' : null)"
+          [attr.aria-label]="isSingleChoice(item) ? 'Ajouter ' + item.name + ' au panier' : 'Voir les détails de ' + item.name">
           @if (item.image) {
             <div class="item__image">
               <img [src]="item.image" [alt]="item.name" loading="lazy" />
@@ -39,29 +40,35 @@
               <div class="item__view-more">
                 <span>Voir détails</span>
               </div>
-              <!-- Prix multiples en overlay avec labels clairs -->
+              <!-- Prix multiples en overlay avec labels clairs et ajout panier -->
               @if (item.prices) {
                 <div class="item__prices-overlay">
-                  <div class="price-badge price-badge--seul">
+                  <div class="price-badge price-badge--seul price-badge--clickable" (click)="addToCart(item, 'seul'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} seul au panier">
                     <span class="price-badge__label">Seul</span>
                     <span class="price-badge__value">{{ item.prices.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                    <span class="price-badge__cart">🛒</span>
                   </div>
-                  <div class="price-badge price-badge--frites">
+                  <div class="price-badge price-badge--frites price-badge--clickable" (click)="addToCart(item, 'frites'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} +frites au panier">
                     <span class="price-badge__label">+Frites</span>
                     <span class="price-badge__value">{{ item.prices.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                    <span class="price-badge__cart">🛒</span>
                   </div>
-                  <div class="price-badge price-badge--menu">
+                  <div class="price-badge price-badge--menu price-badge--clickable" (click)="addToCart(item, 'menu'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} en menu au panier">
                     <span class="price-badge__label">Menu</span>
                     <span class="price-badge__value">{{ item.prices.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                    <span class="price-badge__cart">🛒</span>
                   </div>
                 </div>
               } @else if (item.priceEuros) {
-                <div class="item__price item__price--overlay">{{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
+                <div class="item__price item__price--overlay price-badge--clickable" (click)="addToCart(item); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} au panier">
+                  {{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }} <span class="price-badge__cart">🛒</span>
+                </div>
               }
             </div>
           }
 
-          <div class="item__content">
+          <div class="item__content"
+            [class.item__content--clickable-single]="isSingleChoice(item)">
             <div class="item__left">
               <div class="item__name">
                 {{ item.name }}
@@ -73,31 +80,35 @@
                   </span>
                 }
               </div>
-
               @if (item.description) {
                 <div class="item__desc">{{ item.description }}</div>
               }
             </div>
-
             <!-- Prix pour items sans image -->
             @if (!item.image) {
               @if (item.prices) {
                 <div class="item__prices">
-                  <span class="price-col">
+                  <span class="price-col price-badge--clickable" (click)="addToCart(item, 'seul'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} seul au panier">
                     <span class="price-label">Seul</span>
                     <span class="price-value">{{ item.prices.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                    <span class="price-badge__cart">🛒</span>
                   </span>
-                  <span class="price-col">
+                  <span class="price-col price-badge--clickable" (click)="addToCart(item, 'frites'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} +frites au panier">
                     <span class="price-label">+Frites</span>
                     <span class="price-value">{{ item.prices.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                    <span class="price-badge__cart">🛒</span>
                   </span>
-                  <span class="price-col">
+                  <span class="price-col price-badge--clickable" (click)="addToCart(item, 'menu'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} en menu au panier">
                     <span class="price-label">Menu</span>
                     <span class="price-value">{{ item.prices.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                    <span class="price-badge__cart">🛒</span>
                   </span>
                 </div>
               } @else if (item.priceEuros) {
-                <div class="item__price">{{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
+                <div class="item__price item__price--single-choice" style="cursor: pointer; width: 100%;">
+                  {{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}
+                  <span class="price-badge__cart" style="cursor: pointer;">🛒</span>
+                </div>
               }
             }
           </div>

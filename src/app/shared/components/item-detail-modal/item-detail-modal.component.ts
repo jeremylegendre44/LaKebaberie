@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuItem } from '../../models';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-item-detail-modal',
@@ -13,6 +14,8 @@ export class ItemDetailModalComponent {
   item = input.required<MenuItem>();
   isOpen = input<boolean>(false);
   closed = output<void>();
+
+  constructor(public cartService: CartService) {}
 
   onBackdropClick(event: MouseEvent) {
     if ((event.target as HTMLElement).classList.contains('modal-backdrop')) {
@@ -28,5 +31,9 @@ export class ItemDetailModalComponent {
     if (event.key === 'Escape') {
       this.closed.emit();
     }
+  }
+
+  addToCart(variant?: 'seul' | 'frites' | 'menu') {
+    this.cartService.addToCart(this.item(), variant);
   }
 }

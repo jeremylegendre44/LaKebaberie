@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, CommonModule } from '@angular/common';
 
-import { MenuItem, MenuSection } from '../../../shared/models/menu.models';
-import { ItemDetailModalComponent } from '../../../shared/components/item-detail-modal/item-detail-modal.component';
+import { MenuItem, MenuSection } from '../../../shared/models';
+import { ItemDetailModalComponent } from '../../../shared/components';
 import { ImageModalComponent } from '../../../shared/components/image-modal/image-modal.component';
+import { CartService } from '../../../shared/cart.service';
 
 @Component({
   selector: 'app-menu-section',
   standalone: true,
-  imports: [CurrencyPipe, ItemDetailModalComponent, ImageModalComponent],
+  imports: [CurrencyPipe, CommonModule, ItemDetailModalComponent, ImageModalComponent],
   templateUrl: './menu-section.component.html',
   styleUrl: './menu-section.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -24,6 +25,8 @@ export class MenuSectionComponent {
   // Image modal state
   readonly isImageModalOpen = signal(false);
   readonly imageModalUrl = signal<string | null>(null);
+
+  constructor(private readonly cartService: CartService) {}
 
   openItemDetail(item: MenuItem) {
     this.selectedItem.set(item);
@@ -54,5 +57,29 @@ export class MenuSectionComponent {
     this.imageModalUrl.set(null);
     // Réactiver le scroll du body
     document.body.style.overflow = '';
+  }
+
+  addToCart(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
+    this.cartService.addToCart(item, variant);
+  }
+
+  isSingleChoice(item: any): boolean {
+    return !item.image && !item.description && (!item.tags || item.tags.length === 0) && !item.prices && !!item.priceEuros;
+  }
+
+  onSingleChoiceClick(item: any, event: Event) {
+    if (this.isSingleChoice(item)) {
+      this.addToCart(item);
+      event.stopPropagation();
+    }
+  }
+
+  onItemClick(item: any, event: Event) {
+    if (this.isSingleChoice(item)) {
+      this.addToCart(item);
+      event.stopPropagation();
+    } else {
+      this.openItemDetail(item);
+    }
   }
 }

@@ -83,3 +83,7 @@ a {
 ::selection {
   background: rgba(245, 166, 35, 0.3);
 }
+
+li.item.item--single-choice {
+  cursor: pointer;
+}

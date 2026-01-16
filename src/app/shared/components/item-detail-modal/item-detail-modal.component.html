@@ -57,23 +57,26 @@
         <div class="modal__prices">
           @if (item().prices) {
             <div class="modal__price-row">
-              <div class="modal__price-item modal__price-item--seul">
+              <div class="modal__price-item modal__price-item--seul modal__price-item--clickable" (click)="addToCart('seul')" tabindex="0" role="button" aria-label="Ajouter {{item().name}} seul au panier">
                 <span class="modal__price-label">Seul</span>
                 <span class="modal__price-value">{{ item().prices?.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                <span class="modal__price-cart">🛒</span>
               </div>
-              <div class="modal__price-item modal__price-item--frites">
+              <div class="modal__price-item modal__price-item--frites modal__price-item--clickable" (click)="addToCart('frites')" tabindex="0" role="button" aria-label="Ajouter {{item().name}} +frites au panier">
                 <span class="modal__price-label">+ Frites</span>
                 <span class="modal__price-value">{{ item().prices?.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                <span class="modal__price-cart">🛒</span>
               </div>
-              <div class="modal__price-item modal__price-item--menu">
+              <div class="modal__price-item modal__price-item--menu modal__price-item--clickable" (click)="addToCart('menu')" tabindex="0" role="button" aria-label="Ajouter {{item().name}} en menu au panier">
                 <span class="modal__price-label">Menu</span>
                 <span class="modal__price-value">{{ item().prices?.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
                 <span class="modal__price-info">Frites + Boisson</span>
+                <span class="modal__price-cart">🛒</span>
               </div>
             </div>
           } @else if (item().priceEuros) {
-            <div class="modal__price-single">
-              {{ item().priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}
+            <div class="modal__price-single modal__price-item--clickable" (click)="addToCart()" tabindex="0" role="button" aria-label="Ajouter {{item().name}} au panier">
+              {{ item().priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }} <span class="modal__price-cart">🛒</span>
             </div>
           }
         </div>

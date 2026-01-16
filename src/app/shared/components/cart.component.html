@@ -1,0 +1,43 @@
+<div class="cart" [class.cart--collapsed]="collapsed()" (click)="toggleCollapse()" tabindex="0" role="button" aria-label="Ouvrir ou fermer le panier">
+  <div class="cart__icon-header">
+    <span class="cart__icon" aria-label="Panier" title="Panier">🛒</span>
+    <span class="cart__total-inline">{{ total() | currency:'EUR':'symbol':'1.2-2' }}</span>
+    <span class="cart__chevron" [class.cart__chevron--open]="!collapsed()">&#9660;</span>
+    @if (!collapsed()) {
+      <h4>Votre sélection</h4>
+    }
+  </div>
+  @if (!collapsed()) {
+    <div class="cart__details" (click)="$event.stopPropagation()">
+      <ul class="cart__list">
+        @for (ci of items(); track ci.item.id) {
+          <li class="cart__item-detail">
+            <div class="cart__item-main">
+              <span class="cart__item-name">{{ ci.item.name }}@if (ci.variant) { ({{ ci.variant }}) }</span>
+              <span class="cart__item-price">{{ (ci.variant && ci.item.prices ? ci.item.prices[ci.variant] : ci.item.priceEuros) | currency:'EUR':'symbol':'1.2-2' }}</span>
+            </div>
+            <div class="cart__item-actions">
+              <input type="number" min="1" [value]="ci.quantity" (click)="$event.stopPropagation()" (change)="updateQuantity(ci.item, ci.variant, $event)" class="cart__qty" />
+              <span class="cart__item-total">
+                {{ getLineTotal(ci) | currency:'EUR':'symbol':'1.2-2' }}
+              </span>
+              <button (click)="remove(ci.item, ci.variant); $event.stopPropagation()" aria-label="Retirer">&times;</button>
+            </div>
+          </li>
+        }
+      </ul>
+      <div class="cart__total">
+        Total&nbsp;: <span>{{ total() | currency:'EUR':'symbol':'1.2-2' }}</span>
+      </div>
+      @if (items().length > 0) {
+        <button class="cart__clear" (click)="clear(); $event.stopPropagation()">Vider</button>
+      }
+      <button class="cart__order" [disabled]="items().length === 0" (click)="$event.stopPropagation()">Appeler et commander</button>
+      @if (items().length === 0) {
+        <div class="cart__empty">
+          <span>Votre panier est vide.</span>
+        </div>
+      }
+    </div>
+  }
+</div>
