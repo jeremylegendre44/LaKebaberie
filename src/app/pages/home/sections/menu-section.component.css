@@ -546,6 +546,7 @@
   display: flex;
   gap: 0.5rem;
   flex-shrink: 0;
+  justify-content: center;
 }
 
 .price-col {
@@ -606,6 +607,7 @@
 /* Items avec prix multiples */
 .item--has-prices .item__content {
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .item--has-prices:hover .price-col {

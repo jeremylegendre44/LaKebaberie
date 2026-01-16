@@ -19,7 +19,6 @@ import { MenuSection } from '../../shared/models/menu.models';
     FooterComponent,
     SectionHeaderComponent,
     MenuSectionComponent,
-    ChoicesSectionComponent,
     MenuSearchFilterComponent
   ],
   templateUrl: './home.page.html',
@@ -116,6 +115,28 @@ export class HomePage {
   // Gère le changement de filtre
   onFilterChange(state: FilterState) {
     this.filterState.set(state);
+  }
+
+  // Parse les horaires pour la frise chronologique
+  parseHours(hours: string) {
+    const periods = [];
+    const parts = hours.split(', ');
+    const totalStart = 11;
+    const totalEnd = 23;
+    const totalDuration = totalEnd - totalStart;
+
+    for (const part of parts) {
+      const [start, end] = part.split('–');
+      const startHour = parseInt(start.split(':')[0]) + parseInt(start.split(':')[1] || '0') / 60;
+      const endHour = parseInt(end.split(':')[0]) + parseInt(end.split(':')[1] || '0') / 60;
+
+      const left = ((startHour - totalStart) / totalDuration) * 100;
+      const width = ((endHour - startHour) / totalDuration) * 100;
+
+      periods.push({ left, width });
+    }
+
+    return periods;
   }
 
   constructor(title: Title) {

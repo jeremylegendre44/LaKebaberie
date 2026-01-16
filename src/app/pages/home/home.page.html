@@ -78,12 +78,6 @@
         </div>
       }
     </section>
-
-    <!--<section id="choix" class="section" aria-label="Choix disponibles">
-      <app-section-header title="Personnalise ta commande" />
-      <app-choices-section [choices]="choices" />
-    </section>-->
-
     <section id="infos" class="section" aria-label="Infos pratiques">
       <app-section-header title="Infos pratiques" />
 
@@ -101,9 +95,14 @@
           <div class="info-card__icon">🕐</div>
           <div class="info-card__title">Horaires</div>
           <div class="info-card__content">
-            Midi : {{ restaurant.hours.lunch }}<br>
-            Soir : {{ restaurant.hours.dinner }}<br>
-            <strong>Fermé le {{ restaurant.hours.closed }}</strong>
+            <strong>Horaires d'ouverture :</strong><br>
+            <span class="day-label">Lundi :</span> {{ restaurant.hours.monday }}<br>
+            <span class="day-label">Mardi :</span> {{ restaurant.hours.tuesday }}<br>
+            <span class="day-label">Mercredi :</span> {{ restaurant.hours.wednesday }}<br>
+            <span class="day-label">Jeudi :</span> {{ restaurant.hours.thursday }}<br>
+            <span class="day-label">Vendredi :</span> {{ restaurant.hours.friday }}<br>
+            <span class="day-label">Samedi :</span> {{ restaurant.hours.saturday }}<br>
+            <span class="day-label">Dimanche :</span> {{ restaurant.hours.sunday }}
           </div>
         </div>
 

@@ -369,18 +369,22 @@ export const CHOICES: readonly ChoiceOption[] = [
 ];
 
 export const ORDERING_NOTE =
-  "En attendant la commande en ligne, appelle-nous au 02 XX XX XX XX ou passe directement au restaurant.";
+  "En attendant la commande en ligne, appelle-nous au 02 40 85 21 97 ou passe directement au restaurant.";
 
 // Informations du restaurant
 export const RESTAURANT_INFO = {
   name: 'La Kebaberie',
-  address: '12 Place de l\'Église',
+  address: '3 Rte de Savenay',
   city: 'Saint-Étienne-de-Montluc',
   postalCode: '44360',
-  phone: '02 XX XX XX XX',
+  phone: '02 40 85 21 97',
   hours: {
-    lunch: '11h30 - 14h00',
-    dinner: '18h30 - 22h00',
-    closed: 'Lundi'
+    monday: '11:30–14:30, 18:00–22:00',
+    tuesday: '11:30–14:30, 18:00–22:00',
+    wednesday: '11:30–14:30, 18:00–22:00',
+    thursday: '11:30–14:30, 18:00–22:00',
+    friday: '11:30–14:30, 18:00–23:00',
+    saturday: '11:30–14:30, 18:00–23:00',
+    sunday: '18:00–22:00'
   }
 } as const;
