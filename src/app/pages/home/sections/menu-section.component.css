@@ -567,7 +567,7 @@
 }
 
 .price-col:nth-child(1) .price-label {
-  color: #f5a623;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* +Frites - Gris foncé */
@@ -577,7 +577,7 @@
 }
 
 .price-col:nth-child(2) .price-label {
-  color: #aaaaaa;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Menu - Rouge */
@@ -587,7 +587,7 @@
 }
 
 .price-col:nth-child(3) .price-label {
-  color: #e63946;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .price-label {

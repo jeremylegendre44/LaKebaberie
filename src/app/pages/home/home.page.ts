@@ -86,7 +86,8 @@ export class HomePage {
           // Filtre par nom
           const matchesQuery = !query ||
             item.name.toLowerCase().includes(query) ||
-            item.description?.toLowerCase().includes(query);
+            item.description?.toLowerCase().includes(query) ||
+            section.title.toLowerCase().includes(query);
 
           // Filtre par catégorie
           const matchesCategory = categories.length === 0 ||

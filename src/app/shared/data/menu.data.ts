@@ -139,15 +139,6 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         tags: ['XL'],
         ingredients: ['Galette de blé XL', '3 viandes au choix', 'Frites', 'Sauce fromagère'],
         categories: ['halal', 'populaire']
-      },
-      {
-        id: 'tacos-4v',
-        name: 'Tacos 4 viandes',
-        description: 'Galette XXL, 4 viandes au choix, frites, sauce fromagère',
-        prices: { seul: 14, frites: 15.50, menu: 16.50 },
-        tags: ['XXL'],
-        ingredients: ['Galette de blé XXL', '4 viandes au choix', 'Frites', 'Sauce fromagère'],
-        categories: ['halal']
       }
     ]
   },
@@ -340,7 +331,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     title: 'Boissons',
     icon: '🥤',
     subtitle: 'Fraîches et désaltérantes',
-    image: 'assets/Saint-Etienne-de-Montluc-La-Kebaberie-menu.jpg',
+    image: 'assets/plats/boissons/section-boisson.png',
     items: [
       { id: 'coca-33', name: 'Coca-Cola 33cl', priceEuros: 2.00 },
       { id: 'coca-50', name: 'Coca-Cola 50cl', priceEuros: 2.80 },
