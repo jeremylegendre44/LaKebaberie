@@ -18,6 +18,8 @@ export type Allergens =
   | 'lupin'
   | 'sulfites';
 
+export type Category = 'vegetarien' | 'halal' | 'epice' | 'nouveau' | 'populaire';
+
 export interface MenuItem {
   /** Identifiant stable (utile pour tracking, futures commandes, etc.) */
   readonly id: string;
@@ -44,7 +46,7 @@ export interface MenuItem {
   readonly ingredients?: readonly string[];
 
   /** Catégories pour le filtrage (végétarien, halal, épicé, etc.) */
-  readonly categories?: readonly ('vegetarien' | 'halal' | 'epice' | 'nouveau' | 'populaire')[];
+  readonly categories?: readonly Category[];
 
   /** Allergènes potentiels (à compléter si besoin). */
   readonly allergens?: readonly Allergens[];

@@ -8,7 +8,7 @@ import { CartService } from '../../cart.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './item-detail-modal.component.html',
-  styleUrl: './item-detail-modal.component.css'
+  styleUrls: ['./item-detail-modal.component.css']
 })
 export class ItemDetailModalComponent {
   item = input.required<MenuItem>();

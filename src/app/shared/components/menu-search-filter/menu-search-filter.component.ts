@@ -1,11 +1,12 @@
 import { Component, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MENU_SECTIONS } from '../../data/menu.data';
+import { MENU_SECTIONS } from '../../data';
+import type { Category } from '../../models';
 
 export interface FilterState {
   searchQuery: string;
-  categories: string[];
+  categories: Category[];
   ingredients: string[];
   sections: string[];
 }
@@ -22,7 +23,7 @@ export interface FilterOption {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './menu-search-filter.component.html',
-  styleUrl: './menu-search-filter.component.css'
+  styleUrls: ['./menu-search-filter.component.css']
 })
 export class MenuSearchFilterComponent {
   /** Liste de tous les ingrédients disponibles */
@@ -51,11 +52,11 @@ export class MenuSearchFilterComponent {
 
   /** Options de catégories */
   readonly categoryOptions: FilterOption[] = [
-    { id: 'vegetarien', label: 'Végétarien', icon: '🥬' },
-    { id: 'halal', label: 'Halal', icon: '🍖' },
-    { id: 'epice', label: 'Épicé', icon: '🌶️' },
-    { id: 'populaire', label: 'Populaire', icon: '⭐' },
-    { id: 'nouveau', label: 'Nouveau', icon: '✨' }
+    { id: 'vegetarien', label: 'Végétarien', icon: '\ud83e\udd6c' },
+    { id: 'halal', label: 'Halal', icon: '\ud83c\udf56' },
+    { id: 'epice', label: 'Épicé', icon: '\ud83c\udf36\ufe0f' },
+    { id: 'populaire', label: 'Populaire', icon: '\u2b50' },
+    { id: 'nouveau', label: 'Nouveau', icon: '\u2728' }
   ];
 
   /** Liste de toutes les sections dynamiques */
@@ -121,11 +122,6 @@ export class MenuSearchFilterComponent {
     this.emitFilterChange();
   }
 
-  /** Toggle les filtres avancés */
-  toggleAdvancedFilters() {
-    this.showAdvancedFilters.set(!this.showAdvancedFilters());
-  }
-
   /** Réinitialise tous les filtres */
   clearAllFilters() {
     this.searchQuery.set('');
@@ -144,7 +140,7 @@ export class MenuSearchFilterComponent {
   private emitFilterChange() {
     this.filterChange.emit({
       searchQuery: this.searchQuery(),
-      categories: Array.from(this.selectedCategories()),
+      categories: Array.from(this.selectedCategories()) as Category[],
       ingredients: Array.from(this.selectedIngredients()),
       sections: Array.from(this.selectedSections())
     });

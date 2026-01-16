@@ -1,59 +1,104 @@
-# LaKebaberie
+# La Kebaberie — Application Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Application frontend de démonstration pour un restaurant (menu, sections, panier) développée avec Angular 21.
 
-## Development server
+## Description
 
-To start a local development server, run:
+Cette application présente un catalogue de plats organisé par sections, un système de filtrage, et un panier client. Le projet utilise des composants standalone (Angular 21), des services pour la logique métier et un design sombre avec variables CSS.
 
-```bash
+## Fonctionnalités
+
+- Navigation simple sur la page d'accueil
+- Affichage des sections et des plats (images, description, prix)
+- Filtrage par ingrédients / catégories
+- Panier client : ajout, modification de quantité, suppression, total
+- Composants réutilisables (header, footer, modals, cart)
+
+## Prérequis
+
+- Node.js (version LTS recommandée)
+- npm
+- Angular CLI (optionnel pour le développement local)
+
+## Installation
+
+Ouvrir un terminal PowerShell depuis la racine du projet puis :
+
+```powershell
+npm install
+```
+
+## Commandes utiles (PowerShell)
+
+- Lancer le serveur de développement :
+
+```powershell
+npm start
+# ou
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Construire l'application :
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```powershell
+npm run build
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Contrôle de type TypeScript :
 
-```bash
-ng generate --help
+```powershell
+npm run typecheck
 ```
 
-## Building
+- Lancer l'analyse statique (ESLint) :
 
-To build the project run:
-
-```bash
-ng build
+```powershell
+npm run lint
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Formater le code (Prettier) :
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+```powershell
+npm run format
 ```
 
-## Running end-to-end tests
+- Lancer les tests unitaires (si configurés) :
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+```powershell
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Structure du projet
 
-## Additional Resources
+- `src/`
+  - `app/` — composants, pages, services
+    - `pages/home/` — page d'accueil et sous-composants de la carte
+    - `shared/` — composants partagés, services, données et modèles
+  - `assets/` — images et ressources statiques
+  - `index.html`, `main.ts`, `styles.css`
+- `angular.json`, `tsconfig.json`, `package.json` — configuration et scripts
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Conventions et bonnes pratiques
+
+- Typage TypeScript strict (mode `strict` activé)
+- Composants standalone quand pertinent (Angular 21)
+- Pas d'usage non justifié de `any` dans le code applicatif
+- Réutilisation et barrels (`shared/components`, `shared/models`)
+- Services pour la logique métier (ex : `CartService`)
+- Attributs ARIA et bonnes pratiques d'accessibilité dans les templates
+
+## Développement & maintenance
+
+- Pour contribuer, créez une branche feature/xxx et ouvrez une PR claire.
+- Exécutez `npm run typecheck` et `npm run lint` avant de soumettre.
+- Les assets (images) sont stockés dans `src/assets/` — optimisez les images si vous publiez en production.
+
+## Suggestions futures
+
+- Ajouter des tests unitaires et d'intégration pour atteindre une couverture souhaitée.
+- Extraire les composants de présentation (ex: InfoCard) pour améliorer la réutilisabilité.
+- Mettre en place CI pour exécuter build, lint et tests sur les PRs.
+
+---
+
+Licence : voir les fichiers de licence du dépôt (si présents).

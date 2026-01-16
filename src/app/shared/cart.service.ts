@@ -1,9 +1,11 @@
 import { Injectable, signal } from '@angular/core';
-import { MenuItem } from '../shared/models/menu.models';
+import { MenuItem } from './models';
+
+export type CartVariant = 'seul' | 'frites' | 'menu';
 
 export interface CartItem {
   item: MenuItem;
-  variant?: 'seul' | 'frites' | 'menu';
+  variant?: CartVariant;
   quantity: number;
 }
 
@@ -11,7 +13,7 @@ export interface CartItem {
 export class CartService {
   readonly items = signal<CartItem[]>([]);
 
-  addToCart(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
+  addToCart(item: MenuItem, variant?: CartVariant) {
     const current = this.items();
     const idx = current.findIndex(
       ci => ci.item.id === item.id && ci.variant === variant
@@ -24,14 +26,14 @@ export class CartService {
     }
   }
 
-  removeFromCart(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
+  removeFromCart(item: MenuItem, variant?: CartVariant) {
     const current = this.items().filter(
       ci => !(ci.item.id === item.id && ci.variant === variant)
     );
     this.items.set(current);
   }
 
-  updateQuantity(item: MenuItem, variant: 'seul' | 'frites' | 'menu', quantity: number) {
+  updateQuantity(item: MenuItem, variant: CartVariant, quantity: number) {
     const current = this.items();
     const idx = current.findIndex(
       ci => ci.item.id === item.id && ci.variant === variant
@@ -50,9 +52,9 @@ export class CartService {
     this.items.set([]);
   }
 
-  getTotal() {
+  getTotal(): number {
     return this.items().reduce((sum, ci) => {
-      let price = 0;
+      let price: number;
       if (ci.variant && ci.item.prices) {
         price = ci.item.prices[ci.variant] ?? 0;
       } else {

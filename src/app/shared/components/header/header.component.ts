@@ -10,7 +10,7 @@ export interface NavLink {
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+  styleUrls: ['./header.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {

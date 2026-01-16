@@ -6,7 +6,7 @@ import { CartComponent } from './shared/components';
   selector: 'app-root',
   imports: [RouterOutlet, CartComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('LaKebaberie');

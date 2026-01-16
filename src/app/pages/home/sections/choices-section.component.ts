@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { ChoiceOption } from '../../../shared/models/menu.models';
+import { ChoiceOption } from '../../../shared/models';
 
 @Component({
   selector: 'app-choices-section',
   standalone: true,
   templateUrl: './choices-section.component.html',
-  styleUrl: './choices-section.component.css',
+  styleUrls: ['./choices-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChoicesSectionComponent {

@@ -1,78 +1,85 @@
-import { Component, computed, signal, OnInit, OnDestroy } from '@angular/core';
-import { CartService } from '../cart.service';
+import { Component, computed, signal, Signal, OnInit, OnDestroy } from '@angular/core';
+import { CartService, CartItem } from '../cart.service';
 import { CurrencyPipe, CommonModule } from '@angular/common';
+import type { MenuItem } from '../models';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CurrencyPipe, CommonModule],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit, OnDestroy {
-  readonly items;
-  readonly total;
+  readonly items: Signal<CartItem[]>;
+
+  // Expose le total en tant que getter typé number pour le template
+  get totalValue(): number {
+    return this.cartService.getTotal();
+  }
+
   collapsed = signal(true);
 
   // Animation state
   vibrate = signal(false);
   grow = signal(false);
 
-  private cartAnimateListener: any;
+  private cartAnimateListener: EventListener | null = null;
 
-  constructor(private cartService: CartService) {
+  constructor(private readonly cartService: CartService) {
     this.items = this.cartService.items;
-    this.total = computed(() => this.cartService.getTotal());
   }
 
   ngOnInit() {
-    this.cartAnimateListener = (e: CustomEvent) => {
-      this.triggerCartAnimation(!!e.detail.collapsed);
+    this.cartAnimateListener = (e: Event) => {
+      const ce = e as CustomEvent<{ collapsed?: boolean }>;
+      this.triggerCartAnimation(!!ce.detail?.collapsed);
     };
-    document.addEventListener('cart:animate', this.cartAnimateListener as EventListener);
+    document.addEventListener('cart:animate', this.cartAnimateListener);
   }
 
   ngOnDestroy() {
-    document.removeEventListener('cart:animate', this.cartAnimateListener as EventListener);
+    if (this.cartAnimateListener) {
+      document.removeEventListener('cart:animate', this.cartAnimateListener);
+      this.cartAnimateListener = null;
+    }
   }
 
   toggleCollapse() {
     this.collapsed.update(v => !v);
   }
 
-  remove(item: any, variant: any) {
+  remove(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
     this.cartService.removeFromCart(item, variant);
   }
 
-  updateQuantity(item: any, variant: any, event: any) {
-    const qty = +event.target.value;
-    this.cartService.updateQuantity(item, variant, qty);
+  updateQuantity(item: MenuItem, variant: 'seul' | 'frites' | 'menu' | undefined, event: Event) {
+    const target = event.target as HTMLInputElement | null;
+    const qty = target ? Number(target.value) : Number.NaN;
+    if (Number.isFinite(qty) && qty > 0) {
+      this.cartService.updateQuantity(item, variant!, qty);
+    }
   }
 
   clear() {
     this.cartService.clearCart();
   }
 
-  getLineTotal(ci: any): number {
+  getLineTotal(ci: CartItem | null): number {
     if (!ci) return 0;
-    let unit = 0;
-    if (ci.variant && ci.item && ci.item.prices && ci.item.prices[ci.variant] !== undefined) {
-      unit = ci.item.prices[ci.variant];
-    } else if (ci.item && ci.item.priceEuros !== undefined) {
-      unit = ci.item.priceEuros;
-    }
-    return unit * (ci.quantity != null ? ci.quantity : 1);
+    const unit = ci.item?.prices?.[ci.variant as keyof typeof ci.item.prices] ?? ci.item?.priceEuros ?? 0;
+    return unit * (ci.quantity ?? 1);
   }
 
   // Ajoute une méthode pour déclencher l'animation
   triggerCartAnimation(collapsed: boolean) {
     if (collapsed) {
       this.grow.set(false);
-      void this.grow.set(true);
+      this.grow.set(true);
       setTimeout(() => this.grow.set(false), 600);
     } else {
       this.vibrate.set(false);
-      void this.vibrate.set(true);
+      this.vibrate.set(true);
       setTimeout(() => this.vibrate.set(false), 400);
     }
   }

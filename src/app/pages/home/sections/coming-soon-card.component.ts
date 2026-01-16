@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'app-coming-soon-card',
   standalone: true,
   templateUrl: './coming-soon-card.component.html',
-  styleUrl: './coming-soon-card.component.css',
+  styleUrls: ['./coming-soon-card.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComingSoonCardComponent {

@@ -11,7 +11,7 @@ import { CartService } from '../../../shared/cart.service';
   standalone: true,
   imports: [CurrencyPipe, CommonModule, ItemDetailModalComponent, ImageModalComponent],
   templateUrl: './menu-section.component.html',
-  styleUrl: './menu-section.component.css',
+  styleUrls: ['./menu-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuSectionComponent {
@@ -25,8 +25,6 @@ export class MenuSectionComponent {
   // Image modal state
   readonly isImageModalOpen = signal(false);
   readonly imageModalUrl = signal<string | null>(null);
-
-  fireworkIndex: string|null = null;
 
   constructor(private readonly cartService: CartService) {}
 
@@ -70,18 +68,11 @@ export class MenuSectionComponent {
     document.dispatchEvent(event);
   }
 
-  isSingleChoice(item: any): boolean {
+  isSingleChoice(item: MenuItem): boolean {
     return !item.image && !item.description && (!item.tags || item.tags.length === 0) && !item.prices && !!item.priceEuros;
   }
 
-  onSingleChoiceClick(item: any, event: Event) {
-    if (this.isSingleChoice(item)) {
-      this.addToCart(item);
-      event.stopPropagation();
-    }
-  }
-
-  onItemClick(item: any, event: Event) {
+  onItemClick(item: MenuItem, event: Event) {
     if (this.isSingleChoice(item)) {
       this.addToCart(item);
       event.stopPropagation();

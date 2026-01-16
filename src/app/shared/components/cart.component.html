@@ -15,7 +15,7 @@
         <path d="M10 13h12l-1.5 8.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L10 13zm2-3a2 2 0 1 1 4 0v1h-4v-1z" fill="#fff"/>
       </svg>
     </span>
-    <span class="cart__total-inline">{{ total() | currency:'EUR':'symbol':'1.2-2' }}</span>
+    <span class="cart__total-inline">{{ totalValue | currency:'EUR':'symbol':'1.2-2' }}</span>
     <span class="cart__chevron" [class.cart__chevron--open]="!collapsed()">&#9660;</span>
   </div>
   @if (!collapsed()) {
@@ -40,7 +40,7 @@
         }
       </ul>
       <div class="cart__total">
-        Total&nbsp;: <span>{{ total() | currency:'EUR':'symbol':'1.2-2' }}</span>
+        Total&nbsp;: <span>{{ totalValue | currency:'EUR':'symbol':'1.2-2' }}</span>
       </div>
       <div class="cart__actions-row">
         @if (items().length > 0) {

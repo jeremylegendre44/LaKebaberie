@@ -8,7 +8,7 @@ import { PricingHighlight } from '../../../shared/models/menu.models';
   standalone: true,
   imports: [CurrencyPipe],
   templateUrl: './pricing-section.component.html',
-  styleUrl: './pricing-section.component.css',
+  styleUrls: ['./pricing-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PricingSectionComponent {

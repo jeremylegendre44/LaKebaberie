@@ -1,15 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { CHOICES, MENU_SECTIONS, ORDERING_NOTE, PRICING_HIGHLIGHTS, RESTAURANT_INFO } from '../../shared/data/menu.data';
-import { HeaderComponent, NavLink } from '../../shared/components/header/header.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
+import { MENU_SECTIONS, RESTAURANT_INFO } from '../../shared/data';
+import { HeaderComponent, NavLink, FooterComponent, SectionHeaderComponent, MenuSearchFilterComponent, type FilterState } from '../../shared/components';
 import { MenuSectionComponent } from './sections/menu-section.component';
-import { ChoicesSectionComponent } from './sections/choices-section.component';
-import { PricingSectionComponent } from './sections/pricing-section.component';
-import { MenuSearchFilterComponent, FilterState } from '../../shared/components/menu-search-filter/menu-search-filter.component';
-import { MenuSection } from '../../shared/models/menu.models';
+import { MenuSection } from '../../shared/models';
+import type { Category } from '../../shared/models';
 
 @Component({
   selector: 'app-home-page',
@@ -22,14 +18,11 @@ import { MenuSection } from '../../shared/models/menu.models';
     MenuSearchFilterComponent
   ],
   templateUrl: './home.page.html',
-  styleUrl: './home.page.css',
+  styleUrls: ['./home.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePage {
-  readonly pricingHighlights = PRICING_HIGHLIGHTS;
   readonly menuSections = MENU_SECTIONS;
-  readonly choices = CHOICES;
-  readonly orderingNote = ORDERING_NOTE;
   readonly restaurant = RESTAURANT_INFO;
 
   readonly currentYear = computed(() => new Date().getFullYear());
@@ -37,7 +30,7 @@ export class HomePage {
   readonly navLinks: readonly NavLink[] = [
     { label: 'Carte', href: '#carte' },
     { label: 'Infos', href: '#infos' },
-    { label: 'Appeler', href: `tel:${RESTAURANT_INFO.phone.replace(/\s/g, '')}`, isCta: true }
+    { label: 'Appeler', href: `tel:${RESTAURANT_INFO.phone.replaceAll(' ', '')}`, isCta: true }
   ];
 
   // État des filtres
@@ -56,7 +49,7 @@ export class HomePage {
         item.ingredients?.forEach(ing => ingredients.add(ing));
       });
     });
-    return Array.from(ingredients).sort();
+    return Array.from(ingredients).sort((a, b) => a.localeCompare(b));
   });
 
   // Nombre total d'items
@@ -90,11 +83,10 @@ export class HomePage {
 
           // Filtre par catégorie
           const matchesCategory = categories.length === 0 ||
-            categories.some(cat => item.categories?.includes(cat as any));
+            categories.some((cat: Category) => item.categories?.includes(cat));
 
           // Filtre par ingrédient
-          const matchesIngredient = ingredients.length === 0 ||
-            ingredients.every(ing => item.ingredients?.includes(ing));
+          const matchesIngredient = ingredients.every(ing => item.ingredients?.includes(ing));
 
           return matchesQuery && matchesCategory && matchesIngredient;
         });
@@ -115,28 +107,6 @@ export class HomePage {
   // Gère le changement de filtre
   onFilterChange(state: FilterState) {
     this.filterState.set(state);
-  }
-
-  // Parse les horaires pour la frise chronologique
-  parseHours(hours: string) {
-    const periods = [];
-    const parts = hours.split(', ');
-    const totalStart = 11;
-    const totalEnd = 23;
-    const totalDuration = totalEnd - totalStart;
-
-    for (const part of parts) {
-      const [start, end] = part.split('–');
-      const startHour = parseInt(start.split(':')[0]) + parseInt(start.split(':')[1] || '0') / 60;
-      const endHour = parseInt(end.split(':')[0]) + parseInt(end.split(':')[1] || '0') / 60;
-
-      const left = ((startHour - totalStart) / totalDuration) * 100;
-      const width = ((endHour - startHour) / totalDuration) * 100;
-
-      periods.push({ left, width });
-    }
-
-    return periods;
   }
 
   constructor(title: Title) {
