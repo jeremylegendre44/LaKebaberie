@@ -17,9 +17,6 @@
     </span>
     <span class="cart__total-inline">{{ total() | currency:'EUR':'symbol':'1.2-2' }}</span>
     <span class="cart__chevron" [class.cart__chevron--open]="!collapsed()">&#9660;</span>
-    @if (!collapsed()) {
-      <h4 class="cart__title">Votre sélection</h4>
-    }
   </div>
   @if (!collapsed()) {
     <div class="cart__details" (click)="$event.stopPropagation()">

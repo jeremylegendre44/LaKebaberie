@@ -7,11 +7,11 @@
   color: #fff;
   border-radius: 18px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.18);
-  padding: 1.2rem 1rem 1.5rem 1rem;
+  padding: 1rem 0.8rem 1.2rem 0.8rem;
   z-index: 1100;
   display: flex;
   flex-direction: column;
-  font-size: 1rem;
+  font-size: 0.85rem;
   transition: box-shadow 0.2s, width 0.2s, min-width 0.2s, padding 0.2s;
   align-items: stretch;
 }
@@ -194,7 +194,6 @@
   letter-spacing: 0.01em;
 }
 .cart__details {
-  background: #23201a;
   color: #fff;
   border-radius: 0 0 16px 16px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
