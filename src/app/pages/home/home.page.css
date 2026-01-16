@@ -300,6 +300,72 @@
   font-weight: 600;
 }
 
+.hours-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.hours-grid > div {
+  display: contents;
+}
+
+#infos .info-card--hours {
+  background:
+    radial-gradient(ellipse at top left,
+    rgba(245,166,35,0.15) 0%,
+    transparent 60%),
+    var(--lk-surface);
+  border: 1px solid rgba(245,166,35,0.25);
+}
+
+#infos .infos__col--right .info-card {
+  background: var(--lk-surface);
+  border: 1px solid var(--lk-surface-light);
+}
+
+#infos .infos__col--right .info-card__title {
+  color: var(--lk-primary);
+}
+
+#infos .infos__col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#infos .infos__col--right {
+  gap: 1.25rem;
+}
+#infos .infos__col--left {
+  gap: 1.5rem;
+}
+
+
+
+.info-card {
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.info-card:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+
+
+.hours-grid span:first-child {
+  color: var(--lk-primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hours-grid span:last-child {
+  color: var(--lk-text-muted);
+  text-align: right;
+}
+
+
 /* ─────────────────────────────────────────────────────────────────
    NO RESULTS
    ───────────────────────────────────────────────────────────────── */
@@ -368,5 +434,19 @@
     padding: 1.5rem 0.5rem 1.5rem 0.5rem;
     max-width: 98vw;
     margin: 1rem auto 1.5rem auto;
+  }
+  #infos .infos__col {
+    gap: 1.25rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .hours-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hours-grid span:last-child {
+    text-align: left;
   }
 }
