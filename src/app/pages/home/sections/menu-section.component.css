@@ -512,18 +512,19 @@
 }
 
 .price-badge--seul {
-  background: linear-gradient(135deg, #f5a623 0%, #ff6b35 100%);
-  color: #0a0a0a;
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+  color: #ffffff;
+  border: 1px solid rgba(245, 166, 35, 0.3);
 }
 
 .price-badge--seul .price-badge__label {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .price-badge--frites {
-  background: rgba(20, 20, 20, 0.95);
-  color: #f5a623;
-  border: 1px solid rgba(245, 166, 35, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .price-badge--frites .price-badge__label {
@@ -531,8 +532,9 @@
 }
 
 .price-badge--menu {
-  background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.15) 0%, rgba(193, 18, 31, 0.15) 100%);
   color: #ffffff;
+  border: 1px solid rgba(230, 57, 70, 0.3);
 }
 
 .price-badge--menu .price-badge__label {
@@ -825,16 +827,16 @@
   padding: 0.4em 1.1em;
   border-radius: 8px;
   border: none;
-  background: #f5a623;
-  color: #181818;
+  background: rgb(var(--lk-primary));
+  color: rgb(var(--lk-bg));
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
   font-size: 0.98em;
 }
 .add-cart-btn:hover {
-  background: #ff6b35;
-  color: #fff;
+  background: rgb(var(--lk-accent));
+  color: rgb(var(--lk-text));
 }
 .item__cart-actions {
   margin-top: 0.5em;
@@ -853,9 +855,9 @@
 .price-badge--clickable:active,
 .price-badge--clickable:focus,
 .price-badge--clickable:hover {
-  box-shadow: 0 0 0 3px #f5a62355, 0 2px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.33), 0 2px 10px rgba(0,0,0,0.5);
   background: #ff6b35;
-  color: #fff;
+  color: #ffffff;
 }
 .price-badge__cart {
   margin-left: 0.4em;
@@ -873,7 +875,7 @@
 .item__price--overlay.price-badge--clickable:active,
 .item__price--overlay.price-badge--clickable:focus,
 .item__price--overlay.price-badge--clickable:hover {
-  box-shadow: 0 0 0 3px #f5a62355, 0 2px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.33), 0 2px 10px rgba(0,0,0,0.5);
   background: #ff6b35;
-  color: #fff;
+  color: #ffffff;
 }
