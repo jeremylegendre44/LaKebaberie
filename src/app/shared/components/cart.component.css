@@ -8,7 +8,7 @@
   border-radius: 18px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.18);
   padding: 1.2rem 1rem 1.5rem 1rem;
-  z-index: 200;
+  z-index: 1100;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
