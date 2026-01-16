@@ -1,11 +1,13 @@
 import { Component, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MENU_SECTIONS } from '../../data/menu.data';
 
 export interface FilterState {
   searchQuery: string;
   categories: string[];
   ingredients: string[];
+  sections: string[];
 }
 
 export interface FilterOption {
@@ -56,6 +58,12 @@ export class MenuSearchFilterComponent {
     { id: 'nouveau', label: 'Nouveau', icon: '✨' }
   ];
 
+  /** Liste de toutes les sections dynamiques */
+  readonly sectionOptions: { id: string; label: string; icon?: string }[] = MENU_SECTIONS.map(s => ({ id: s.id, label: s.title, icon: s.icon }));
+
+  /** Sections sélectionnées */
+  selectedSections = signal<Set<string>>(new Set());
+
   /** Vérifie si une catégorie est sélectionnée */
   isCategorySelected(categoryId: string): boolean {
     return this.selectedCategories().has(categoryId);
@@ -64,6 +72,11 @@ export class MenuSearchFilterComponent {
   /** Vérifie si un ingrédient est sélectionné */
   isIngredientSelected(ingredient: string): boolean {
     return this.selectedIngredients().has(ingredient);
+  }
+
+  /** Vérifie si une section est sélectionnée */
+  isSectionSelected(sectionId: string): boolean {
+    return this.selectedSections().has(sectionId);
   }
 
   /** Toggle une catégorie */
@@ -90,6 +103,18 @@ export class MenuSearchFilterComponent {
     this.emitFilterChange();
   }
 
+  /** Toggle une section */
+  toggleSection(sectionId: string) {
+    const sections = new Set(this.selectedSections());
+    if (sections.has(sectionId)) {
+      sections.delete(sectionId);
+    } else {
+      sections.add(sectionId);
+    }
+    this.selectedSections.set(sections);
+    this.emitFilterChange();
+  }
+
   /** Gère le changement de recherche */
   onSearchChange(query: string) {
     this.searchQuery.set(query);
@@ -106,12 +131,13 @@ export class MenuSearchFilterComponent {
     this.searchQuery.set('');
     this.selectedCategories.set(new Set());
     this.selectedIngredients.set(new Set());
+    this.selectedSections.set(new Set());
     this.emitFilterChange();
   }
 
   /** Nombre de filtres actifs */
   get activeFiltersCount(): number {
-    return this.selectedCategories().size + this.selectedIngredients().size;
+    return this.selectedCategories().size + this.selectedIngredients().size + this.selectedSections().size;
   }
 
   /** Émet l'état actuel des filtres */
@@ -119,7 +145,8 @@ export class MenuSearchFilterComponent {
     this.filterChange.emit({
       searchQuery: this.searchQuery(),
       categories: Array.from(this.selectedCategories()),
-      ingredients: Array.from(this.selectedIngredients())
+      ingredients: Array.from(this.selectedIngredients()),
+      sections: Array.from(this.selectedSections())
     });
   }
 }

@@ -132,19 +132,34 @@
   flex-wrap: wrap;
 }
 
+.quick-filters.sections {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quick-filters.categories {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .filter-chip {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1rem;
-  border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(20, 20, 20, 0.6);
-  color: #aaaaaa;
-  font-size: 0.85rem;
-  font-weight: 500;
+  gap: 0.4em;
+  padding: 0.5em 1.1em;
+  border-radius: 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffd98a;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
 }
 
 .filter-chip:hover {
@@ -154,13 +169,13 @@
 }
 
 .filter-chip.active {
-  border-color: #f5a623;
-  background: linear-gradient(135deg, rgba(245, 166, 35, 0.2) 0%, rgba(255, 107, 53, 0.2) 100%);
-  color: #f5a623;
+  background: linear-gradient(90deg, #f5a623 0%, #ff6b35 100%);
+  color: #222;
 }
 
 .filter-chip__icon {
-  font-size: 1rem;
+  font-size: 1.2em;
+  line-height: 1;
 }
 
 .filter-chip__label {
@@ -337,5 +352,37 @@
   .ingredient-chip {
     font-size: 0.75rem;
     padding: 0.4rem 0.7rem;
+  }
+}
+
+.card {
+  width: 100%;
+}
+
+.menu-sections {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.menu-sections.menu-sections--filtered {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .menu-sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .menu-sections.menu-sections--filtered {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1300px) {
+  .menu-sections {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .menu-sections.menu-sections--filtered {
+    grid-template-columns: 1fr;
   }
 }

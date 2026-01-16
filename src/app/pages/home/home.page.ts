@@ -45,7 +45,8 @@ export class HomePage {
   readonly filterState = signal<FilterState>({
     searchQuery: '',
     categories: [],
-    ingredients: []
+    ingredients: [],
+    sections: []
   });
 
   // Liste de tous les ingrédients uniques
@@ -70,14 +71,16 @@ export class HomePage {
     const query = state.searchQuery.toLowerCase().trim();
     const categories = state.categories;
     const ingredients = state.ingredients;
+    const sections = state.sections;
 
     // Si aucun filtre, retourner tout
-    if (!query && categories.length === 0 && ingredients.length === 0) {
+    if (!query && categories.length === 0 && ingredients.length === 0 && sections.length === 0) {
       return this.menuSections;
     }
 
     // Filtrer les sections
     return this.menuSections
+      .filter(section => sections.length === 0 || sections.includes(section.id))
       .map(section => {
         const filteredItems = section.items.filter(item => {
           // Filtre par nom

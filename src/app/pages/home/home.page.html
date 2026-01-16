@@ -59,7 +59,13 @@
 
       <!-- Résultats -->
       @if (filteredSections().length > 0) {
-        <div class="menu-sections-grid">
+        <div class="menu-sections-grid{{
+          filterState().sections.length === 1 ? ' menu-sections--filtered-1'
+          : filterState().sections.length === 2 ? ' menu-sections--filtered-2'
+          : filterState().sections.length === 3 ? ' menu-sections--filtered-3'
+          : filterState().sections.length > 3 ? ' menu-sections--filtered-n'
+          : ''
+        }}">
           @for (section of filteredSections(); track section.id) {
             <app-menu-section [section]="section" />
           }
