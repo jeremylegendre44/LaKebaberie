@@ -9,7 +9,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(var(--lk-bg-rgb), 0.85);
+  background: rgba(var(--lk-image-overlay-rgb), 0.85);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -77,7 +77,7 @@
   height: 40px;
   border-radius: 50%;
   border: none;
-  background: rgba(var(--lk-bg-rgb), 0.6);
+  background: rgba(var(--lk-image-overlay-rgb), 0.6);
   color: var(--lk-text);
   cursor: pointer;
   display: flex;

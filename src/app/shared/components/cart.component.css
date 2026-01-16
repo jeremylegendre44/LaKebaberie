@@ -29,6 +29,9 @@
   justify-content: center;
   gap: 0;
 }
+.cart__chevron {
+  margin-left: 5px;
+}
 
 /* Header/icon area */
 .cart__icon-header,

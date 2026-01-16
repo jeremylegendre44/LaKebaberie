@@ -4,8 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private document = inject(DOCUMENT);
-  private storageKey = 'lk-theme';
+  private readonly document = inject(DOCUMENT);
+  private readonly storageKey = 'lk-theme';
 
   // true = light, false = dark
   private readonly _theme$ = new BehaviorSubject<boolean>(false);
@@ -19,20 +19,21 @@ export class ThemeService {
     return this.document.documentElement.dataset['theme'] === 'light';
   }
 
-  setLight(light: boolean) {
-    if (light) {
-      this.document.documentElement.dataset['theme'] = 'light';
-      try { localStorage.setItem(this.storageKey, 'light'); } catch (e) { void e; }
-      this._theme$.next(true);
-    } else {
-      delete this.document.documentElement.dataset['theme'];
-      try { localStorage.setItem(this.storageKey, 'dark'); } catch (e) { void e; }
-      this._theme$.next(false);
-    }
+  enableLight() {
+    this.document.documentElement.dataset['theme'] = 'light';
+    try { localStorage.setItem(this.storageKey, 'light'); } catch (e) { void e; }
+    this._theme$.next(true);
+  }
+
+  disableLight(): void {
+    delete this.document.documentElement.dataset['theme'];
+    try { localStorage.setItem(this.storageKey, 'dark'); } catch (e) { void e; }
+    this._theme$.next(false);
   }
 
   toggle() {
-    this.setLight(!this.isLight);
+    // explicit methods make intent clear for the linter
+    if (this.isLight) this.disableLight(); else this.enableLight();
   }
 
   initFromStorage() {

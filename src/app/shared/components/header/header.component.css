@@ -109,12 +109,15 @@
   height: 44px;
   padding: 0;
   border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .theme-toggle svg {
   width: 18px;
   height: 18px;
-  color: var(--lk-bg);
+  color: inherit;
+  fill: currentColor;
+  stroke: currentColor;
 }
 
 .theme-toggle[aria-pressed='true'] {

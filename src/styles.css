@@ -6,15 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import './app/shared/styles/common.css';
 
-@font-face {
-  font-family: 'BlockBerthold';
-  src: url('/fonts/BlockBerthold.woff2') format('woff2'),
-       url('/fonts/BlockBerthold.woff') format('woff'),
-       url('/fonts/BlockBerthold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+/* Remove @font-face for BlockBerthold (missing files) - use web fonts/fallbacks instead */
 
 :root {
   color-scheme: dark;
@@ -42,17 +34,39 @@
   --lk-danger: #e63946;
   --lk-danger-rgb: 230,57,70;
 
+  /* Background image (SVG) - served from assets */
+  --lk-bg-image: url('/assets/bg-dark.svg');
+
+  /* Overlay color for images (rgb only) and alpha used in gradients */
+  --lk-image-overlay-rgb: var(--lk-bg-rgb);
+  --lk-image-overlay-alpha: 0.95;
+
   /* Highlights / nuances */
   --lk-highlight: #ffd98a;
   --lk-muted: #666666;
 
   /* Fonts */
   --lk-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --lk-font-display: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+  --lk-font-display: 'Bebas Neue', 'BlockBerthold', Impact, sans-serif;
 
   /* Spacing */
   --lk-radius: 16px;
   --lk-radius-sm: 8px;
+
+  /* UI element variables (defaults for dark theme) */
+  --lk-filter-chip-bg: rgba(var(--lk-white-rgb), 0.07);
+  --lk-filter-chip-border: rgba(var(--lk-white-rgb), 0.06);
+  --lk-filter-chip-color: var(--lk-text);
+
+  --card-title-text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.5);
+  --card-subtitle-color: var(--lk-highlight);
+
+  --price-seul-bg: linear-gradient(135deg, rgba(var(--lk-primary-rgb),0.15) 0%, rgba(var(--lk-accent-rgb),0.15) 100%);
+  --price-seul-border: rgba(var(--lk-primary-rgb),0.3);
+  --price-frites-bg: rgba(var(--lk-white-rgb),0.05);
+  --price-frites-border: rgba(var(--lk-white-rgb),0.1);
+  --price-menu-bg: linear-gradient(135deg, rgba(var(--lk-danger-rgb),0.15) 0%, rgba(193,18,31,0.15) 100%);
+  --price-menu-border: rgba(var(--lk-danger-rgb),0.3);
 }
 
 /* Theme clair (exemple) -- appliquable via <html data-theme="light"> */
@@ -75,8 +89,30 @@
   --lk-danger: #e63946;
   --lk-danger-rgb: 230,57,70;
 
+  /* Light theme background image */
+  --lk-bg-image: url('/assets/bg-light.svg');
+
+  /* Use dark overlay (based on text color) with low alpha so image remains visible but text readable */
+  --lk-image-overlay-rgb: var(--lk-text-rgb);
+  --lk-image-overlay-alpha: 0.08;
+
   --lk-highlight: #ffd98a;
   --lk-muted: #888888;
+
+  /* Light theme UI variables */
+  --lk-filter-chip-bg: rgba(0,0,0,0.04);
+  --lk-filter-chip-border: rgba(0,0,0,0.06);
+  --lk-filter-chip-color: var(--lk-text);
+
+  --card-title-text-shadow: none;
+  --card-subtitle-color: rgba(var(--lk-text-rgb), 0.65);
+
+  --price-seul-bg: linear-gradient(135deg, rgba(var(--lk-primary-rgb),0.12) 0%, rgba(var(--lk-accent-rgb),0.12) 100%);
+  --price-seul-border: rgba(var(--lk-primary-rgb),0.18);
+  --price-frites-bg: rgba(0,0,0,0.06);
+  --price-frites-border: rgba(0,0,0,0.08);
+  --price-menu-bg: linear-gradient(135deg, rgba(var(--lk-danger-rgb),0.12) 0%, rgba(193,18,31,0.12) 100%);
+  --price-menu-border: rgba(var(--lk-danger-rgb),0.18);
 }
 
 :root,
@@ -99,9 +135,9 @@ body {
 
 body {
   margin: 0;
-  font-family: var(--lk-font);
-  background-color: #0a0a0a;
-  background-image: url('assets/bg-dark.svg');
+  font-family: var(--lk-font), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background-color: var(--lk-bg);
+  background-image: var(--lk-bg-image);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;

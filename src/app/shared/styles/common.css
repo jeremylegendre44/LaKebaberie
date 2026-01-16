@@ -34,7 +34,7 @@
 .item__image::after {
   content: '';
   position: absolute; bottom:0; left:0; right:0; height:80px;
-  background: linear-gradient(to top, rgba(var(--lk-bg-rgb), 0.95) 0%, rgba(var(--lk-bg-rgb), 0.7) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(var(--lk-image-overlay-rgb), var(--lk-image-overlay-alpha)) 0%, rgba(var(--lk-image-overlay-rgb), calc(var(--lk-image-overlay-alpha) * 0.7)) 60%, transparent 100%);
   pointer-events: none;
 }
 
@@ -79,5 +79,190 @@
 
 /* Cart small utilities */
 .cart__qty { background: var(--lk-text); color: var(--lk-surface); }
+
+/* Cart remove button general styles */
+.cart__remove {
+  background: transparent;
+  border: none;
+  padding: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.cart__remove svg { display:block; width:18px; height:18px; }
+.cart__remove svg circle { fill: var(--lk-accent); }
+.cart__remove svg path { stroke: var(--lk-bg); stroke-width: 2; stroke-linecap: round; }
+
+/* Light theme overrides */
+:root[data-theme="light"] {
+  /* Filter chips: darker border and light surface */
+  .filter-chip,
+  .ingredient-chip {
+    background: rgba(0,0,0,0.04);
+    color: var(--lk-text);
+  }
+
+  /* Card title: remove heavy text-shadow for readability on light bg */
+  .card__title {
+    text-shadow: none;
+    color: var(--lk-text);
+  }
+
+  /* Subtitle: darker muted color for contrast */
+  .card__subtitle,
+  .modal__price-label,
+  .item__desc {
+    color: rgba(var(--lk-text-rgb), 0.65);
+  }
+
+  /* Price badges: ensure contrast on light surfaces */
+  .price-badge--seul { background: linear-gradient(135deg, rgba(var(--lk-primary-rgb),0.12) 0%, rgba(var(--lk-accent-rgb),0.12) 100%); color: var(--lk-text); border: 1px solid rgba(var(--lk-primary-rgb),0.18); }
+  .price-badge--frites { background: rgba(0,0,0,0.04); color: var(--lk-text); border: 1px solid rgba(0,0,0,0.06); }
+  .price-badge--menu { background: linear-gradient(135deg, rgba(var(--lk-danger-rgb),0.12) 0%, rgba(193,18,31,0.12) 100%); color: var(--lk-text); border: 1px solid rgba(var(--lk-danger-rgb),0.18); }
+
+  /* Button variants */
+  .btn--primary { box-shadow: 0 4px 20px rgba(var(--lk-primary-rgb),0.18); }
+
+  /* Search input: subtle dark border and slightly tinted background */
+  .search-input {
+    background: rgba(var(--lk-text-rgb), 0.03) !important;
+    border: 1px solid rgba(var(--lk-text-rgb), 0.08) !important;
+    color: var(--lk-text) !important;
+  }
+
+  /* Items without image: description should be readable on white */
+  .item:not(.item--has-image) .item__desc {
+    color: rgba(var(--lk-text-rgb), 0.65) !important;
+  }
+
+  /* Price label (small label) readability */
+  .price-label,
+  .price-badge__label {
+    color: rgba(var(--lk-text-rgb), 0.65) !important;
+  }
+
+  /* Price columns background adjustments to avoid white-on-white */
+  .price-col:nth-child(1) {
+    background: var(--price-seul-bg) !important;
+    border: 1px solid var(--price-seul-border) !important;
+    color: var(--lk-text) !important;
+  }
+  .price-col:nth-child(2) {
+    background: var(--price-frites-bg) !important;
+    border: 1px solid var(--price-frites-border) !important;
+    color: var(--lk-text) !important;
+  }
+  .price-col:nth-child(3) {
+    background: var(--price-menu-bg) !important;
+    border: 1px solid var(--price-menu-border) !important;
+    color: var(--lk-text) !important;
+  }
+
+  /* Items: ensure clear borders/contrast in light theme */
+  .item {
+    background: rgba(var(--lk-text-rgb), 0.03) !important; /* slight tint so items are visible on white */
+    border: 1px solid rgba(var(--lk-text-rgb), 0.08) !important;
+    box-shadow: 0 2px 8px rgba(var(--lk-text-rgb), 0.03) !important;
+  }
+
+  /* Items without image: slightly stronger background to separate rows */
+  .item:not(.item--has-image) {
+    background: rgba(var(--lk-text-rgb), 0.02) !important;
+    border: 1px solid rgba(var(--lk-text-rgb), 0.06) !important;
+  }
+
+  .item:hover {
+    background: rgba(var(--lk-primary-rgb), 0.06) !important;
+    border-color: rgba(var(--lk-primary-rgb), 0.18) !important;
+    transform: translateY(-2px);
+  }
+
+  /* Cart area adjustments for light theme */
+  .cart {
+    background: rgba(var(--lk-text-rgb), 0.02) !important;
+    color: var(--lk-text) !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06) !important;
+    border: 1px solid rgba(var(--lk-text-rgb), 1.00) !important;
+  }
+
+  .cart__details {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .cart__item-detail {
+    background: rgba(var(--lk-text-rgb), 0.02) !important;
+    border: 1px solid rgba(var(--lk-text-rgb), 0.06) !important;
+    box-shadow: 0 1px 4px rgba(var(--lk-text-rgb), 0.02) !important;
+  }
+
+  /* Modal (generic) adjustments in light theme */
+  .modal {
+    background: var(--lk-surface) !important;
+    border: 1px solid rgba(var(--lk-text-rgb), 0.06) !important;
+    color: var(--lk-text) !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06) !important;
+  }
+
+  .modal-backdrop {
+    background: rgba(var(--lk-image-overlay-rgb), 0.20) !important;
+  }
+
+  .modal__close, .image-modal__close {
+    background: rgba(var(--lk-image-overlay-rgb), 0.25) !important;
+    color: var(--lk-text) !important;
+    box-shadow: none !important;
+  }
+
+  /* Ensure cart remove icon is visible in light theme: dark stroke for the cross */
+  /* remove filled circle in light theme to avoid blocky background */
+  .cart__remove svg circle { fill: transparent !important; }
+  /* stroke cross with accent for visibility */
+  .cart__remove svg path { stroke: var(--lk-accent) !important; }
+
+  /* Modal image overlay should use theme-aware overlay to ensure readability */
+  .modal__image::after,
+  .item__image::after {
+    background: linear-gradient(to top, rgba(var(--lk-image-overlay-rgb), var(--lk-image-overlay-alpha)) 0%, rgba(var(--lk-image-overlay-rgb), calc(var(--lk-image-overlay-alpha) * 0.7)) 60%, transparent 100%) !important;
+  }
+
+  /* Ensure modal buttons are readable */
+  .modal .btn--primary {
+    background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%) !important;
+    color: var(--lk-bg) !important;
+  }
+
+  /* Cart action buttons contrast */
+  .cart__clear {
+    background: transparent !important;
+    color: var(--lk-primary) !important;
+    border: 1px solid rgba(var(--lk-primary-rgb), 0.22) !important;
+    padding: 0.45rem 0.9rem !important;
+    border-radius: 8px !important;
+  }
+
+  .cart__clear:hover { background: rgba(var(--lk-primary-rgb), 0.08) !important; color: var(--lk-bg) !important; }
+
+  .cart__order {
+    background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%) !important;
+    color: var(--lk-bg) !important;
+    border: none !important;
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .cart__order:disabled { background: var(--lk-surface-light) !important; color: var(--lk-muted) !important; }
+
+  /* Specific overrides requested: prices black and descriptions grey in light theme */
+  .cart__item-price {
+    color: var(--lk-text) !important; /* noir en thème clair */
+  }
+
+  .item__desc {
+    color: rgba(var(--lk-text-rgb), 0.6) !important; /* gris pour thème clair */
+  }
+}
 
 /* end common */
