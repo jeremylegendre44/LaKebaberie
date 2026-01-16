@@ -32,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 5rem 2rem;
+  padding: 2.5rem 1.2rem 2.5rem 1.2rem;
   background:
     radial-gradient(ellipse at 50% 0%, rgba(245, 166, 35, 0.2) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 40%),
@@ -40,6 +40,9 @@
   border-radius: 32px;
   border: 1px solid rgba(245, 166, 35, 0.15);
   overflow: hidden;
+  max-width: 700px;
+  margin: 2rem auto 2.5rem auto;
+  box-shadow: 0 2px 32px 0 rgba(0,0,0,0.10);
 }
 
 .hero::before {
@@ -326,6 +329,13 @@
   font-size: 1rem;
 }
 
+/* Correction ancre masquée par le header sticky */
+#carte,
+#choix,
+#infos {
+  scroll-margin-top: 90px;
+}
+
 /* ─────────────────────────────────────────────────────────────────
    RESPONSIVE
    ───────────────────────────────────────────────────────────────── */
@@ -345,5 +355,13 @@
 
   .grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+    max-width: 98vw;
+    margin: 1rem auto 1.5rem auto;
   }
 }
