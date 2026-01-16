@@ -160,7 +160,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     title: 'Petite Faim',
     icon: '🥪',
     subtitle: 'Paninis, nuggets et petits creux',
-    image: 'assets/menu-Fast-food-La-Kebaberie.jpg',
+    image: 'assets/plats/petite-faim/section-petite-faim.png',
     items: [
       {
         id: 'panini-kebab',

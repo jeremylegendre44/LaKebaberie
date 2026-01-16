@@ -53,6 +53,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -312,6 +313,48 @@
 .item--clickable:focus-visible {
   outline: 2px solid #f5a623;
   outline-offset: 2px;
+}
+
+.card__banner--clickable {
+  cursor: pointer;
+  position: relative;
+}
+.card__banner--clickable:focus {
+  outline: 2px solid #f5a623;
+  outline-offset: 2px;
+}
+.card__banner-zoom-icon {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  background: rgba(0,0,0,0.55);
+  border-radius: 8px;
+  padding: 4px 6px 2px 6px;
+  color: #ffd98a;
+  pointer-events: none;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card__banner-zoom-icon svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+  stroke: #ffd98a;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.card__banner--clickable:hover .card__banner-zoom-icon,
+.card__banner--clickable:focus .card__banner-zoom-icon {
+  background: rgba(245,166,35,0.95);
+  color: #222;
+}
+.card__banner--clickable:hover .card__banner-zoom-icon svg,
+.card__banner--clickable:focus .card__banner-zoom-icon svg {
+  stroke: #222;
 }
 
 .item__image {

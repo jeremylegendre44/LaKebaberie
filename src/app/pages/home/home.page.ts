@@ -20,7 +20,6 @@ import { MenuSection } from '../../shared/models/menu.models';
     SectionHeaderComponent,
     MenuSectionComponent,
     ChoicesSectionComponent,
-    PricingSectionComponent,
     MenuSearchFilterComponent
   ],
   templateUrl: './home.page.html',
