@@ -3,8 +3,8 @@
 .footer {
   margin-top: 5rem;
   padding: 2.5rem 2rem;
-  background: #0a0a0a;
-  border-top: 1px solid #1e1e1e;
+  background: var(--lk-bg);
+  border-top: 1px solid var(--lk-surface);
 }
 
 .footer__inner {
@@ -27,17 +27,17 @@
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   font-size: 1.5rem;
   letter-spacing: 0.03em;
-  color: #ffffff;
+  color: var(--lk-text);
 }
 
 .footer__muted {
-  color: #666666;
+  color: var(--lk-muted);
   font-size: 0.9rem;
 }
 
 .footer__right {
   text-align: right;
-  color: #666666;
+  color: var(--lk-muted);
   font-size: 0.85rem;
 }
 

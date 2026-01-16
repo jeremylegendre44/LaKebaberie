@@ -9,7 +9,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(var(--lk-bg-rgb), 0.85);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -34,14 +34,14 @@
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
-  background: linear-gradient(180deg, #1a1a1a 0%, #0e0e0e 100%);
+  background: linear-gradient(180deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
   border-radius: 28px;
-  border: 1px solid rgba(245, 166, 35, 0.2);
+  border: 1px solid rgba(var(--lk-primary-rgb), 0.2);
   overflow: hidden;
   overflow-y: auto;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.6),
-    0 0 100px rgba(245, 166, 35, 0.1);
+    0 0 100px rgba(var(--lk-primary-rgb), 0.1);
   animation: slideUp 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -64,7 +64,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #f5a623 0%, #ff6b35 50%, #e63946 100%);
+  background: linear-gradient(90deg, var(--lk-primary) 0%, var(--lk-accent) 50%, var(--lk-danger) 100%);
   z-index: 10;
 }
 
@@ -77,8 +77,8 @@
   height: 40px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
+  background: rgba(var(--lk-bg-rgb), 0.6);
+  color: var(--lk-text);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -89,8 +89,8 @@
 }
 
 .modal__close:hover {
-  background: rgba(245, 166, 35, 0.8);
-  color: #0a0a0a;
+  background: rgba(var(--lk-primary-rgb), 0.8);
+  color: var(--lk-bg);
   transform: rotate(90deg);
 }
 
@@ -99,7 +99,7 @@
   width: 100%;
   height: 350px;
   overflow: hidden;
-  background: linear-gradient(135deg, #1e1e1e 0%, #0a0a0a 100%);
+  background: linear-gradient(135deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
   position: relative;
 }
 
@@ -116,7 +116,7 @@
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to top, #1a1a1a 0%, transparent 100%);
+  background: linear-gradient(to top, var(--lk-surface) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -136,7 +136,7 @@
   font-size: 2.2rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--lk-text);
 }
 
 .modal__tags {
@@ -152,8 +152,8 @@
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background: linear-gradient(135deg, #f5a623 0%, #ff6b35 100%);
-  color: #0a0a0a;
+  background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%);
+  color: var(--lk-bg);
 }
 
 /* Description */
@@ -161,7 +161,7 @@
   margin: 0 0 1.25rem;
   font-size: 1rem;
   line-height: 1.6;
-  color: #aaaaaa;
+  color: rgba(var(--lk-white-rgb), 0.68);
 }
 
 /* Ingrédients */
@@ -169,15 +169,15 @@
   margin-bottom: 1.5rem;
   padding: 1rem 1.25rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(var(--lk-white-rgb), 0.03);
+  border: 1px solid rgba(var(--lk-white-rgb), 0.08);
 }
 
 .modal__ingredients-title {
   margin: 0 0 0.75rem;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #f5a623;
+  color: var(--lk-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -194,9 +194,9 @@
 .modal__ingredient {
   padding: 0.4rem 0.75rem;
   border-radius: 20px;
-  background: rgba(245, 166, 35, 0.1);
-  border: 1px solid rgba(245, 166, 35, 0.2);
-  color: #dddddd;
+  background: rgba(var(--lk-primary-rgb), 0.1);
+  border: 1px solid rgba(var(--lk-primary-rgb), 0.2);
+  color: rgba(var(--lk-white-rgb), 0.87);
   font-size: 0.8rem;
 }
 
@@ -222,30 +222,30 @@
 }
 
 .modal__price-item--seul {
-  background: linear-gradient(135deg, rgba(245, 166, 35, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
-  border: 2px solid rgba(245, 166, 35, 0.4);
+  background: linear-gradient(135deg, rgba(var(--lk-primary-rgb), 0.15) 0%, rgba(var(--lk-accent-rgb), 0.15) 100%);
+  border: 2px solid rgba(var(--lk-primary-rgb), 0.4);
 }
 
 .modal__price-item--seul .modal__price-label {
-  color: #f5a623;
+  color: var(--lk-primary);
 }
 
 .modal__price-item--frites {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: rgba(var(--lk-white-rgb), 0.05);
+  border: 2px solid rgba(var(--lk-white-rgb), 0.15);
 }
 
 .modal__price-item--frites .modal__price-label {
-  color: #aaaaaa;
+  color: rgba(var(--lk-white-rgb), 0.68);
 }
 
 .modal__price-item--menu {
-  background: linear-gradient(135deg, rgba(230, 57, 70, 0.15) 0%, rgba(193, 18, 31, 0.15) 100%);
-  border: 2px solid rgba(230, 57, 70, 0.4);
+  background: linear-gradient(135deg, rgba(var(--lk-danger-rgb), 0.15) 0%, rgba(193, 18, 31, 0.15) 100%);
+  border: 2px solid rgba(var(--lk-danger-rgb), 0.4);
 }
 
 .modal__price-item--menu .modal__price-label {
-  color: #e63946;
+  color: var(--lk-danger);
 }
 
 .modal__price-item--clickable {
@@ -258,9 +258,9 @@
 .modal__price-item--clickable:active,
 .modal__price-item--clickable:focus,
 .modal__price-item--clickable:hover {
-  box-shadow: 0 0 0 3px #f5a62355, 0 2px 10px rgba(0,0,0,0.5);
-  background: #ff6b35;
-  color: #fff;
+  box-shadow: 0 0 0 3px rgba(var(--lk-primary-rgb), 0.33), 0 2px 10px rgba(0,0,0,0.5);
+  background: var(--lk-accent);
+  color: var(--lk-text);
 }
 
 .modal__price-cart {
@@ -280,36 +280,36 @@
 .modal__price-value {
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   font-size: 1.8rem;
-  color: #ffffff;
+  color: var(--lk-text);
 }
 
 .modal__price-info {
   font-size: 0.65rem;
-  color: #888888;
+  color: var(--lk-text-muted);
   margin-top: 0.1rem;
 }
 
 .modal__price-single {
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   font-size: 2.5rem;
-  color: #f5a623;
+  color: var(--lk-primary);
   text-align: center;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(245, 166, 35, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(var(--lk-primary-rgb), 0.1) 0%, rgba(var(--lk-accent-rgb), 0.1) 100%);
   border-radius: 16px;
-  border: 2px solid rgba(245, 166, 35, 0.3);
+  border: 2px solid rgba(var(--lk-primary-rgb), 0.3);
 }
 
 /* Footer */
 .modal__footer {
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(var(--lk-white-rgb), 0.1);
 }
 
 .modal__note {
   margin: 0;
   font-size: 0.85rem;
-  color: #888888;
+  color: var(--lk-text-muted);
   text-align: center;
 }
 
@@ -400,18 +400,5 @@
 @media (max-width: 360px) {
   .modal__image {
     height: 40vh;
-    min-height: 200px;
-  }
-
-  .modal__title {
-    font-size: 1.5rem;
-  }
-
-  .modal__price-value {
-    font-size: 1.1rem;
-  }
-
-  .modal__price-item {
-    padding: 0.6rem 0.3rem;
   }
 }

@@ -34,11 +34,11 @@
   text-align: center;
   padding: 2.5rem 1.2rem 2.5rem 1.2rem;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(245, 166, 35, 0.2) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 40%),
-    linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
+    radial-gradient(ellipse at 50% 0%, rgba(var(--lk-primary-rgb), 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(var(--lk-accent-rgb), 0.1) 0%, transparent 40%),
+    linear-gradient(180deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
   border-radius: 32px;
-  border: 1px solid rgba(245, 166, 35, 0.15);
+  border: 1px solid rgba(var(--lk-primary-rgb), 0.15);
   overflow: hidden;
   max-width: 700px;
   margin: 2rem auto 2.5rem auto;
@@ -52,7 +52,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #f5a623 0%, #ff6b35 50%, #f5a623 100%);
+  background: linear-gradient(90deg, var(--lk-primary) 0%, var(--lk-accent) 50%, var(--lk-primary) 100%);
 }
 
 .hero::after {
@@ -63,7 +63,7 @@
   transform: translateX(-50%);
   width: 600px;
   height: 200px;
-  background: radial-gradient(ellipse, rgba(245, 166, 35, 0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(var(--lk-primary-rgb), 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -73,14 +73,14 @@
   gap: 0.5rem;
   margin: 0 0 1.5rem;
   padding: 0.6rem 1.5rem;
-  background: rgba(245, 166, 35, 0.15);
-  color: #f5a623;
+  background: rgba(var(--lk-primary-rgb), 0.15);
+  color: var(--lk-primary);
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   border-radius: 50px;
-  border: 1px solid rgba(245, 166, 35, 0.3);
+  border: 1px solid rgba(var(--lk-primary-rgb), 0.3);
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -95,14 +95,14 @@
   font-size: clamp(3.5rem, 12vw, 7rem);
   line-height: 0.9;
   letter-spacing: 0.02em;
-  color: #ffffff;
+  color: var(--lk-text);
   text-transform: uppercase;
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .hero__title-highlight {
   color: transparent;
-  background: linear-gradient(135deg, #f5a623 0%, #ff6b35 100%);
+  background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   display: block;
@@ -113,7 +113,7 @@
 .hero__subtitle {
   margin: 1.5rem 0 0;
   font-size: 1.2rem;
-  color: #888888;
+  color: var(--lk-text-muted);
   max-width: 500px;
 }
 
@@ -153,7 +153,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--lk-white-rgb), 0.2), transparent);
   transition: left 0.5s ease;
 }
 
@@ -166,9 +166,9 @@
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, #f5a623 0%, #ff6b35 100%);
-  color: #0a0a0a;
-  box-shadow: 0 4px 20px rgba(245, 166, 35, 0.3);
+  background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%);
+  color: var(--lk-bg);
+  box-shadow: 0 4px 20px rgba(var(--lk-primary-rgb), 0.3);
 }
 
 .btn--primary:hover {
@@ -177,16 +177,16 @@
 }
 
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  background: rgba(var(--lk-white-rgb), 0.05);
+  border: 2px solid rgba(var(--lk-white-rgb), 0.3);
+  color: var(--lk-text);
   backdrop-filter: blur(10px);
 }
 
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #f5a623;
-  color: #f5a623;
+  background: rgba(var(--lk-white-rgb), 0.15);
+  border-color: var(--lk-primary);
+  color: var(--lk-primary);
 }
 
 /* Badges — Style O'Tacos */
@@ -206,16 +206,16 @@
   font-weight: 600;
   padding: 0.75rem 1.25rem;
   border-radius: 50px;
-  color: #ffffff;
-  background: rgba(30, 30, 30, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--lk-text);
+  background: rgba(var(--lk-surface-rgb), 0.8);
+  border: 1px solid rgba(var(--lk-white-rgb), 0.1);
   backdrop-filter: blur(10px);
   transition: all 0.25s ease;
 }
 
 .badge:hover {
-  background: rgba(245, 166, 35, 0.15);
-  border-color: rgba(245, 166, 35, 0.3);
+  background: rgba(var(--lk-primary-rgb), 0.15);
+  border-color: rgba(var(--lk-primary-rgb), 0.3);
   transform: translateY(-2px);
 }
 
@@ -247,8 +247,8 @@
 }
 
 .info-card {
-  background: #141414;
-  border: 1px solid #1e1e1e;
+  background: var(--lk-surface);
+  border: 1px solid var(--lk-surface-light);
   border-radius: 20px;
   padding: 2rem;
   text-align: center;
@@ -256,8 +256,8 @@
 }
 
 .info-card:hover {
-  background: #1a1a1a;
-  border-color: rgba(245, 166, 35, 0.2);
+  background: var(--lk-surface-light);
+  border-color: rgba(var(--lk-primary-rgb), 0.2);
   transform: translateY(-4px);
 }
 
@@ -271,32 +271,32 @@
   font-size: 1.5rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--lk-text);
   margin-bottom: 0.75rem;
 }
 
 .info-card__content {
-  color: #888888;
+  color: var(--lk-text-muted);
   font-size: 0.95rem;
   line-height: 1.7;
 }
 
 .info-card__content a {
-  color: #f5a623;
+  color: var(--lk-primary);
   font-weight: 600;
   transition: color 0.2s;
 }
 
 .info-card__content a:hover {
-  color: #ffc857;
+  color: var(--lk-primary-light);
 }
 
 .info-card__content strong {
-  color: #f5a623;
+  color: var(--lk-primary);
 }
 
 .day-label {
-  color: #f5a623;
+  color: var(--lk-primary);
   font-weight: 600;
 }
 
@@ -376,9 +376,9 @@
   justify-content: center;
   padding: 4rem 2rem;
   text-align: center;
-  background: rgba(20, 20, 20, 0.5);
+  background: rgba(var(--lk-surface-rgb), 0.5);
   border-radius: 24px;
-  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(var(--lk-white-rgb), 0.1);
 }
 
 .no-results__icon {
@@ -391,12 +391,12 @@
   margin: 0 0 0.5rem;
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   font-size: 1.8rem;
-  color: #ffffff;
+  color: var(--lk-text);
 }
 
 .no-results__text {
   margin: 0;
-  color: #888888;
+  color: var(--lk-text-muted);
   font-size: 1rem;
 }
 
