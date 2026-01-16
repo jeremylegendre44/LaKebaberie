@@ -1,4 +1,4 @@
-/* Pricing Section — Style O'Tacos : sombre, bold */
+/* Pricing Section — Style O'Tacos : sombre, bold, gourmand */
 
 :host {
   display: block;
@@ -15,11 +15,11 @@
 .priceCard {
   position: relative;
   border-radius: 24px;
-  padding: 2rem;
-  border: 1px solid #1e1e1e;
-  background: #141414;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(245, 166, 35, 0.1);
+  background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
   text-align: center;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
@@ -30,13 +30,31 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: #f5a623;
+  background: linear-gradient(90deg, #f5a623 0%, #ff6b35 100%);
+}
+
+.priceCard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(245, 166, 35, 0.1) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .priceCard:hover {
-  background: #1a1a1a;
+  background: linear-gradient(180deg, #1e1e1e 0%, #161616 100%);
   border-color: rgba(245, 166, 35, 0.3);
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.priceCard:hover::after {
+  opacity: 1;
 }
 
 .priceCard__top {
@@ -44,48 +62,63 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .priceCard__badge {
   display: inline-flex;
   align-items: center;
   height: 28px;
-  padding: 0 0.75rem;
+  padding: 0 1rem;
   border-radius: 50px;
   font-weight: 800;
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: #0a0a0a;
-  background: #f5a623;
+  background: linear-gradient(135deg, #f5a623 0%, #ff6b35 100%);
+  box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
 }
 
 .priceCard__value {
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
-  font-size: 3.5rem;
+  font-size: 4rem;
   letter-spacing: 0.02em;
   color: #ffffff;
   line-height: 1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .priceCard__title {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #f5a623;
+  color: transparent;
+  background: linear-gradient(135deg, #f5a623 0%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
 }
 
 .priceCard__desc {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #666666;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #888888;
   line-height: 1.5;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 900px) {
   .pricing {
     grid-template-columns: 1fr;
+  }
+
+  .priceCard__value {
+    font-size: 3.5rem;
   }
 }

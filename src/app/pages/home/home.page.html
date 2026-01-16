@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="./menu-sections-grid.css">
+
 <div class="shell">
   <app-header
     [brandName]="restaurant.name"
@@ -44,18 +46,31 @@
       </div>
     </section>
 
-    <section id="prix" class="section" aria-label="Prix">
-      <app-section-header title="Nos prix" />
-      <app-pricing-section [items]="pricingHighlights" />
-    </section>
-
-    <section id="carte" class="section" aria-label="La carte">
+    <section id="carte" class="section section--menu" aria-label="La carte">
       <app-section-header title="La carte" />
-      <div class="grid">
-        @for (section of menuSections; track section.id) {
-          <app-menu-section [section]="section" />
-        }
-      </div>
+
+      <!-- Barre de recherche et filtres -->
+      <app-menu-search-filter
+        [availableIngredients]="allIngredients()"
+        [totalItems]="totalItemsCount()"
+        [filteredCount]="filteredItemsCount()"
+        (filterChange)="onFilterChange($event)"
+      />
+
+      <!-- Résultats -->
+      @if (filteredSections().length > 0) {
+        <div class="menu-sections-grid">
+          @for (section of filteredSections(); track section.id) {
+            <app-menu-section [section]="section" />
+          }
+        </div>
+      } @else {
+        <div class="no-results">
+          <div class="no-results__icon">🔍</div>
+          <h3 class="no-results__title">Aucun résultat</h3>
+          <p class="no-results__text">Essayez avec d'autres critères de recherche</p>
+        </div>
+      }
     </section>
 
     <section id="choix" class="section" aria-label="Choix disponibles">

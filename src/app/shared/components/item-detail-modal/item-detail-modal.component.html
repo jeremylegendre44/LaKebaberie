@@ -1,0 +1,90 @@
+@if (isOpen()) {
+  <div
+    class="modal-backdrop"
+    (click)="onBackdropClick($event)"
+    (keydown)="onKeyDown($event)"
+    tabindex="0"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="'Détails de ' + item().name">
+
+    <div class="modal">
+      <!-- Bouton fermer -->
+      <button class="modal__close" (click)="onCloseClick()" aria-label="Fermer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Image grande -->
+      @if (item().image) {
+        <div class="modal__image">
+          <img [src]="item().image" [alt]="item().name" />
+        </div>
+      }
+
+      <!-- Contenu -->
+      <div class="modal__content">
+        <!-- Titre et tags -->
+        <div class="modal__header">
+          <h2 class="modal__title">{{ item().name }}</h2>
+          @if (item().tags?.length) {
+            <div class="modal__tags">
+              @for (tag of item().tags; track tag) {
+                <span class="modal__tag">{{ tag }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Ingrédients (prioritaire sur la description) -->
+        @if (item().ingredients?.length) {
+          <div class="modal__ingredients">
+            <h4 class="modal__ingredients-title">🥗 Ingrédients</h4>
+            <ul class="modal__ingredients-list">
+              @for (ingredient of item().ingredients; track ingredient) {
+                <li class="modal__ingredient">{{ ingredient }}</li>
+              }
+            </ul>
+          </div>
+        } @else if (item().description) {
+          <!-- Description affichée uniquement s'il n'y a pas d'ingrédients -->
+          <p class="modal__description">{{ item().description }}</p>
+        }
+
+        <!-- Prix -->
+        <div class="modal__prices">
+          @if (item().prices) {
+            <div class="modal__price-row">
+              <div class="modal__price-item modal__price-item--seul">
+                <span class="modal__price-label">Seul</span>
+                <span class="modal__price-value">{{ item().prices?.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+              </div>
+              <div class="modal__price-item modal__price-item--frites">
+                <span class="modal__price-label">+ Frites</span>
+                <span class="modal__price-value">{{ item().prices?.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+              </div>
+              <div class="modal__price-item modal__price-item--menu">
+                <span class="modal__price-label">Menu</span>
+                <span class="modal__price-value">{{ item().prices?.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                <span class="modal__price-info">Frites + Boisson</span>
+              </div>
+            </div>
+          } @else if (item().priceEuros) {
+            <div class="modal__price-single">
+              {{ item().priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}
+            </div>
+          }
+        </div>
+
+        <!-- Infos supplémentaires -->
+        <div class="modal__footer">
+          <p class="modal__note">
+            🍽️ Servi avec crudités et sauce au choix
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+}

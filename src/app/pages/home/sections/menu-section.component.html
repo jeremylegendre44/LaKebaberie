@@ -1,39 +1,114 @@
-<article class="card" role="region" [attr.aria-label]="section().title">
-  <header class="card__header">
-    <h3 class="card__title">{{ section().title }}</h3>
-    @if (section().subtitle) {
-      <p class="card__subtitle">{{ section().subtitle }}</p>
-    }
+<article class="card" [class.card--has-banner]="section().image" role="region" [attr.aria-label]="section().title">
+  @if (section().image) {
+    <div class="card__banner">
+      <img [src]="section().image" [alt]="section().title" loading="lazy" />
+    </div>
+  }
+
+  <!-- Header TOUJOURS sous la bannière -->
+  <header class="card__header card__header--collapsible" (click)="toggleCollapsed()" tabindex="0" role="button" [attr.aria-expanded]="!collapsed()" [attr.aria-label]="(collapsed() ? 'Déplier' : 'Replier') + ' la section ' + section().title">
+    <div class="card__header-row">
+      <h3 class="card__title">{{ section().title }}</h3>
+      <span class="chevron" [class.chevron--collapsed]="collapsed()" aria-hidden="true"></span>
+    </div>
   </header>
+  @if (section().subtitle) {
+    <p class="card__subtitle">{{ section().subtitle }}</p>
+  }
 
-  <ul class="items" aria-label="Liste d'articles">
-    @for (item of section().items; track item.id) {
-      <li class="item" [class.item--has-image]="item.image">
-        @if (item.image) {
-          <div class="item__image">
-            <img [src]="item.image" [alt]="item.name" loading="lazy" />
-          </div>
-        }
+  @if (!collapsed()) {
+    <ul class="items" aria-label="Liste d'articles">
+      @for (item of section().items; track item.id) {
+        <li
+          class="item"
+          [class.item--has-image]="item.image"
+          [class.item--has-prices]="item.prices"
+          [class.item--clickable]="item.image || item.description"
+          (click)="openItemDetail(item)"
+          (keydown.enter)="openItemDetail(item)"
+          [attr.tabindex]="item.image || item.description ? 0 : null"
+          [attr.role]="item.image || item.description ? 'button' : null"
+          [attr.aria-label]="'Voir les détails de ' + item.name">
+          @if (item.image) {
+            <div class="item__image">
+              <img [src]="item.image" [alt]="item.name" loading="lazy" />
+              <!-- Indicateur cliquable -->
+              <div class="item__view-more">
+                <span>Voir détails</span>
+              </div>
+              <!-- Prix multiples en overlay avec labels clairs -->
+              @if (item.prices) {
+                <div class="item__prices-overlay">
+                  <div class="price-badge price-badge--seul">
+                    <span class="price-badge__label">Seul</span>
+                    <span class="price-badge__value">{{ item.prices.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                  </div>
+                  <div class="price-badge price-badge--frites">
+                    <span class="price-badge__label">+Frites</span>
+                    <span class="price-badge__value">{{ item.prices.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                  </div>
+                  <div class="price-badge price-badge--menu">
+                    <span class="price-badge__label">Menu</span>
+                    <span class="price-badge__value">{{ item.prices.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                  </div>
+                </div>
+              } @else if (item.priceEuros) {
+                <div class="item__price item__price--overlay">{{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
+              }
+            </div>
+          }
 
-        <div class="item__left">
-          <div class="item__name">
-            {{ item.name }}
-            @if (item.tags?.length) {
-              <span class="tags" aria-label="Tags">
-                @for (t of item.tags; track t) {
-                  <span class="tag">{{ t }}</span>
+          <div class="item__content">
+            <div class="item__left">
+              <div class="item__name">
+                {{ item.name }}
+                @if (item.tags?.length) {
+                  <span class="tags" aria-label="Tags">
+                    @for (t of item.tags; track t) {
+                      <span class="tag">{{ t }}</span>
+                    }
+                  </span>
                 }
-              </span>
+              </div>
+
+              @if (item.description) {
+                <div class="item__desc">{{ item.description }}</div>
+              }
+            </div>
+
+            <!-- Prix pour items sans image -->
+            @if (!item.image) {
+              @if (item.prices) {
+                <div class="item__prices">
+                  <span class="price-col">
+                    <span class="price-label">Seul</span>
+                    <span class="price-value">{{ item.prices.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                  </span>
+                  <span class="price-col">
+                    <span class="price-label">+Frites</span>
+                    <span class="price-value">{{ item.prices.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                  </span>
+                  <span class="price-col">
+                    <span class="price-label">Menu</span>
+                    <span class="price-value">{{ item.prices.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+                  </span>
+                </div>
+              } @else if (item.priceEuros) {
+                <div class="item__price">{{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
+              }
             }
           </div>
-
-          @if (item.description) {
-            <div class="item__desc">{{ item.description }}</div>
-          }
-        </div>
-
-        <div class="item__price">{{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
-      </li>
-    }
-  </ul>
+        </li>
+      }
+    </ul>
+  }
 </article>
+
+<!-- Modal de détail -->
+@if (selectedItem()) {
+  <app-item-detail-modal
+    [item]="selectedItem()!"
+    [isOpen]="isModalOpen()"
+    (closed)="closeModal()"
+  />
+}
