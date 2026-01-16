@@ -26,6 +26,8 @@ export class MenuSectionComponent {
   readonly isImageModalOpen = signal(false);
   readonly imageModalUrl = signal<string | null>(null);
 
+  fireworkIndex: string|null = null;
+
   constructor(private readonly cartService: CartService) {}
 
   openItemDetail(item: MenuItem) {
@@ -61,6 +63,11 @@ export class MenuSectionComponent {
 
   addToCart(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
     this.cartService.addToCart(item, variant);
+    // Déclenche l'animation du panier via un Event personnalisé (meilleure pratique Angular)
+    const event = new CustomEvent('cart:animate', {
+      detail: { collapsed: document.querySelector('.cart')?.classList.contains('cart--collapsed') }
+    });
+    document.dispatchEvent(event);
   }
 
   isSingleChoice(item: any): boolean {

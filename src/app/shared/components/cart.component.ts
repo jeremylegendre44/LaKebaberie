@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../cart.service';
 import { CurrencyPipe, CommonModule } from '@angular/common';
 
@@ -9,14 +9,31 @@ import { CurrencyPipe, CommonModule } from '@angular/common';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent {
+export class CartComponent implements OnInit, OnDestroy {
   readonly items;
   readonly total;
   collapsed = signal(true);
 
+  // Animation state
+  vibrate = signal(false);
+  grow = signal(false);
+
+  private cartAnimateListener: any;
+
   constructor(private cartService: CartService) {
     this.items = this.cartService.items;
     this.total = computed(() => this.cartService.getTotal());
+  }
+
+  ngOnInit() {
+    this.cartAnimateListener = (e: CustomEvent) => {
+      this.triggerCartAnimation(!!e.detail.collapsed);
+    };
+    document.addEventListener('cart:animate', this.cartAnimateListener as EventListener);
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener('cart:animate', this.cartAnimateListener as EventListener);
   }
 
   toggleCollapse() {
@@ -45,5 +62,18 @@ export class CartComponent {
       unit = ci.item.priceEuros;
     }
     return unit * (ci.quantity != null ? ci.quantity : 1);
+  }
+
+  // Ajoute une méthode pour déclencher l'animation
+  triggerCartAnimation(collapsed: boolean) {
+    if (collapsed) {
+      this.grow.set(false);
+      void this.grow.set(true);
+      setTimeout(() => this.grow.set(false), 600);
+    } else {
+      this.vibrate.set(false);
+      void this.vibrate.set(true);
+      setTimeout(() => this.vibrate.set(false), 400);
+    }
   }
 }
