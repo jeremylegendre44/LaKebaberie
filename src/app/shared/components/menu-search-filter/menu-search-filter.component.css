@@ -151,7 +151,6 @@
   border-radius: 20px;
   border: none;
   background: rgba(var(--lk-white-rgb), 0.07);
-  color: var(--lk-highlight);
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;

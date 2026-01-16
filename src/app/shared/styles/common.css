@@ -1,0 +1,83 @@
+/* Common UI primitives for LaKebaberie
+   Extracted to reduce duplication across component styles.
+   Uses variables defined in src/styles.css.
+*/
+
+/* Card primitive */
+.card {
+  position: relative;
+  border-radius: 28px;
+  border: 1px solid rgba(var(--lk-primary-rgb), 0.15);
+  background: linear-gradient(180deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--lk-primary) 0%, var(--lk-accent) 50%, var(--lk-danger) 100%);
+  z-index: 10;
+}
+.card:hover {
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 100px rgba(var(--lk-primary-rgb), 0.1);
+  border-color: rgba(var(--lk-primary-rgb), 0.3);
+}
+
+/* Banner & image primitives */
+.card__banner,
+.item__image {
+  background: linear-gradient(135deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
+  position: relative;
+}
+.card__banner::after,
+.item__image::after {
+  content: '';
+  position: absolute; bottom:0; left:0; right:0; height:80px;
+  background: linear-gradient(to top, rgba(var(--lk-bg-rgb), 0.95) 0%, rgba(var(--lk-bg-rgb), 0.7) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Typography for card titles/subtitles */
+.card__title,
+.card__subtitle,
+.item__name {
+  color: var(--lk-text);
+}
+.card__subtitle { color: var(--lk-highlight); }
+
+/* Chevron */
+.chevron { background: rgba(var(--lk-primary-rgb), 0.12); }
+.chevron::before { border-color: var(--lk-primary); }
+
+/* Item primitives */
+.item { background: rgba(var(--lk-white-rgb), 0.03); border: 1px solid rgba(var(--lk-white-rgb), 0.05); }
+.item:hover { background: rgba(var(--lk-primary-rgb), 0.1); border-color: rgba(var(--lk-primary-rgb), 0.3); }
+
+/* Price / badges */
+.price-badge, .price-col { backdrop-filter: blur(8px); }
+.price-badge--seul { background: linear-gradient(135deg, rgba(var(--lk-primary-rgb),0.15) 0%, rgba(var(--lk-accent-rgb),0.15) 100%); color: var(--lk-text); border: 1px solid rgba(var(--lk-primary-rgb),0.3); }
+.price-badge--frites { background: rgba(var(--lk-white-rgb),0.05); color: var(--lk-text); border: 1px solid rgba(var(--lk-white-rgb),0.1); }
+.price-badge--menu { background: linear-gradient(135deg, rgba(var(--lk-danger-rgb),0.15) 0%, rgba(193,18,31,0.15) 100%); color: var(--lk-text); border: 1px solid rgba(var(--lk-danger-rgb),0.3); }
+
+/* Tag / badge */
+.tag, .badge { background: rgba(var(--lk-surface-rgb), 0.9); color: var(--lk-text); }
+.tag { background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%); color: var(--lk-bg); }
+
+/* Button primitives */
+.btn { display:inline-flex; align-items:center; gap:0.5rem; height:56px; padding:0 2.5rem; border-radius:50px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; position:relative; overflow:hidden; }
+.btn--primary { background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%); color: var(--lk-bg); box-shadow: 0 4px 20px rgba(var(--lk-primary-rgb),0.3); }
+.btn--ghost { background: rgba(var(--lk-white-rgb),0.05); border:2px solid rgba(var(--lk-white-rgb),0.3); color:var(--lk-text); backdrop-filter:blur(10px); }
+
+/* Small utilities */
+.lk-surface { background: var(--lk-surface); }
+.lk-surface-light { background: var(--lk-surface-light); }
+.lk-text { color: var(--lk-text); }
+
+/* Price overlay button */
+.item__view-more, .item__price--overlay { border-radius: 25px; font-weight:700; }
+
+/* Cart small utilities */
+.cart__qty { background: var(--lk-text); color: var(--lk-surface); }
+
+/* end common */

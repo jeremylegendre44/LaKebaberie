@@ -4,6 +4,7 @@
    Inspiré du style O'Tacos : sombre, bold, gourmand */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import './app/shared/styles/common.css';
 
 @font-face {
   font-family: 'BlockBerthold';
@@ -76,6 +77,11 @@
 
   --lk-highlight: #ffd98a;
   --lk-muted: #888888;
+}
+
+:root,
+:root[data-theme="light"] {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 * {

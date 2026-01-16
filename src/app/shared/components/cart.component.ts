@@ -1,7 +1,7 @@
-import { Component, computed, signal, Signal, OnInit, OnDestroy } from '@angular/core';
-import { CartService, CartItem } from '../cart.service';
-import { CurrencyPipe, CommonModule } from '@angular/common';
-import type { MenuItem } from '../models';
+import {Component, OnDestroy, OnInit, signal, Signal} from '@angular/core';
+import {CartItem, CartService} from '../cart.service';
+import {CommonModule, CurrencyPipe} from '@angular/common';
+import type {MenuItem} from '../models';
 
 @Component({
   selector: 'app-cart',
@@ -12,22 +12,19 @@ import type { MenuItem } from '../models';
 })
 export class CartComponent implements OnInit, OnDestroy {
   readonly items: Signal<CartItem[]>;
-
-  // Expose le total en tant que getter typé number pour le template
-  get totalValue(): number {
-    return this.cartService.getTotal();
-  }
-
   collapsed = signal(true);
-
   // Animation state
   vibrate = signal(false);
   grow = signal(false);
-
   private cartAnimateListener: EventListener | null = null;
 
   constructor(private readonly cartService: CartService) {
     this.items = this.cartService.items;
+  }
+
+  // Expose le total en tant que getter typé number pour le template
+  get totalValue(): number {
+    return this.cartService.getTotal();
   }
 
   ngOnInit() {

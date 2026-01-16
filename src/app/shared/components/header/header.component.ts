@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../services/theme.service';
+import { Observable } from 'rxjs';
 
 export interface NavLink {
   readonly label: string;
@@ -9,12 +12,24 @@ export interface NavLink {
 @Component({
   selector: 'app-header',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
-  readonly brandName = input.required<string>();
-  readonly brandCity = input<string>();
-  readonly navLinks = input<readonly NavLink[]>([]);
+  @Input() brandName = 'La Kebaberie';
+  @Input() brandCity?: string;
+  @Input() navLinks: readonly NavLink[] = [];
+
+  readonly theme$: Observable<boolean>;
+
+  constructor(private readonly theme: ThemeService) {
+    this.theme$ = this.theme.theme$;
+    this.theme.initFromStorage();
+  }
+
+  toggleTheme() {
+    this.theme.toggle();
+  }
 }
