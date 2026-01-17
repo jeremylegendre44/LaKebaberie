@@ -1,27 +1,32 @@
-<div class="cart"
+<button class="cart"
   [class.cart--collapsed]="collapsed()"
   [class.cart--vibrate]="vibrate() && !collapsed()"
   [class.cart--grow]="grow() && collapsed()"
   (click)="toggleCollapse()"
-  tabindex="0" role="button" aria-label="Ouvrir ou fermer le panier">
+  (keydown.enter)="toggleCollapse()"
+  tabindex="0" aria-label="Ouvrir ou fermer le panier">
   <div class="cart__icon-header">
     <span class="cart__icon" aria-label="Panier" title="Panier">
-      <svg *ngIf="!collapsed()" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="15" fill="#fff" stroke="#ff6b35" stroke-width="2"/>
-        <path d="M10 13h12l-1.5 8.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L10 13zm2-3a2 2 0 1 1 4 0v1h-4v-1z" fill="#ff6b35"/>
-      </svg>
-      <svg *ngIf="collapsed()" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="15" fill="#ff6b35" stroke="#fff" stroke-width="2"/>
-        <path d="M10 13h12l-1.5 8.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L10 13zm2-3a2 2 0 1 1 4 0v1h-4v-1z" fill="#fff"/>
-      </svg>
+      @if (!collapsed()) {
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" fill="#fff" stroke="#ff6b35" stroke-width="2"/>
+          <path d="M10 13h12l-1.5 8.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L10 13zm2-3a2 2 0 1 1 4 0v1h-4v-1z" fill="#ff6b35"/>
+        </svg>
+      }
+      @if (collapsed()) {
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" fill="#ff6b35" stroke="#fff" stroke-width="2"/>
+          <path d="M10 13h12l-1.5 8.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L10 13zm2-3a2 2 0 1 1 4 0v1h-4v-1z" fill="#fff"/>
+        </svg>
+      }
     </span>
     <span class="cart__total-inline">{{ totalValue | currency:'EUR':'symbol':'1.2-2' }}</span>
     <span class="cart__chevron" [class.cart__chevron--open]="!collapsed()">&#9660;</span>
   </div>
   @if (!collapsed()) {
-    <div class="cart__details" (click)="$event.stopPropagation()">
+    <div class="cart__details" (click)="$event.stopPropagation()" (keydown)="onDetailsKeydown($event)">
       <ul class="cart__list">
-        @for (ci of items(); track ci.item.id) {
+        @for (ci of items(); track trackCartItem(ci)) {
           <li class="cart__item-detail">
             <div class="cart__item-main">
               <span class="cart__item-name">{{ ci.item.name }}@if (ci.variant) { <span class="cart__item-variant">({{ ci.variant }})</span> }</span>
@@ -55,4 +60,4 @@
       }
     </div>
   }
-</div>
+</button>

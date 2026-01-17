@@ -80,4 +80,15 @@ export class CartComponent implements OnInit, OnDestroy {
       setTimeout(() => this.vibrate.set(false), 400);
     }
   }
+
+  onDetailsKeydown(event: KeyboardEvent) {
+    // Empêche la propagation pour éviter de fermer le panier avec Entrée/Espace sur un champ interne
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.stopPropagation();
+    }
+  }
+
+  trackCartItem(ci: CartItem) {
+    return ci.item.id + (ci.variant || '');
+  }
 }
