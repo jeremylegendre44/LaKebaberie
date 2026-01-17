@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal, Input } from '@angular/core';
 import { CurrencyPipe, CommonModule } from '@angular/common';
 
 import { MenuItem, MenuSection } from '../../../shared/models';
@@ -16,6 +16,10 @@ import { CartService } from '../../../shared/cart.service';
 })
 export class MenuSectionComponent {
   readonly section = input.required<MenuSection>();
+
+  @Input() set forceOpen(value: boolean) {
+    this.collapsed.set(!value);
+  }
 
   // Modal state
   readonly selectedItem = signal<MenuItem | null>(null);

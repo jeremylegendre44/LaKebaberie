@@ -67,7 +67,18 @@
           : ''
         }}">
           @for (section of filteredSections(); track section.id) {
-            <app-menu-section [section]="section" />
+            <app-menu-section
+              [section]="section"
+              [forceOpen]="
+                filterState().sections.length > 0
+                  ? filterState().sections.includes(section.id)
+                  : (
+                      (filterState().categories.length > 0 || filterState().ingredients.length > 0 || filterState().searchQuery)
+                        ? section.items.length > 0
+                        : false
+                    )
+              "
+            />
           }
         </div>
       } @else {
