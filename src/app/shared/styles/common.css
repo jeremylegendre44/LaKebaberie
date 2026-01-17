@@ -115,6 +115,7 @@
   .modal__price-label,
   .item__desc {
     color: rgba(var(--lk-text-rgb), 0.65);
+    text-shadow: none !important;
   }
 
   /* Price badges: ensure contrast on light surfaces */
