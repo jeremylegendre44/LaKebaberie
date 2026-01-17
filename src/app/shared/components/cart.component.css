@@ -137,6 +137,7 @@
   color: var(--lk-text);
   background: var(--lk-bg);
   text-align: center;
+  margin-left: 0.7em;
 }
 
 .cart__qty:focus {
