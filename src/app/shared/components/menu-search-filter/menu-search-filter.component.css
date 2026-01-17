@@ -126,25 +126,14 @@
 .quick-filters {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* allow chips to wrap to next line */
+  padding-bottom: 0.5rem;
 }
 
-.quick-filters.sections {
-  margin-bottom: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.quick-filters.categories {
-  margin-bottom: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+/* sections/categories blocks removed: chips are now in a single .quick-filters container */
 
 .filter-chip {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.4em;
   padding: 0.5em 1.1em;
@@ -156,6 +145,7 @@
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
   outline: none;
+  flex: 0 1 auto; /* allow chip to shrink and wrap to next line */
 }
 
 .filter-chip:hover {
@@ -304,19 +294,13 @@
   }
 
   .quick-filters {
-    overflow-x: auto;
-    flex-wrap: nowrap;
+    /* on small screens allow wrapping instead of forcing horizontal scroll */
+    flex-wrap: wrap;
     padding-bottom: 0.5rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .quick-filters::-webkit-scrollbar {
-    display: none;
   }
 
   .filter-chip {
-    flex-shrink: 0;
+    flex-shrink: 1;
   }
 
   .search-results-info {

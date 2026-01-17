@@ -23,25 +23,11 @@
         </button>
       }
     </div>
-
-    <!-- Bouton filtres avancés -->
-    <!--<button
-      class="filter-toggle-btn"
-      [class.active]="showAdvancedFilters() || activeFiltersCount > 0"
-      (click)="toggleAdvancedFilters()"
-      aria-label="Filtres avancés">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-      </svg>
-      <span>Filtres</span>
-      @if (activeFiltersCount > 0) {
-        <span class="filter-badge">{{ activeFiltersCount }}</span>
-      }
-    </button>-->
   </div>
 
-  <!-- Filtres rapides par section -->
-  <div class="quick-filters sections">
+  <!-- Filtres rapides (sections + catégories) — un seul container pour garder les chips sur la même ligne -->
+  <div class="quick-filters">
+    <!-- sections -->
     @for (section of sectionOptions; track section.id) {
       <button
         class="filter-chip"
@@ -51,10 +37,8 @@
         <span class="filter-chip__label">{{ section.label }}</span>
       </button>
     }
-  </div>
 
-  <!-- Filtres rapides par catégorie -->
-  <div class="quick-filters categories">
+    <!-- categories -->
     @for (category of categoryOptions; track category.id) {
       <button
         class="filter-chip"
