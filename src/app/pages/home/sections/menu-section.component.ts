@@ -20,7 +20,7 @@ export class MenuSectionComponent {
   // Modal state
   readonly selectedItem = signal<MenuItem | null>(null);
   readonly isModalOpen = signal(false);
-  readonly collapsed = signal(false);
+  readonly collapsed = signal(true);
 
   // Image modal state
   readonly isImageModalOpen = signal(false);

@@ -14,10 +14,13 @@
       <h3 class="card__title">{{ section().title }}</h3>
       <span class="chevron" [class.chevron--collapsed]="collapsed()" aria-hidden="true"></span>
     </div>
+    <div class="card__header-row">
+    @if (section().subtitle) {
+      <p class="card__subtitle">{{ section().subtitle }}</p>
+    }
+    </div>
   </header>
-  @if (section().subtitle) {
-    <p class="card__subtitle">{{ section().subtitle }}</p>
-  }
+
 
   @if (!collapsed()) {
     <ul class="items" aria-label="Liste d'articles">

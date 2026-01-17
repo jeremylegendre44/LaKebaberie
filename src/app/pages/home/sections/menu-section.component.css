@@ -57,15 +57,35 @@
 }
 
 .card--has-banner .card__header {
+  display: flex;
+  flex-direction: column;
   margin-top: -20px;
   border-bottom: none;
+  align-content: center;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  gap: 0;
+}
+
+.card__header--collapsible {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  border-bottom: none !important;
+  margin: 0;
+  padding: 0;
 }
 
 .card__header-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .card__title {
@@ -86,7 +106,7 @@
 }
 
 .card__subtitle {
-  margin: 0.15rem 2rem 0.5rem 2rem;
+  margin: 0 10px 15px 10px;
   font-size: 1.1rem;
   color: var(--lk-highlight);
   font-weight: 400;
@@ -99,7 +119,6 @@
   text-align: left;
   white-space: normal;
   display: block;
-  padding: 5px;
 }
 
 @media (max-width: 1024px) {
@@ -143,16 +162,6 @@
 }
 .chevron--collapsed::before {
   transform: translate(-50%,-40%) rotate(-135deg);
-}
-
-.card__header--collapsible {
-  cursor: pointer;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
-  border-bottom: none !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════
