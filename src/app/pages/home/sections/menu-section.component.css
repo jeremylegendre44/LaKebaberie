@@ -379,18 +379,6 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Overlay lumineux sur l'image */
-.item__image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(var(--lk-image-overlay-rgb), var(--lk-image-overlay-alpha)) 100%);
-  pointer-events: none;
-}
-
 /* Prix en overlay sur l'image */
 .item__price--overlay {
   position: absolute;
