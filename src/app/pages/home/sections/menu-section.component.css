@@ -64,6 +64,7 @@
   align-content: center;
   margin-bottom: 0;
   padding-bottom: 0;
+  padding-top: 10px;
   gap: 0;
 }
 
@@ -106,7 +107,7 @@
 }
 
 .card__subtitle {
-  margin: 0 10px 15px 10px;
+  margin: 0 13px 15px 13px;
   font-size: 1.1rem;
   color: var(--lk-highlight);
   font-weight: 400;

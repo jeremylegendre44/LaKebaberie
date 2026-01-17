@@ -15,8 +15,7 @@ import type { Category } from '../../shared/models';
     FooterComponent,
     SectionHeaderComponent,
     MenuSectionComponent,
-    MenuSearchFilterComponent
-  ],
+    MenuSearchFilterComponent],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
