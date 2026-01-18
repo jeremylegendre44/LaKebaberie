@@ -307,6 +307,29 @@ export const CHOICES: readonly ChoiceOption[] = [
     id: 'supplements',
     label: 'Suppléments',
     examples: ['Fromage +1€', 'Double viande +2€', 'Frites dans tacos +0,50€']
+  },
+  {
+    id: 'boissons',
+    label: 'Boissons',
+    examples: [
+      'Coca-Cola',
+      'Coca-Cola Zero',
+      'Fanta',
+      'Sprite',
+      'Oasis',
+      'Ice Tea',
+      'Pepsi',
+      '7 Up',
+      'Schweppes',
+      'Orangina',
+      'Eau',
+      'Perrier',
+      'Badoit',
+      'San Pellegrino',
+      'Liptonic',
+      'Tropico',
+      'Red Bull'
+    ]
   }
 ];
 

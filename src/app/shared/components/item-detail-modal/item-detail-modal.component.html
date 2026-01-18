@@ -56,19 +56,30 @@
         <!-- Sélection des choix obligatoires -->
         @if (requiresViande()) {
           <div class="modal__choice">
-            <label for="viande-select">Choix de la viande *</label>
-            <select id="viande-select" [(ngModel)]="viande">
-              <option [ngValue]="null">-- Sélectionner --</option>
-              @for (v of viandes; track v) {
-                <option [ngValue]="v">{{ v }}</option>
-              }
-            </select>
+            <ng-container *ngIf="isTacos() && (item().name.includes('2 viande') || item().name.includes('2 viande') || item().name.includes('3 viande')); else singleViande">
+              <app-multi-viande-select
+                [options]="viandes"
+                [max]="item().name.includes('3 viande') ? 3 : 2"
+                [selected]="getSelectedViandesArray()"
+                (selectedChange)="selectedViande.set($event); onOptionChange()"
+                label="Choix des viandes *"
+              ></app-multi-viande-select>
+            </ng-container>
+            <ng-template #singleViande>
+              <label for="viande-select">Choix de la viande *</label>
+              <select id="viande-select" [(ngModel)]="viande" (change)="onOptionChange()">
+                <option [ngValue]="null">-- Sélectionner --</option>
+                @for (v of viandes; track v) {
+                  <option [ngValue]="v">{{ v }}</option>
+                }
+              </select>
+            </ng-template>
           </div>
         }
         @if (requiresSauce()) {
           <div class="modal__choice">
             <label for="sauce-select">Choix de la sauce *</label>
-            <select id="sauce-select" [(ngModel)]="sauce">
+            <select id="sauce-select" [(ngModel)]="sauce" (change)="onOptionChange()">
               <option [ngValue]="null">-- Sélectionner --</option>
               @for (s of sauces; track s) {
                 <option [ngValue]="s">{{ s }}</option>
@@ -79,7 +90,7 @@
         @if (requiresBoisson()) {
           <div class="modal__choice">
             <label for="boisson-select">Choix de la boisson *</label>
-            <select id="boisson-select" [(ngModel)]="boisson">
+            <select id="boisson-select" [(ngModel)]="boisson" (change)="onOptionChange()">
               <option [ngValue]="null">-- Sélectionner --</option>
               @for (b of boissons; track b) {
                 <option [ngValue]="b">{{ b }}</option>
@@ -87,19 +98,18 @@
             </select>
           </div>
         }
-
         <!-- Toggle sauce fromagère pour tacos -->
         @if (isTacos()) {
           <div class="modal__choice modal__choice--toggle">
             <label class="toggle-label">
-              <input type="checkbox" [(ngModel)]="fromagere" />
+              <input type="checkbox" [(ngModel)]="fromagere" (change)="onOptionChange()" />
               <span class="toggle-slider"></span>
               <span class="toggle-text">Avec sauce fromagère</span>
             </label>
           </div>
         }
-        <!-- Message d'avertissement si choix manquants -->
-        @if (!canAddToCart()) {
+        <!-- Message d'avertissement si tentative d'ajout sans tout remplir -->
+        @if (showWarning()) {
           <div class="modal__warning">
             Merci de sélectionner toutes les options obligatoires avant d'ajouter au panier.
           </div>

@@ -151,6 +151,13 @@
   font-weight: 700;
 }
 
+.cart__item-choices {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+}
+
 .cart__remove {
   background: none;
   border: none;

@@ -30,10 +30,14 @@ export class MenuSectionComponent {
   readonly isImageModalOpen = signal(false);
   readonly imageModalUrl = signal<string | null>(null);
 
+  // Ajout d'un signal pour le variant présélectionné
+  readonly selectedVariant = signal<'seul' | 'frites' | 'menu' | null>(null);
+
   constructor(private readonly cartService: CartService) {}
 
-  openItemDetail(item: MenuItem) {
+  openItemDetail(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
     this.selectedItem.set(item);
+    this.selectedVariant.set(variant ?? null);
     this.isModalOpen.set(true);
     // Empêcher le scroll du body
     document.body.style.overflow = 'hidden';
@@ -93,12 +97,12 @@ export class MenuSectionComponent {
     return false;
   }
 
-  onItemClick(item: MenuItem, event: Event) {
+  onItemClick(item: MenuItem, event: Event, variant?: 'seul' | 'frites' | 'menu') {
     if (this.isSingleChoice(item)) {
       this.addToCart(item);
       event.stopPropagation();
     } else {
-      this.openItemDetail(item);
+      this.openItemDetail(item, variant);
     }
   }
 }

@@ -265,6 +265,12 @@
   color: var(--lk-text);
 }
 
+.modal__price-item--active {
+  background: var(--lk-accent) !important;
+  color: var(--lk-white, #fff) !important;
+  border-color: var(--lk-accent) !important;
+}
+
 .modal__price-cart {
   margin-left: 0.4em;
   font-size: 1.1em;

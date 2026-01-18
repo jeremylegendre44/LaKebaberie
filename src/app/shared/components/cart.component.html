@@ -32,6 +32,16 @@
               <span class="cart__item-name">{{ ci.item.name }}@if (ci.variant) { <span class="cart__item-variant">({{ ci.variant }})</span> }</span>
               <span class="cart__item-price">{{ (ci.variant && ci.item.prices ? ci.item.prices[ci.variant] : ci.item.priceEuros) | currency:'EUR':'symbol':'1.2-2' }}</span>
             </div>
+            @if (ci.choices && (ci.choices.viande || ci.choices.sauce || ci.choices.boisson || ci.choices.fromagere !== undefined)) {
+              <div class="cart__item-choices">
+                @if (ci.choices.viande) {<span class="cart__item-choice">Viande : {{ ci.choices.viande }}</span>}
+                @if (ci.choices.sauce) {<span class="cart__item-choice">Sauce : {{ ci.choices.sauce }}</span>}
+                @if (ci.choices.boisson) {<span class="cart__item-choice">Boisson : {{ ci.choices.boisson }}</span>}
+                @if (ci.choices.fromagere !== undefined) {
+                  <span class="cart__item-choice">{{ ci.choices.fromagere ? 'Sauce fromagère' : 'Sans Sauce fromagère' }}</span>
+                }
+              </div>
+            }
             <div class="cart__item-actions">
               <input type="number" min="1" [value]="ci.quantity" (click)="$event.stopPropagation()" (change)="updateQuantity(ci.item, ci.variant, $event)" class="cart__qty" />
               <span class="cart__item-total">

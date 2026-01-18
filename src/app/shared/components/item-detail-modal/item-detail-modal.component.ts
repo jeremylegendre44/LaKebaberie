@@ -1,36 +1,45 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output, signal, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuItem } from '../../models';
 import { CartService } from '../../cart.service';
 import { CHOICES } from '../../data/menu.data';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MultiViandeSelectComponent} from '../multi-viande-select.component';
 
 @Component({
   selector: 'app-item-detail-modal',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MultiViandeSelectComponent],
   templateUrl: './item-detail-modal.component.html',
   styleUrls: ['./item-detail-modal.component.css']
 })
 export class ItemDetailModalComponent {
+  @Input() selectedVariantFromParent: 'seul' | 'frites' | 'menu' | null = null;
   item = input.required<MenuItem>();
   isOpen = input<boolean>(false);
   closed = output<void>();
 
   // Signaux pour les choix
-  selectedViande = signal<string | null>(null);
+  selectedViande = signal<string | string[] | null>(null);
   selectedSauce = signal<string | null>(null);
   selectedBoisson = signal<string | null>(null);
   selectedVariant = signal<'seul' | 'frites' | 'menu' | null>(null);
   // Toggle sauce fromagère (pour tacos)
   withFromagere = signal<boolean>(true);
+  showWarning = signal<boolean>(false);
 
   // Exemples de choix (à adapter si besoin)
-  viandes = CHOICES.find(c => c.id === 'viandes')?.examples ?? [];
+  viandes = [...(CHOICES.find(c => c.id === 'viandes')?.examples ?? [])]; // mutable string[]
   sauces = CHOICES.find(c => c.id === 'sauces')?.examples ?? [];
   boissons = CHOICES.find(c => c.id === 'boissons')?.examples ?? [];
 
   constructor(public cartService: CartService) {}
+
+  ngOnChanges() {
+    if (this.selectedVariantFromParent) {
+      this.selectedVariant.set(this.selectedVariantFromParent);
+    }
+  }
 
   onBackdropClick(event: MouseEvent) {
     if ((event.target as HTMLElement).classList.contains('modal-backdrop')) {
@@ -60,7 +69,15 @@ export class ItemDetailModalComponent {
   }
 
   canAddToCart(): boolean {
-    if (this.requiresViande() && !this.selectedViande()) return false;
+    if (this.requiresViande()) {
+      if (this.isTacos() && (this.item().name.includes('2 viande') || this.item().name.includes('3 viande'))) {
+        const max = this.item().name.includes('3 viande') ? 3 : 2;
+        const viande = this.selectedViande();
+        if (!Array.isArray(viande) || viande === null || viande.length !== max) return false;
+      } else {
+        if (!this.selectedViande()) return false;
+      }
+    }
     if (this.requiresSauce() && !this.selectedSauce()) return false;
     if (this.requiresBoisson() && !this.selectedBoisson()) return false;
     return true;
@@ -69,11 +86,12 @@ export class ItemDetailModalComponent {
   // Ajout au panier avec les choix
   addToCart(variant?: 'seul' | 'frites' | 'menu') {
     this.selectedVariant.set(variant ?? null);
-    // Si on clique sur un variant différent, on ne valide pas tout de suite
-    if (this.selectedVariant() !== variant) return;
-    if (!this.canAddToCart()) return;
+    if (!this.canAddToCart()) {
+      this.showWarning.set(true);
+      return;
+    }
     this.cartService.addToCart(this.item(), variant, {
-      viande: this.selectedViande() ?? undefined,
+      viande: Array.isArray(this.selectedViande()) || typeof this.selectedViande() === 'string' ? this.selectedViande() ?? undefined : undefined as any,
       sauce: this.selectedSauce() ?? undefined,
       boisson: this.requiresBoisson() ? this.selectedBoisson() ?? undefined : undefined,
       fromagere: this.isTacos() ? this.withFromagere() : undefined
@@ -85,6 +103,12 @@ export class ItemDetailModalComponent {
     this.selectedBoisson.set(null);
     this.selectedVariant.set(null);
     this.withFromagere.set(true);
+    this.showWarning.set(false);
+  }
+
+  // Quand l'utilisateur change une option, on cache le warning
+  onOptionChange() {
+    this.showWarning.set(false);
   }
 
   isTacos(): boolean {
@@ -93,7 +117,7 @@ export class ItemDetailModalComponent {
 
   // Propriétés pour ngModel compatible avec signal
   get viande() { return this.selectedViande(); }
-  set viande(val: string | null) { this.selectedViande.set(val); }
+  set viande(val: string | string[] | null) { this.selectedViande.set(val); }
   get sauce() { return this.selectedSauce(); }
   set sauce(val: string | null) { this.selectedSauce.set(val); }
   get boisson() { return this.selectedBoisson(); }
@@ -101,4 +125,11 @@ export class ItemDetailModalComponent {
   // Propriété pour ngModel compatible avec signal (toggle sauce fromagère)
   get fromagere() { return this.withFromagere(); }
   set fromagere(val: boolean) { this.withFromagere.set(val); }
+
+  getSelectedViandesArray(): string[] {
+    const v = this.selectedViande();
+    return Array.isArray(v) ? v : [];
+  }
+
+  protected readonly Array = Array;
 }
