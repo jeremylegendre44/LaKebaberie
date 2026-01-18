@@ -1,14 +1,8 @@
-/* ═══════════════════════════════════════════════════════════════
-   MODAL DÉTAIL PLAT — Style O'Tacos
-   ═══════════════════════════════════════════════════════════════ */
+/* Modal détail plat — Style O'Tacos (version simplifiée, sans régression) */
 
-/* Backdrop */
 .modal-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(var(--lk-image-overlay-rgb), 0.85);
   backdrop-filter: blur(8px);
   display: flex;
@@ -16,19 +10,8 @@
   justify-content: center;
   z-index: 1000;
   padding: 1rem;
-  animation: fadeIn 0.2s ease-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Modal */
 .modal {
   position: relative;
   width: 100%;
@@ -37,38 +20,10 @@
   background: linear-gradient(180deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
   border-radius: 28px;
   border: 1px solid rgba(var(--lk-primary-rgb), 0.2);
-  overflow: hidden;
-  overflow-y: auto;
-  box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.6),
-    0 0 100px rgba(var(--lk-primary-rgb), 0.1);
-  animation: slideUp 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden auto;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 100px rgba(var(--lk-primary-rgb),0.1);
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Barre dorée en haut */
-.modal::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--lk-primary) 0%, var(--lk-accent) 50%, var(--lk-danger) 100%);
-  z-index: 10;
-}
-
-/* Bouton fermer */
 .modal__close {
   position: absolute;
   top: 1rem;
@@ -84,17 +39,14 @@
   align-items: center;
   justify-content: center;
   z-index: 20;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
+  transition: all 0.2s;
 }
-
 .modal__close:hover {
   background: rgba(var(--lk-primary-rgb), 0.8);
   color: var(--lk-bg);
   transform: rotate(90deg);
 }
 
-/* Image */
 .modal__image {
   width: 100%;
   height: 350px;
@@ -102,34 +54,17 @@
   background: linear-gradient(135deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
   position: relative;
 }
-
 .modal__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.modal__image::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to top, var(--lk-surface) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-/* Contenu */
 .modal__content {
   padding: 1.5rem 2rem 2rem;
 }
 
-/* Header */
-.modal__header {
-  margin-bottom: 1rem;
-}
-
+.modal__header { margin-bottom: 1rem; }
 .modal__title {
   margin: 0;
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
@@ -144,19 +79,16 @@
   gap: 0.5rem;
   margin-top: 0.75rem;
 }
-
 .modal__tag {
   font-size: 0.7rem;
   font-weight: 800;
   padding: 0.3rem 0.75rem;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
   background: linear-gradient(135deg, var(--lk-primary) 0%, var(--lk-accent) 100%);
   color: var(--lk-bg);
 }
 
-/* Description */
 .modal__description {
   margin: 0 0 1.25rem;
   font-size: 1rem;
@@ -164,7 +96,6 @@
   color: rgba(var(--lk-white-rgb), 0.68);
 }
 
-/* Ingrédients */
 .modal__ingredients {
   margin-bottom: 1.5rem;
   padding: 1rem 1.25rem;
@@ -172,16 +103,13 @@
   background: rgba(var(--lk-white-rgb), 0.03);
   border: 1px solid rgba(var(--lk-white-rgb), 0.08);
 }
-
 .modal__ingredients-title {
   margin: 0 0 0.75rem;
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--lk-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
-
 .modal__ingredients-list {
   display: flex;
   flex-wrap: wrap;
@@ -190,7 +118,6 @@
   padding: 0;
   list-style: none;
 }
-
 .modal__ingredient {
   padding: 0.4rem 0.75rem;
   border-radius: 20px;
@@ -200,18 +127,12 @@
   font-size: 0.8rem;
 }
 
-/* Prix */
-.modal__prices {
-  margin-bottom: 1.5rem;
-}
-
+.modal__prices { margin-bottom: 1.5rem; }
 .modal__price-row {
   display: flex;
   gap: 1rem;
   margin-bottom: 1.2rem;
 }
-
-
 .modal__price-item {
   flex: 1;
   display: flex;
@@ -222,128 +143,94 @@
   border-radius: 16px;
   text-align: center;
 }
-
 .modal__price-item--seul {
   background: linear-gradient(135deg, rgba(var(--lk-primary-rgb), 0.15) 0%, rgba(var(--lk-accent-rgb), 0.15) 100%);
   border: 2px solid rgba(var(--lk-primary-rgb), 0.4);
 }
-
-.modal__price-item--seul .modal__price-label {
-  color: var(--lk-primary);
-}
-
 .modal__price-item--frites {
   background: rgba(var(--lk-white-rgb), 0.05);
   border: 2px solid rgba(var(--lk-white-rgb), 0.15);
 }
-
-.modal__price-item--frites .modal__price-label {
-  color: rgba(var(--lk-white-rgb), 0.68);
-}
-
 .modal__price-item--menu {
   background: linear-gradient(135deg, rgba(var(--lk-danger-rgb), 0.15) 0%, rgba(193, 18, 31, 0.15) 100%);
   border: 2px solid rgba(var(--lk-danger-rgb), 0.4);
 }
-
-.modal__price-item--menu .modal__price-label {
-  color: var(--lk-danger);
-}
-
 .modal__price-item--clickable {
   cursor: pointer;
   transition: box-shadow 0.2s, background 0.2s, color 0.2s;
   outline: none;
   position: relative;
 }
-
 .modal__price-item--clickable:active,
 .modal__price-item--clickable:focus,
 .modal__price-item--clickable:hover {
-  box-shadow: 0 0 0 3px rgba(var(--lk-primary-rgb), 0.33), 0 2px 10px rgba(0,0,0,0.5);
-  background: var(--lk-accent);
-  color: var(--lk-text);
+  color: var(--lk-text, #222);
+  background: var(--lk-primary);
+  transform: translateY(-1px);
+  border-color: var(--lk-primary);
 }
 
 .modal__price-item--active {
-  background: var(--lk-accent) !important;
-  color: var(--lk-white, #fff) !important;
-  border-color: var(--lk-accent) !important;
+  color: var(--lk-text, #222) !important;
+  background: var(--lk-primary) !important;
+  border-color: var(--lk-primary) !important;
 }
 
-.modal__price-cart {
-  margin-left: 0.4em;
-  font-size: 1.1em;
-  vertical-align: middle;
-  pointer-events: none;
+.modal__price-item--active * {
+  color: var(--lk-bg) !important;
 }
+.modal__price-item:hover * {
+  color: var(--lk-bg) !important;
+}
+
 
 .modal__price-label {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
-
 .modal__price-value {
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   font-size: 1.8rem;
   color: var(--lk-text);
 }
-
 .modal__price-info {
   font-size: 0.65rem;
   color: var(--lk-text-muted);
   margin-top: 0.1rem;
 }
 
-.modal__price-single {
-  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
-  font-size: 2.5rem;
-  color: var(--lk-primary);
-  text-align: center;
-  padding: 1rem;
-  background: linear-gradient(135deg, rgba(var(--lk-primary-rgb), 0.1) 0%, rgba(var(--lk-accent-rgb), 0.1) 100%);
-  border-radius: 16px;
-  border: 2px solid rgba(var(--lk-primary-rgb), 0.3);
-}
-
-/* Choix */
 .modal__choice {
   margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
-
 .modal__choice label {
   font-weight: 600;
   color: var(--lk-primary, #b71c1c);
   margin-bottom: 0.2rem;
 }
-
 .modal__choice select {
   border-radius: 25px;
   border: 1px solid var(--lk-primary, #b71c1c);
   padding: 0.5rem 1.2rem;
   font-size: 1rem;
-  background: var(--lk-surface, #f8f8f8); /* Couleur de fond adaptée au thème */
+  background: var(--lk-surface, #f8f8f8);
   color: var(--lk-text, #222);
   outline: none;
   transition: border 0.2s;
+  cursor: pointer;
 }
-
 .modal__choice select:focus {
   border-color: var(--lk-accent, #ff9800);
 }
 
-/* Toggle sauce fromagère */
 .modal__choice--toggle {
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
 }
-
 .toggle-label {
   display: flex;
   align-items: center;
@@ -351,7 +238,6 @@
   cursor: pointer;
   font-weight: 600;
 }
-
 .toggle-slider {
   width: 38px;
   height: 22px;
@@ -361,15 +247,8 @@
   transition: background 0.2s;
   display: inline-block;
 }
-
-.toggle-label input[type="checkbox"] {
-  display: none;
-}
-
-.toggle-label input[type="checkbox"]:checked + .toggle-slider {
-  background: var(--lk-primary, #b71c1c);
-}
-
+.toggle-label input[type="checkbox"] { display: none; }
+.toggle-label input[type="checkbox"]:checked + .toggle-slider { background: var(--lk-primary, #b71c1c); }
 .toggle-slider::before {
   content: '';
   position: absolute;
@@ -381,17 +260,9 @@
   border-radius: 50%;
   transition: left 0.2s;
 }
+.toggle-label input[type="checkbox"]:checked + .toggle-slider::before { left: 19px; }
+.toggle-text { color: var(--lk-text, #222); font-size: 1rem; }
 
-.toggle-label input[type="checkbox"]:checked + .toggle-slider::before {
-  left: 19px;
-}
-
-.toggle-text {
-  color: var(--lk-text, #222);
-  font-size: 1rem;
-}
-
-/* Avertissement */
 .modal__warning {
   background: var(--lk-warning-bg, #fff3cd);
   color: var(--lk-warning-text, #b71c1c);
@@ -406,12 +277,10 @@
   gap: 0.7rem;
 }
 
-/* Footer */
 .modal__footer {
   padding-top: 1rem;
   border-top: 1px solid rgba(var(--lk-white-rgb), 0.1);
 }
-
 .modal__note {
   margin: 0;
   font-size: 0.85rem;
@@ -419,113 +288,55 @@
   text-align: center;
 }
 
-/* Bouton Ajouter au panier */
 .modal__add-btn {
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   width: 100%;
-  border-radius: 25px;
-  background: var(--lk-primary, #b71c1c);
-  color: var(--lk-white, #fff);
+  text-decoration: none;
+  padding: 0.6rem 1.25rem;
+  margin-left: 0.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.2rem;
-  padding: 0.9rem 0;
-  border: none;
-  margin-top: 0.7rem;
+  transition: all 0.15s;
+  border: 1px solid rgba(var(--lk-primary-rgb), 0.4);
   cursor: pointer;
-  transition: background 0.2s;
+  background: rgba(var(--lk-white-rgb), 0.15);
+  border-color: var(--lk-primary);
+  color: var(--lk-primary);
 }
-
+.modal__add-btn:hover:not(:disabled)  {
+  color: var(--lk-bg);
+  background: var(--lk-primary);
+  transform: translateY(-1px);
+}
 .modal__add-btn:disabled {
-  background: var(--lk-grey, #eee);
-  color: var(--lk-text, #888);
+  background: #eee;
+  color: var(--lk-text-muted);
   cursor: not-allowed;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════ */
-
-/* Tablettes */
 @media (max-width: 768px) {
-  .modal {
-    max-width: 95%;
-    max-height: 92vh;
-  }
-
-  .modal__image {
-    height: 300px;
-  }
-
-  .modal__title {
-    font-size: 2rem;
-  }
+  .modal { max-width: 95%; max-height: 92vh; }
+  .modal__image { height: 300px; }
+  .modal__title { font-size: 2rem; }
 }
-
-/* Mobiles */
 @media (max-width: 480px) {
-  .modal-backdrop {
-    padding: 0;
-    align-items: flex-end;
-  }
-
-  .modal {
-    max-width: 100%;
-    max-height: 95vh;
-    border-radius: 24px 24px 0 0;
-  }
-
-  .modal__image {
-    height: 45vh;
-    min-height: 250px;
-    max-height: 350px;
-  }
-
-  .modal__content {
-    padding: 1.25rem 1.5rem 2rem;
-  }
-
-  .modal__title {
-    font-size: 1.8rem;
-  }
-
-  .modal__description {
-    font-size: 0.95rem;
-  }
-
-  .modal__price-row {
-    gap: 0.4rem;
-  }
-
-  .modal__price-item {
-    padding: 0.75rem 0.4rem;
-  }
-
-  .modal__price-label {
-    font-size: 0.65rem;
-  }
-
-  .modal__price-value {
-    font-size: 1.3rem;
-  }
-
-  .modal__price-info {
-    font-size: 0.55rem;
-  }
-
-  .modal__close {
-    width: 38px;
-    height: 38px;
-    top: 0.75rem;
-    right: 0.75rem;
-  }
-
-  .modal__note {
-    font-size: 0.8rem;
-  }
+  .modal-backdrop { padding: 0; align-items: flex-end; }
+  .modal { max-width: 100%; max-height: 95vh; border-radius: 24px 24px 0 0; }
+  .modal__image { height: 45vh; min-height: 250px; max-height: 350px; }
+  .modal__content { padding: 1.25rem 1.5rem 2rem; }
+  .modal__title { font-size: 1.8rem; }
+  .modal__description { font-size: 0.95rem; }
+  .modal__price-row { gap: 0.4rem; }
+  .modal__price-item { padding: 0.75rem 0.4rem; }
+  .modal__price-label { font-size: 0.65rem; }
+  .modal__price-value { font-size: 1.3rem; }
+  .modal__price-info { font-size: 0.55rem; }
+  .modal__close { width: 38px; height: 38px; top: 0.75rem; right: 0.75rem; }
+  .modal__note { font-size: 0.8rem; }
 }
-
-/* Très petits écrans */
 @media (max-width: 360px) {
-  .modal__image {
-    height: 40vh;
-  }
+  .modal__image { height: 40vh; }
 }
