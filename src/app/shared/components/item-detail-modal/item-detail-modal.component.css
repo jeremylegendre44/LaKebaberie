@@ -288,6 +288,38 @@
   text-align: center;
 }
 
+.modal__price-single {
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+  width: 100%;
+  text-decoration: none;
+  padding: 0.6rem 1.25rem;
+  margin-left: 0.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.15s;
+  border: 1px solid rgba(var(--lk-primary-rgb), 0.4);
+  cursor: pointer;
+  background: rgba(var(--lk-white-rgb), 0.15);
+  border-color: var(--lk-primary);
+  color: var(--lk-primary);
+  text-align: center;
+  display: inline-block;
+}
+.modal__price-single:hover:not(:disabled),
+.modal__price-single:focus-visible:not(:disabled) {
+  color: var(--lk-bg);
+  background: var(--lk-primary);
+  transform: translateY(-1px);
+}
+.modal__price-single:disabled {
+  background: #eee;
+  color: var(--lk-text-muted);
+  cursor: not-allowed;
+}
+
 .modal__add-btn {
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   width: 100%;

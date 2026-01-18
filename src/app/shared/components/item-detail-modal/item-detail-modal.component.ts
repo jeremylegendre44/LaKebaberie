@@ -96,6 +96,11 @@ export class ItemDetailModalComponent {
       boisson: this.requiresBoisson() ? this.selectedBoisson() ?? undefined : undefined,
       fromagere: this.isTacos() ? this.withFromagere() : undefined
     });
+    // Déclenche l'animation du panier (cart:animate) comme sur la page menu
+    const event = new CustomEvent('cart:animate', {
+      detail: { collapsed: document.querySelector('.cart')?.classList.contains('cart--collapsed') }
+    });
+    document.dispatchEvent(event);
     this.closed.emit();
     // Reset des choix
     this.selectedViande.set(null);
