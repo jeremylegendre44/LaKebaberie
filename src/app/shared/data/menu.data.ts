@@ -151,7 +151,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
       { id: 'nuggets-12', name: 'Nuggets x12', priceEuros: 7, ingredients: ['Poulet pané'] },
       { id: 'cordon-bleu', name: 'Cordon bleu', priceEuros: 5, ingredients: ['Escalope de poulet', 'Fromage', 'Jambon de dinde', 'Panure'] },
       { id: 'frites', name: 'Frites', priceEuros: 3, ingredients: ['Pommes de terre', 'Sel'] },
-      { id: 'frites-cheddar', name: 'Frites cheddar', priceEuros: 4.5, ingredients: ['Pommes de terre', 'Sauce cheddar'] },
+      { id: 'frites-cheddar', name: 'Frites cheddar', priceEuros: 4.5, ingredients: ['Pommes de terre', 'Sauce cheddar'], image: 'assets/plats/petite-faim/frites-cheddar.png' },
       { id: 'potatoes', name: 'Potatoes', priceEuros: 3.5, ingredients: ['Pommes de terre', 'Épices'] },
       { id: 'onion-rings', name: 'Onion rings x8', priceEuros: 4, ingredients: ['Oignons', 'Panure'] },
       { id: 'salade-verte', name: 'Salade verte', priceEuros: 3, ingredients: ['Salade verte', 'Vinaigrette'] }
@@ -216,7 +216,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         prices: { seul: 6.5, frites: 7.5, menu: 8.5 },
         tags: ['Premium', 'Gourmand', 'Complet'],
         image: 'assets/plats/tex-mex/le-moelleuxV3.png',
-        ingredients: ['Pain brioché', '2 steaks hachés', 'Cheddar', 'Salade', 'Tomate', 'Oignon', 'Sauce burger']
+        ingredients: ['Pain brioché', '2 steaks hachés', '2 Cheddars', 'Salade', 'Tomate', 'Oignon', 'Sauce burger']
       }
     ]
   },
@@ -226,7 +226,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     title: 'Nos Assiettes',
     icon: '🍽️',
     subtitle: 'Servies avec frites et salade',
-    image: 'assets/Saint-Etienne-de-Montluc-La-Kebaberie-menu.jpg',
+    image: 'assets/plats/assiettes/section-assiettes.png',
     items: [
       { id: 'assiette-kebab', name: 'Assiette kebab', priceEuros: 11, ingredients: ['Viande kebab', 'Frites', 'Salade', 'Sauce au choix'] },
       { id: 'assiette-poulet', name: 'Assiette poulet', priceEuros: 11, ingredients: ['Poulet', 'Frites', 'Salade', 'Sauce au choix'] },
@@ -259,7 +259,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     title: 'Desserts',
     icon: '🍨',
     subtitle: 'Une touche sucrée',
-    image: 'assets/menu-Fast-food-La-Kebaberie.jpg',
+    image: 'assets/plats/desserts/section-desserts.png',
     items: [
       { id: 'tiramisu', name: 'Tiramisu', priceEuros: 3.5, ingredients: ['Mascarpone', 'Biscuit', 'Café', 'Cacao'] },
       { id: 'mousse-chocolat', name: 'Mousse au chocolat', priceEuros: 3, ingredients: ['Chocolat', 'Œufs', 'Sucre'] },
