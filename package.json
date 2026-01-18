@@ -11,7 +11,7 @@
     "format": "prettier --write \"src/**/*.{ts,html,css}\"",
     "lint": "eslint --ext .ts,.html src/",
     "build:gh": "ng build --configuration production",
-    "deploy:gh": "npx angular-cli-ghpages --dir=dist/LaKebaberie"
+    "deploy:gh": "npx angular-cli-ghpages --dir=dist/LaKebaberie/browser --no-silent"
   },
   "prettier": {
     "printWidth": 100,

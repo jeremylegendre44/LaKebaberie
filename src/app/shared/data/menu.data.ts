@@ -25,9 +25,6 @@ export const PRICING_HIGHLIGHTS: readonly PricingHighlight[] = [
 ];
 
 export const MENU_SECTIONS: readonly MenuSection[] = [
-  // ═══════════════════════════════════════════════════════════════
-  // SANDWICHS — Seul / +Frites / Menu
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'sandwichs',
     title: 'Sandwichs',
@@ -39,7 +36,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'kebab',
         name: 'Kebab',
         description: 'Pain pita, viande kebab, crudités, sauce au choix',
-        prices: { seul: 7.50, frites: 9.00, menu: 10.50 },
+        prices: { seul: 7.5, frites: 9, menu: 10.5 },
         tags: ['Best-seller'],
         image: 'assets/plats/sandwichs/kebab.png',
         ingredients: ['Pain pita', 'Viande kebab', 'Salade', 'Tomate', 'Oignon', 'Sauce au choix'],
@@ -49,7 +46,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'kebab-galette',
         name: 'Galette Kebab / Pita',
         description: 'Galette de blé ou pain pita, viande kebab, crudités, sauce',
-        prices: { seul: 8.00, frites: 9.50, menu: 11.00 },
+        prices: { seul: 8, frites: 9.5, menu: 11 },
         image: 'assets/plats/sandwichs/galette-kebab-pita.png',
         ingredients: ['Galette de blé', 'Viande kebab', 'Salade', 'Tomate', 'Oignon', 'Sauce au choix'],
         categories: ['halal']
@@ -58,7 +55,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'kebab-royal',
         name: 'Kebab Royal',
         description: 'Pain pita, double viande, crudités, sauce, fromage',
-        prices: { seul: 10.00, frites: 11.50, menu: 13.00 },
+        prices: { seul: 10, frites: 11.5, menu: 13 },
         tags: ['Généreux'],
         image: 'assets/plats/sandwichs/kebab-royal.png',
         ingredients: ['Pain pita', 'Double viande kebab', 'Fromage', 'Salade', 'Tomate', 'Oignon', 'Sauce au choix'],
@@ -68,7 +65,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'poulet',
         name: 'Poulet',
         description: 'Pain pita, filet de poulet, crudités, sauce',
-        prices: { seul: 7.50, frites: 9.00, menu: 10.50 },
+        prices: { seul: 7.5, frites: 9, menu: 10.5 },
         image: 'assets/plats/sandwichs/poulet.png',
         ingredients: ['Pain pita', 'Filet de poulet', 'Salade', 'Tomate', 'Oignon', 'Sauce au choix'],
         categories: ['halal']
@@ -77,7 +74,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'steak',
         name: 'Steak',
         description: 'Pain pita, steak haché, crudités, sauce',
-        prices: { seul: 7.50, frites: 9.00, menu: 10.50 },
+        prices: { seul: 7.5, frites: 9, menu: 10.5 },
         image: 'assets/plats/sandwichs/steak.png',
         ingredients: ['Pain pita', 'Steak haché', 'Salade', 'Tomate', 'Oignon', 'Sauce au choix'],
         categories: ['halal']
@@ -86,7 +83,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'kofte',
         name: 'Köfte',
         description: 'Pain pita, boulettes de viande épicées, crudités, sauce',
-        prices: { seul: 8.00, frites: 9.50, menu: 11.00 },
+        prices: { seul: 8, frites: 9.5, menu: 11 },
         tags: ['Épicé'],
         image: 'assets/plats/sandwichs/kofte.png',
         ingredients: ['Pain pita', 'Boulettes köfte', 'Épices', 'Salade', 'Tomate', 'Oignon', 'Sauce piquante'],
@@ -96,7 +93,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'vegetarien',
         name: 'Végétarien',
         description: 'Pain pita, falafels, crudités, sauce',
-        prices: { seul: 7.00, frites: 8.50, menu: 10.00 },
+        prices: { seul: 7, frites: 8.5, menu: 10 },
         tags: ['Veggie'],
         image: 'assets/plats/sandwichs/vegetarien.png',
         ingredients: ['Pain pita', 'Falafels', 'Houmous', 'Salade', 'Tomate', 'Oignon', 'Sauce blanche'],
@@ -105,9 +102,6 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     ]
   },
 
-  // ═══════════════════════════════════════════════════════════════
-  // TACOS — Seul / +Frites / Menu
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'tacos',
     title: 'Tacos',
@@ -119,7 +113,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'tacos-1v',
         name: 'Tacos 1 viande',
         description: 'Galette de blé, 1 viande au choix, frites, sauce fromagère',
-        prices: { seul: 8.50, frites: 10, menu: 11 },
+        prices: { seul: 8.5, frites: 10, menu: 11 },
         ingredients: ['Galette de blé', '1 viande au choix', 'Frites', 'Sauce fromagère'],
         categories: ['halal']
       },
@@ -127,7 +121,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'tacos-2v',
         name: 'Tacos 2 viandes',
         description: 'Galette de blé, 2 viandes au choix, frites, sauce fromagère',
-        prices: { seul: 10, frites: 11.50, menu: 12.50 },
+        prices: { seul: 10, frites: 11.5, menu: 12.5 },
         ingredients: ['Galette de blé', '2 viandes au choix', 'Frites', 'Sauce fromagère'],
         categories: ['halal', 'populaire']
       },
@@ -135,7 +129,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         id: 'tacos-3v',
         name: 'Tacos 3 viandes',
         description: 'Galette XL, 3 viandes au choix, frites, sauce fromagère',
-        prices: { seul: 12, frites: 13.50, menu: 14.50 },
+        prices: { seul: 12, frites: 13.5, menu: 14.5 },
         tags: ['XL'],
         ingredients: ['Galette de blé XL', '3 viandes au choix', 'Frites', 'Sauce fromagère'],
         categories: ['halal', 'populaire']
@@ -143,9 +137,6 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     ]
   },
 
-  // ═══════════════════════════════════════════════════════════════
-  // PETITE FAIM — Snacks & Paninis
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'petite-faim',
     title: 'Petite Faim',
@@ -153,107 +144,83 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     subtitle: 'Paninis, nuggets et petits creux',
     image: 'assets/plats/petite-faim/section-petite-faim.png',
     items: [
-      {
-        id: 'panini-kebab',
-        name: 'Panini kebab',
-        priceEuros: 6.50
-      },
-      {
-        id: 'panini-poulet',
-        name: 'Panini poulet',
-        priceEuros: 6.50
-      },
-      {
-        id: 'panini-thon',
-        name: 'Panini thon',
-        priceEuros: 6.00
-      },
-      {
-        id: 'nuggets-6',
-        name: 'Nuggets x6',
-        priceEuros: 4.00
-      },
-      {
-        id: 'nuggets-12',
-        name: 'Nuggets x12',
-        priceEuros: 7.00
-      },
-      {
-        id: 'cordon-bleu',
-        name: 'Cordon bleu',
-        priceEuros: 5.00
-      },
-      {
-        id: 'frites',
-        name: 'Frites',
-        priceEuros: 3.00
-      },
-      {
-        id: 'frites-cheddar',
-        name: 'Frites cheddar',
-        priceEuros: 4.50
-      },
-      {
-        id: 'potatoes',
-        name: 'Potatoes',
-        priceEuros: 3.50
-      },
-      {
-        id: 'onion-rings',
-        name: 'Onion rings x8',
-        priceEuros: 4.00
-      },
-      {
-        id: 'salade-verte',
-        name: 'Salade verte',
-        priceEuros: 3.00
-      }
+      { id: 'panini-kebab', name: 'Panini kebab', priceEuros: 6.5, ingredients: ['Pain panini', 'Viande kebab', 'Fromage', 'Sauce au choix'] },
+      { id: 'panini-poulet', name: 'Panini poulet', priceEuros: 6.5, ingredients: ['Pain panini', 'Poulet', 'Fromage', 'Sauce au choix'] },
+      { id: 'panini-thon', name: 'Panini thon', priceEuros: 6, ingredients: ['Pain panini', 'Thon', 'Fromage', 'Sauce au choix'] },
+      { id: 'nuggets-6', name: 'Nuggets x6', priceEuros: 4, ingredients: ['Poulet pané'] },
+      { id: 'nuggets-12', name: 'Nuggets x12', priceEuros: 7, ingredients: ['Poulet pané'] },
+      { id: 'cordon-bleu', name: 'Cordon bleu', priceEuros: 5, ingredients: ['Escalope de poulet', 'Fromage', 'Jambon de dinde', 'Panure'] },
+      { id: 'frites', name: 'Frites', priceEuros: 3, ingredients: ['Pommes de terre', 'Sel'] },
+      { id: 'frites-cheddar', name: 'Frites cheddar', priceEuros: 4.5, ingredients: ['Pommes de terre', 'Sauce cheddar'] },
+      { id: 'potatoes', name: 'Potatoes', priceEuros: 3.5, ingredients: ['Pommes de terre', 'Épices'] },
+      { id: 'onion-rings', name: 'Onion rings x8', priceEuros: 4, ingredients: ['Oignons', 'Panure'] },
+      { id: 'salade-verte', name: 'Salade verte', priceEuros: 3, ingredients: ['Salade verte', 'Vinaigrette'] }
     ]
   },
 
-  // ═══════════════════════════════════════════════════════════════
-  // TEX MEX — Burgers & Spécialités
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'tex-mex',
     title: 'Tex Mex',
     icon: '🍔',
     subtitle: 'Burgers • Seul / +Frites / Menu',
-    image: 'assets/menu-Fast-food-La-Kebaberie.jpg',
+    image: 'assets/plats/tex-mex/section-tex-mex.png',
     items: [
       {
         id: 'burger-cheese',
         name: 'Burger Cheese',
         description: '1 steak 80g, cheddar, salade, tomate, oignon',
-        prices: { seul: 6.00, frites: 7.50, menu: 9.00 },
-        tags: ['Best-seller']
+        prices: { seul: 5.5, frites: 6.5, menu: 7.5 },
+        tags: ['Best-seller'],
+        image: 'assets/plats/tex-mex/cheeseburger.png',
+        ingredients: ['Pain burger', 'Steak haché 80g', 'Cheddar', 'Salade', 'Tomate', 'Oignon', 'Sauce burger']
+      },
+      {
+        id: 'double-burger-cheese',
+        name: 'Double Cheese',
+        description: '2 steaks 80g, cheddar, salade, tomate, oignon',
+        prices: { seul: 6.5, frites: 7.5, menu: 8.5 },
+        tags: ['Gourmand'],
+        image: 'assets/plats/tex-mex/double-cheeseburger.png',
+        ingredients: ['Pain burger', '2 steaks hachés 80g', 'Cheddar', 'Salade', 'Tomate', 'Oignon', 'Sauce burger']
       },
       {
         id: 'burger-chicken',
         name: 'Burger Chicken',
         description: '1 galette de poulet pané, cheddar, salade, tomate, oignon',
-        prices: { seul: 6.00, frites: 7.50, menu: 9.00 }
+        prices: { seul: 6, frites: 7.5, menu: 9 },
+        image: 'assets/plats/tex-mex/chicken.png',
+        ingredients: ['Pain burger', 'Galette de poulet pané', 'Cheddar', 'Salade', 'Tomate', 'Oignon', 'Sauce burger']
       },
       {
         id: 'burger-crousty',
         name: 'Burger Crousty',
-        description: 'Frites 80g, 1 galette pomme de terre, cheddars, salade, tomate, oignon',
-        prices: { seul: 8.00, frites: 9.50, menu: 11.00 },
-        tags: ['Gourmand']
+        description: 'Frites 80g, galette pomme de terre, cheddar',
+        prices: { seul: 8, frites: 9.5, menu: 11 },
+        tags: ['Gourmand'],
+        image: 'assets/plats/tex-mex/burger-crousty.png',
+        ingredients: ['Pain burger', 'Galette de pommes de terre', 'Frites', 'Cheddar', 'Salade', 'Tomate', 'Oignon', 'Sauce burger']
       },
       {
         id: 'burger-raclette',
         name: 'Burger Raclette',
-        description: 'Pain brioché, 2 steaks, fromage raclette, salade, tomate',
-        prices: { seul: 9.00, frites: 10.50, menu: 12.00 },
-        tags: ['Premium']
+        description: 'Pain brioché, 2 steaks, fromage raclette',
+        prices: { seul: 9, frites: 10.5, menu: 12 },
+        tags: ['Premium', 'Gourmand', 'Complet'],
+        image: 'assets/plats/tex-mex/burger-raclette.png',
+        ingredients: ['Pain brioché', '2 steaks hachés', 'Fromage raclette', 'Salade', 'Tomate', 'Sauce burger']
+      },
+      {
+        id: 'le-moelleux',
+        name: 'Le Moelleux',
+        description: 'Pain brioché, 2 steaks, cheddar',
+        prices: { seul: 6.5, frites: 7.5, menu: 8.5 },
+        tags: ['Premium', 'Gourmand', 'Complet'],
+        image: 'assets/plats/tex-mex/le-moelleuxV3.png',
+        ingredients: ['Pain brioché', '2 steaks hachés', 'Cheddar', 'Salade', 'Tomate', 'Oignon', 'Sauce burger']
       }
     ]
   },
 
-  // ═══════════════════════════════════════════════════════════════
-  // NOS ASSIETTES
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'assiettes',
     title: 'Nos Assiettes',
@@ -261,54 +228,32 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     subtitle: 'Servies avec frites et salade',
     image: 'assets/Saint-Etienne-de-Montluc-La-Kebaberie-menu.jpg',
     items: [
-      {
-        id: 'assiette-kebab',
-        name: 'Assiette kebab',
-        priceEuros: 11.00
-      },
-      {
-        id: 'assiette-poulet',
-        name: 'Assiette poulet',
-        priceEuros: 11.00
-      },
-      {
-        id: 'assiette-mixte',
-        name: 'Assiette mixte',
-        description: 'Kebab + poulet',
-        priceEuros: 13.00,
-        tags: ['Copieux']
-      },
-      {
-        id: 'assiette-cordon-bleu',
-        name: 'Assiette cordon bleu',
-        priceEuros: 12.00
-      }
+      { id: 'assiette-kebab', name: 'Assiette kebab', priceEuros: 11, ingredients: ['Viande kebab', 'Frites', 'Salade', 'Sauce au choix'] },
+      { id: 'assiette-poulet', name: 'Assiette poulet', priceEuros: 11, ingredients: ['Poulet', 'Frites', 'Salade', 'Sauce au choix'] },
+      { id: 'assiette-mixte', name: 'Assiette mixte', description: 'Kebab + poulet', priceEuros: 13, tags: ['Copieux'], ingredients: ['Viande kebab', 'Poulet', 'Frites', 'Salade', 'Sauce au choix'] },
+      { id: 'assiette-cordon-bleu', name: 'Assiette cordon bleu', priceEuros: 12, ingredients: ['Cordon bleu', 'Frites', 'Salade', 'Sauce au choix'] }
     ]
   },
 
-  // ═══════════════════════════════════════════════════════════════
-  // MENU KIDS
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'menu-kids',
     title: 'Menu Kids',
     icon: '👶',
     subtitle: 'Pour les petits gourmands',
-    image: 'assets/La-Kebaberie-menu.jpg',
+    image: 'assets/plats/menu-kids/section-menu-kids.png',
     items: [
       {
         id: 'menu-enfant',
         name: 'Menu Enfant',
         description: '6 nuggets + frites + boisson + surprise',
-        priceEuros: 7.00,
-        tags: ['Enfant']
+        priceEuros: 7,
+        tags: ['Enfant'],
+        image: 'assets/plats/menu-kids/section-menu-kids.png',
+        ingredients: ['Nuggets de poulet', 'Frites', 'Boisson']
       }
     ]
   },
 
-  // ═══════════════════════════════════════════════════════════════
-  // DESSERTS
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'desserts',
     title: 'Desserts',
@@ -316,16 +261,13 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     subtitle: 'Une touche sucrée',
     image: 'assets/menu-Fast-food-La-Kebaberie.jpg',
     items: [
-      { id: 'tiramisu', name: 'Tiramisu', priceEuros: 3.50 },
-      { id: 'mousse-chocolat', name: 'Mousse au chocolat', priceEuros: 3.00 },
-      { id: 'glace-2b', name: 'Glace 2 boules', priceEuros: 3.00 },
-      { id: 'glace-3b', name: 'Glace 3 boules', priceEuros: 4.00 }
+      { id: 'tiramisu', name: 'Tiramisu', priceEuros: 3.5, ingredients: ['Mascarpone', 'Biscuit', 'Café', 'Cacao'] },
+      { id: 'mousse-chocolat', name: 'Mousse au chocolat', priceEuros: 3, ingredients: ['Chocolat', 'Œufs', 'Sucre'] },
+      { id: 'glace-2b', name: 'Glace 2 boules', priceEuros: 3, ingredients: ['Glace (2 parfums au choix)'] },
+      { id: 'glace-3b', name: 'Glace 3 boules', priceEuros: 4, ingredients: ['Glace (3 parfums au choix)'] }
     ]
   },
 
-  // ═══════════════════════════════════════════════════════════════
-  // BOISSONS
-  // ═══════════════════════════════════════════════════════════════
   {
     id: 'boissons',
     title: 'Boissons',
@@ -333,14 +275,14 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
     subtitle: 'Fraîches et désaltérantes',
     image: 'assets/plats/boissons/section-boisson.png',
     items: [
-      { id: 'coca-33', name: 'Coca-Cola 33cl', priceEuros: 2.00 },
-      { id: 'coca-50', name: 'Coca-Cola 50cl', priceEuros: 2.80 },
-      { id: 'fanta-33', name: 'Fanta 33cl', priceEuros: 2.00 },
-      { id: 'sprite-33', name: 'Sprite 33cl', priceEuros: 2.00 },
-      { id: 'ice-tea-33', name: 'Ice Tea 33cl', priceEuros: 2.00 },
-      { id: 'orangina-33', name: 'Orangina 33cl', priceEuros: 2.20 },
-      { id: 'eau-50', name: 'Eau 50cl', priceEuros: 1.50 },
-      { id: 'perrier', name: 'Perrier 33cl', priceEuros: 2.50 }
+      { id: 'coca-33', name: 'Coca-Cola 33cl', priceEuros: 2, ingredients: ['Boisson gazeuse'] },
+      { id: 'coca-50', name: 'Coca-Cola 50cl', priceEuros: 2.8, ingredients: ['Boisson gazeuse'] },
+      { id: 'fanta-33', name: 'Fanta 33cl', priceEuros: 2, ingredients: ['Boisson gazeuse'] },
+      { id: 'sprite-33', name: 'Sprite 33cl', priceEuros: 2, ingredients: ['Boisson gazeuse'] },
+      { id: 'ice-tea-33', name: 'Ice Tea 33cl', priceEuros: 2, ingredients: ['Boisson au thé'] },
+      { id: 'orangina-33', name: 'Orangina 33cl', priceEuros: 2.2, ingredients: ['Boisson gazeuse'] },
+      { id: 'eau-50', name: 'Eau 50cl', priceEuros: 1.5, ingredients: ['Eau'] },
+      { id: 'perrier', name: 'Perrier 33cl', priceEuros: 2.5, ingredients: ['Eau gazeuse'] }
     ]
   }
 ];
@@ -369,9 +311,8 @@ export const CHOICES: readonly ChoiceOption[] = [
 ];
 
 export const ORDERING_NOTE =
-  "En attendant la commande en ligne, appelle-nous au 02 40 85 21 97 ou passe directement au restaurant.";
+  'En attendant la commande en ligne, appelle-nous au 02 40 85 21 97 ou passe directement au restaurant.';
 
-// Informations du restaurant
 export const RESTAURANT_INFO = {
   name: 'La Kebaberie',
   address: '3 Rte de Savenay',
