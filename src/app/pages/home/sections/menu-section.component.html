@@ -66,17 +66,23 @@
             <!-- Prix pour tous les items -->
             @if (item.prices) {
               <div class="item__prices">
-                <span class="price-col price-badge--clickable" (click)="addToCart(item, 'seul'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} seul au panier">
+                <span class="price-col price-badge--clickable"
+                  (click)="requiresChoice(item, 'seul') ? openItemDetail(item) : addToCart(item, 'seul'); $event.stopPropagation()"
+                  tabindex="0" role="button" aria-label="Ajouter {{item.name}} seul au panier">
                   <span class="price-label">Seul</span>
                   <span class="price-value">{{ item.prices.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
                   <span class="price-badge__cart">🛒</span>
                 </span>
-                <span class="price-col price-badge--clickable" (click)="addToCart(item, 'frites'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} +frites au panier">
+                <span class="price-col price-badge--clickable"
+                  (click)="requiresChoice(item, 'frites') ? openItemDetail(item) : addToCart(item, 'frites'); $event.stopPropagation()"
+                  tabindex="0" role="button" aria-label="Ajouter {{item.name}} +frites au panier">
                   <span class="price-label">+Frites</span>
                   <span class="price-value">{{ item.prices.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
                   <span class="price-badge__cart">🛒</span>
                 </span>
-                <span class="price-col price-badge--clickable" (click)="addToCart(item, 'menu'); $event.stopPropagation()" tabindex="0" role="button" aria-label="Ajouter {{item.name}} en menu au panier">
+                <span class="price-col price-badge--clickable"
+                  (click)="requiresChoice(item, 'menu') ? openItemDetail(item) : addToCart(item, 'menu'); $event.stopPropagation()"
+                  tabindex="0" role="button" aria-label="Ajouter {{item.name}} en menu au panier">
                   <span class="price-label">Menu</span>
                   <span class="price-value">{{ item.prices.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
                   <span class="price-badge__cart">🛒</span>

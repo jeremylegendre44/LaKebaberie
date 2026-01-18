@@ -76,6 +76,23 @@ export class MenuSectionComponent {
     return !item.image && !item.description && (!item.tags || item.tags.length === 0) && !item.prices && !!item.priceEuros;
   }
 
+  requiresChoice(item: MenuItem, variant?: 'seul' | 'frites' | 'menu'): boolean {
+    // On vérifie si l'item est un tacos ou un sandwich avec 'au choix' dans les ingrédients ou description
+    const isTacos = item.name.toLowerCase().includes('tacos');
+    const hasViandeAuChoix = item.ingredients?.some(ing => ing.toLowerCase().includes('viande au choix'));
+    const hasSauceAuChoix = item.ingredients?.some(ing => ing.toLowerCase().includes('sauce au choix'));
+    const hasAuChoixDesc = item.description?.toLowerCase().includes('au choix');
+    // Pour le menu, il faut aussi choisir une boisson
+    if (variant === 'menu' && (isTacos || hasViandeAuChoix || hasSauceAuChoix || hasAuChoixDesc)) {
+      return true;
+    }
+    // Pour seul/frites, viande ou sauce suffit
+    if ((variant === 'seul' || variant === 'frites') && (isTacos || hasViandeAuChoix || hasSauceAuChoix || hasAuChoixDesc)) {
+      return true;
+    }
+    return false;
+  }
+
   onItemClick(item: MenuItem, event: Event) {
     if (this.isSingleChoice(item)) {
       this.addToCart(item);

@@ -207,8 +207,10 @@
 
 .modal__price-row {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
 }
+
 
 .modal__price-item {
   flex: 1;
@@ -300,6 +302,104 @@
   border: 2px solid rgba(var(--lk-primary-rgb), 0.3);
 }
 
+/* Choix */
+.modal__choice {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.modal__choice label {
+  font-weight: 600;
+  color: var(--lk-primary, #b71c1c);
+  margin-bottom: 0.2rem;
+}
+
+.modal__choice select {
+  border-radius: 25px;
+  border: 1px solid var(--lk-primary, #b71c1c);
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  background: var(--lk-surface, #f8f8f8); /* Couleur de fond adaptée au thème */
+  color: var(--lk-text, #222);
+  outline: none;
+  transition: border 0.2s;
+}
+
+.modal__choice select:focus {
+  border-color: var(--lk-accent, #ff9800);
+}
+
+/* Toggle sauce fromagère */
+.modal__choice--toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.toggle-slider {
+  width: 38px;
+  height: 22px;
+  background: var(--lk-grey, #eee);
+  border-radius: 22px;
+  position: relative;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+.toggle-label input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-label input[type="checkbox"]:checked + .toggle-slider {
+  background: var(--lk-primary, #b71c1c);
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  background: var(--lk-white, #fff);
+  border-radius: 50%;
+  transition: left 0.2s;
+}
+
+.toggle-label input[type="checkbox"]:checked + .toggle-slider::before {
+  left: 19px;
+}
+
+.toggle-text {
+  color: var(--lk-text, #222);
+  font-size: 1rem;
+}
+
+/* Avertissement */
+.modal__warning {
+  background: var(--lk-warning-bg, #fff3cd);
+  color: var(--lk-warning-text, #b71c1c);
+  border: 1px solid var(--lk-warning-border, #ffeeba);
+  border-radius: 18px;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
 /* Footer */
 .modal__footer {
   padding-top: 1rem;
@@ -311,6 +411,27 @@
   font-size: 0.85rem;
   color: var(--lk-text-muted);
   text-align: center;
+}
+
+/* Bouton Ajouter au panier */
+.modal__add-btn {
+  width: 100%;
+  border-radius: 25px;
+  background: var(--lk-primary, #b71c1c);
+  color: var(--lk-white, #fff);
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.9rem 0;
+  border: none;
+  margin-top: 0.7rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal__add-btn:disabled {
+  background: var(--lk-grey, #eee);
+  color: var(--lk-text, #888);
+  cursor: not-allowed;
 }
 
 /* ═══════════════════════════════════════════════════════════════

@@ -7,22 +7,36 @@ export interface CartItem {
   item: MenuItem;
   variant?: CartVariant;
   quantity: number;
+  // Ajout des choix personnalisés (optionnels)
+  choices?: {
+    viande?: string;
+    sauce?: string;
+    boisson?: string;
+    fromagere?: boolean;
+  };
 }
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
   readonly items = signal<CartItem[]>([]);
 
-  addToCart(item: MenuItem, variant?: CartVariant) {
+  addToCart(
+    item: MenuItem,
+    variant?: CartVariant,
+    choices?: { viande?: string; sauce?: string; boisson?: string; fromagere?: boolean }
+  ) {
     const current = this.items();
     const idx = current.findIndex(
-      ci => ci.item.id === item.id && ci.variant === variant
+      ci =>
+        ci.item.id === item.id &&
+        ci.variant === variant &&
+        (!choices || JSON.stringify(ci.choices) === JSON.stringify(choices))
     );
     if (idx > -1) {
       current[idx] = { ...current[idx], quantity: current[idx].quantity + 1 };
       this.items.set([...current]);
     } else {
-      this.items.set([...current, { item, variant, quantity: 1 }]);
+      this.items.set([...current, { item, variant, quantity: 1, choices }]);
     }
   }
 
