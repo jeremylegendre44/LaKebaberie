@@ -249,7 +249,7 @@ export const MENU_SECTIONS: readonly MenuSection[] = [
         priceEuros: 7,
         tags: ['Enfant'],
         image: 'assets/plats/menu-kids/section-menu-kids.png',
-        ingredients: ['Nuggets de poulet', 'Frites', 'Boisson']
+        ingredients: ['Nuggets de poulet', 'Frites', 'Capri-Sun']
       }
     ]
   },

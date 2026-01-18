@@ -1,15 +1,15 @@
-<article class="card" [class.card--has-banner]="section().image" role="region" [attr.aria-label]="section().title">
+<section class="card" [class.card--has-banner]="section().image" [attr.aria-label]="section().title">
   @if (section().image) {
-    <div class="card__banner card__banner--clickable" (click)="openImageModal(section().image!)" tabindex="0" role="button" aria-label="Voir l'image en plein écran">
+    <button type="button" class="card__banner card__banner--clickable" (click)="openImageModal(section().image!)" (keydown.enter)="openImageModal(section().image!)" (keydown.space)="openImageModal(section().image!); $event.preventDefault()" aria-label="Voir l'image en plein écran">
       <img [src]="section().image" [alt]="section().title" loading="lazy" />
       <span class="card__banner-zoom-icon" aria-hidden="true">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="7" y1="17" x2="17" y2="7"/></svg>
       </span>
-    </div>
+    </button>
   }
 
   <!-- Header TOUJOURS sous la bannière -->
-  <header class="card__header card__header--collapsible" (click)="toggleCollapsed()" tabindex="0" role="button" [attr.aria-expanded]="!collapsed()" [attr.aria-label]="(collapsed() ? 'Déplier' : 'Replier') + ' la section ' + section().title">
+  <div class="card__header card__header--collapsible" (click)="toggleCollapsed()" (keydown.enter)="toggleCollapsed()" (keydown.space)="toggleCollapsed(); $event.preventDefault()" tabindex="0" role="button" [attr.aria-expanded]="!collapsed()" [attr.aria-label]="(collapsed() ? 'Déplier' : 'Replier') + ' la section ' + section().title">
     <div class="card__header-row">
       <h3 class="card__title">{{ section().title }}</h3>
       <span class="chevron" [class.chevron--collapsed]="collapsed()" aria-hidden="true"></span>
@@ -19,7 +19,7 @@
       <p class="card__subtitle">{{ section().subtitle }}</p>
     }
     </div>
-  </header>
+  </div>
 
 
   @if (!collapsed()) {
@@ -66,40 +66,46 @@
             <!-- Prix pour tous les items -->
             @if (item.prices) {
               <div class="item__prices">
-                <span class="price-col price-badge--clickable"
+                <button type="button" class="price-col price-badge--clickable"
                   (click)="requiresChoice(item, 'seul') ? (openItemDetail(item, 'seul')) : addToCart(item, 'seul'); $event.stopPropagation()"
-                  tabindex="0" role="button" aria-label="Ajouter {{item.name}} seul au panier">
+                  (keydown.enter)="requiresChoice(item, 'seul') ? (openItemDetail(item, 'seul')) : addToCart(item, 'seul'); $event.stopPropagation()"
+                  aria-label="Ajouter {{item.name}} seul au panier">
                   <span class="price-label">Seul</span>
                   <span class="price-value">{{ item.prices.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
                   <span class="price-badge__cart">🛒</span>
-                </span>
-                <span class="price-col price-badge--clickable"
+                </button>
+                <button type="button" class="price-col price-badge--clickable"
                   (click)="requiresChoice(item, 'frites') ? (openItemDetail(item, 'frites')) : addToCart(item, 'frites'); $event.stopPropagation()"
-                  tabindex="0" role="button" aria-label="Ajouter {{item.name}} +frites au panier">
+                  (keydown.enter)="requiresChoice(item, 'frites') ? (openItemDetail(item, 'frites')) : addToCart(item, 'frites'); $event.stopPropagation()"
+                  aria-label="Ajouter {{item.name}} +frites au panier">
                   <span class="price-label">+Frites</span>
                   <span class="price-value">{{ item.prices.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
                   <span class="price-badge__cart">🛒</span>
-                </span>
-                <span class="price-col price-badge--clickable"
+                </button>
+                <button type="button" class="price-col price-badge--clickable"
                   (click)="requiresChoice(item, 'menu') ? (openItemDetail(item, 'menu')) : addToCart(item, 'menu'); $event.stopPropagation()"
-                  tabindex="0" role="button" aria-label="Ajouter {{item.name}} en menu au panier">
+                  (keydown.enter)="requiresChoice(item, 'menu') ? (openItemDetail(item, 'menu')) : addToCart(item, 'menu'); $event.stopPropagation()"
+                  aria-label="Ajouter {{item.name}} en menu au panier">
                   <span class="price-label">Menu</span>
                   <span class="price-value">{{ item.prices.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
                   <span class="price-badge__cart">🛒</span>
-                </span>
+                </button>
               </div>
             } @else if (item.priceEuros) {
-              <div class="item__price item__price--single-choice" style="cursor: pointer; width: 100%; position: relative;">
+              <button class="item__price item__price--single-choice modal__add-btn modal__add-btn--quick"
+                (click)="addToCart(item); $event.stopPropagation()"
+                type="button"
+                style="width: 100%; position: relative;">
                 {{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}
-                <span class="price-badge__cart" style="cursor: pointer;">🛒</span>
-              </div>
+                <span class="price-badge__cart">🛒</span>
+              </button>
             }
           </div>
         </li>
       }
     </ul>
   }
-</article>
+</section>
 
 <!-- Modal de détail -->
 @if (selectedItem()) {
