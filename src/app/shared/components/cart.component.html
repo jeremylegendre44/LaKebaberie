@@ -60,7 +60,7 @@
         @if (items().length > 0) {
           <button class="cart__clear" (click)="clear(); $event.stopPropagation()">Vider</button>
         }
-        <button class="cart__order" [disabled]="items().length === 0" (click)="$event.stopPropagation()">Appeler et commander</button>
+        <a class="cart__order" [class.disabled]="items().length === 0" [attr.aria-disabled]="items().length === 0 ? true : null" [href]="'tel:' + restaurantPhone" (click)="$event.stopPropagation()" [tabindex]="items().length === 0 ? -1 : 0">Appeler et commander</a>
       </div>
       @if (items().length === 0) {
         <div class="cart__empty">

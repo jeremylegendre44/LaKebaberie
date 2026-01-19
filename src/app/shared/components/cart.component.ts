@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, signal, Signal, ViewChild, ElementRef, Aft
 import {CartItem, CartService} from '../cart.service';
 import {CommonModule, CurrencyPipe} from '@angular/common';
 import type {MenuItem} from '../models';
+import { RESTAURANT_INFO } from '../data/menu.data';
 
 @Component({
   selector: 'app-cart',
@@ -108,4 +109,6 @@ export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
   trackCartItem(ci: CartItem) {
     return ci.item.id + (ci.variant || '');
   }
+
+  readonly restaurantPhone = RESTAURANT_INFO.phone.replace(/\s+/g, '');
 }
