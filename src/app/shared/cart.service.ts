@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, effect } from '@angular/core';
 import { MenuItem } from './models';
 
 export type CartVariant = 'seul' | 'frites' | 'menu';
@@ -19,6 +19,36 @@ export interface CartItem {
 @Injectable({ providedIn: 'root' })
 export class CartService {
   readonly items = signal<CartItem[]>([]);
+  private readonly STORAGE_KEY = 'cart-items';
+
+  constructor() {
+    this.loadFromLocalStorage();
+    effect(() => {
+      this.saveToLocalStorage();
+    });
+  }
+
+  private saveToLocalStorage() {
+    try {
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items()));
+    } catch (e) {
+      // Ignore storage errors
+    }
+  }
+
+  private loadFromLocalStorage() {
+    try {
+      const data = localStorage.getItem(this.STORAGE_KEY);
+      if (data) {
+        const parsed = JSON.parse(data);
+        if (Array.isArray(parsed)) {
+          this.items.set(parsed);
+        }
+      }
+    } catch (e) {
+      // Ignore parse errors
+    }
+  }
 
   addToCart(
     item: MenuItem,
@@ -38,6 +68,7 @@ export class CartService {
     } else {
       this.items.set([...current, { item, variant, quantity: 1, choices }]);
     }
+    // La sauvegarde est déjà gérée par le subscribe du signal
   }
 
   removeFromCart(item: MenuItem, variant?: CartVariant) {
@@ -45,6 +76,7 @@ export class CartService {
       ci => !(ci.item.id === item.id && ci.variant === variant)
     );
     this.items.set(current);
+    // La sauvegarde est déjà gérée par le subscribe du signal
   }
 
   updateQuantity(item: MenuItem, variant: CartVariant, quantity: number) {
@@ -60,10 +92,12 @@ export class CartService {
         this.items.set([...current]);
       }
     }
+    // La sauvegarde est déjà gérée par le subscribe du signal
   }
 
   clearCart() {
     this.items.set([]);
+    // La sauvegarde est déjà gérée par le subscribe du signal
   }
 
   getTotal(): number {
