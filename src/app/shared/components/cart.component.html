@@ -53,6 +53,11 @@
           </li>
         }
       </ul>
+      @if (items().length === 0) {
+        <div class="cart__empty">
+          <span>Votre panier est vide.</span>
+        </div>
+      }
       <div class="cart__total">
         Total&nbsp;: <span>{{ totalValue | currency:'EUR':'symbol':'1.2-2' }}</span>
       </div>
@@ -62,11 +67,6 @@
         }
         <a class="cart__order" [class.disabled]="items().length === 0" [attr.aria-disabled]="items().length === 0 ? true : null" [href]="'tel:' + restaurantPhone" (click)="$event.stopPropagation()" [tabindex]="items().length === 0 ? -1 : 0">Appeler et commander</a>
       </div>
-      @if (items().length === 0) {
-        <div class="cart__empty">
-          <span>Votre panier est vide.</span>
-        </div>
-      }
     </div>
   }
 </button>
