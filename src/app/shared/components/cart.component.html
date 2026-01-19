@@ -1,4 +1,4 @@
-<button class="cart"
+<button #cart class="cart"
   [class.cart--collapsed]="collapsed()"
   [class.cart--vibrate]="vibrate() && !collapsed()"
   [class.cart--grow]="grow() && collapsed()"
@@ -21,8 +21,8 @@
       }
     </span>
     <span class="cart__total-inline">{{ totalValue | currency:'EUR':'symbol':'1.2-2' }}</span>
-    <button *ngIf="!collapsed()" class="cart__close-btn cart__close-btn--inline" (click)="toggleCollapse()" aria-label="Fermer le panier">Fermer</button>
-    <span class="cart__chevron" [class.cart__chevron--open]="!collapsed()">&#9660;</span>
+    <span class="cart__chevron" *ngIf="collapsed()" [class.cart__chevron--open]="!collapsed()">&#9660;</span>
+    <button *ngIf="!collapsed()" class="cart__close-btn cart__close-btn--inline" (click)="toggleCollapse(); $event.stopPropagation()" aria-label="Fermer le panier">Fermer</button>
   </div>
   @if (!collapsed()) {
     <div class="cart__details" (click)="$event.stopPropagation()" (keydown)="onDetailsKeydown($event)">

@@ -39,6 +39,7 @@
   gap: 1.1rem;
   padding: 1.1rem 1.5rem 0.7rem 1.5rem;
   position: relative;
+  cursor: pointer;
 }
 
 .cart__icon {
@@ -182,7 +183,7 @@
 }
 
 .cart__qty {
-  width: 2.1em;
+  max-width: 3.1em;
   padding: 0.13em 0.2em;
   border-radius: 7px;
   border: 1px solid rgba(var(--lk-primary-rgb), 0.18);

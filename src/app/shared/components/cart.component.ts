@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, signal, Signal} from '@angular/core';
+import {Component, OnDestroy, OnInit, signal, Signal, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {CartItem, CartService} from '../cart.service';
 import {CommonModule, CurrencyPipe} from '@angular/common';
 import type {MenuItem} from '../models';
@@ -10,13 +10,15 @@ import type {MenuItem} from '../models';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('cart', {static: false}) cartElement!: ElementRef;
   readonly items: Signal<CartItem[]>;
   collapsed = signal(true);
   // Animation state
   vibrate = signal(false);
   grow = signal(false);
   private cartAnimateListener: EventListener | null = null;
+  private documentClickListener: ((event: Event) => void) | null = null;
 
   constructor(private readonly cartService: CartService) {
     this.items = this.cartService.items;
@@ -35,10 +37,25 @@ export class CartComponent implements OnInit, OnDestroy {
     document.addEventListener('cart:animate', this.cartAnimateListener);
   }
 
+  ngAfterViewInit() {
+    this.documentClickListener = (event: Event) => {
+      if (!this.collapsed() && this.cartElement && this.cartElement.nativeElement) {
+        if (!this.cartElement.nativeElement.contains(event.target)) {
+          this.collapsed.set(true);
+        }
+      }
+    };
+    document.addEventListener('mousedown', this.documentClickListener);
+  }
+
   ngOnDestroy() {
     if (this.cartAnimateListener) {
       document.removeEventListener('cart:animate', this.cartAnimateListener);
       this.cartAnimateListener = null;
+    }
+    if (this.documentClickListener) {
+      document.removeEventListener('mousedown', this.documentClickListener);
+      this.documentClickListener = null;
     }
   }
 
