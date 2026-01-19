@@ -331,15 +331,7 @@
 }
 
 @media (max-width: 600px) {
-  .cart {
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    max-width: 100vw;
-    border-radius: 18px 18px 0 0;
-    padding: 0.5rem 0.2rem 0.7rem 0.2rem;
-  }
+
   .cart__details {
     max-height: 60vh;
     padding-left: 0.3rem;
