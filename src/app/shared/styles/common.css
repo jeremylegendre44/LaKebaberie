@@ -96,10 +96,30 @@
 /* Light theme overrides */
 :root[data-theme="light"] {
   /* Filter chips: darker border and light surface */
+  .badge {
+    border-color: var(--lk-primary);
+  }
+
   .filter-chip,
   .ingredient-chip {
     background: rgba(0,0,0,0.04);
     color: var(--lk-text);
+    border: 1.5px solid var(--lk-primary) !important;
+  }
+
+  .modal__ingredients {
+    border: 1.5px solid var(--lk-primary) !important;
+  }
+
+  .modal__price-item--frites {
+    background: rgba(var(--price-frites-bg), 0.05);
+    border: 2px solid var(--price-frites-border);
+  }
+
+  .modal__ingredient {
+    background: rgba(var(--lk-primary-rgb), 0.15);
+    color: var(--lk-text);
+    border: 1.5px solid var(--lk-primary) !important;
   }
 
   /* Card title: remove heavy text-shadow for readability on light bg */
@@ -126,9 +146,17 @@
 
   /* Search input: subtle dark border and slightly tinted background */
   .search-input {
-    background: rgba(var(--lk-text-rgb), 0.03) !important;
-    border: 1px solid rgba(var(--lk-text-rgb), 0.08) !important;
+    background: rgba(var(--lk-text-rgb), 0.1) !important;
+    border: 1.5px solid var(--lk-primary) !important;
     color: var(--lk-text) !important;
+  }
+
+  .price-badge--clickable:active,
+  .price-badge--clickable:focus,
+  .price-badge--clickable:hover {
+    box-shadow: 0 0 0 2px var(--lk-primary), 0 2px 10px rgba(0,0,0,0.5);
+    background: var(--lk-accent);
+    color: var(--lk-text);
   }
 
   /* Items without image: description should be readable on white */

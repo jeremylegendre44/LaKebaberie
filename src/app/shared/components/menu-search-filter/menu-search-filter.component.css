@@ -147,12 +147,14 @@
   outline: none;
   flex: 0 1 auto;
   color: var(--lk-white-rgb);
+  border: 1.5px solid rgba(var(--lk-white-rgb), 0.07); !important;
+
 }
 
 .filter-chip:hover {
   border-color: rgba(var(--lk-primary-rgb), 0.4);
-  background: rgba(var(--lk-surface-rgb), 0.8);
-  color: var(--lk-text);
+  background: linear-gradient(90deg, var(--lk-primary) 0%, var(--lk-accent) 100%);
+  color: var(--lk-bg);
 }
 
 .filter-chip.active {
