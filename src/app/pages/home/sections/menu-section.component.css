@@ -496,10 +496,12 @@
 
 /* Prix multiples inline (pour items sans image) */
 .item__prices {
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
   display: flex;
-  gap: 0.5rem;
-  flex-shrink: 0;
   justify-content: center;
+  gap: 1rem;
 }
 
 .price-col {
@@ -589,15 +591,6 @@
 
   .item--has-image .item__name {
     font-size: 1.1rem;
-  }
-
-  .item__prices {
-    gap: 0.4rem;
-  }
-
-  .price-col {
-    min-width: 50px;
-    padding: 0.4rem 0.5rem;
   }
 
   .price-value {
@@ -722,8 +715,9 @@
 
   .item__prices {
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 0.25rem;
+
   }
 
   .price-col {
@@ -883,11 +877,6 @@
     width: 100%;
   }
 
-  .item__prices {
-    width: 100%;
-    justify-content: center;
-    gap: 0.45rem;
-  }
 }
 
 @media (max-width: 600px) {
