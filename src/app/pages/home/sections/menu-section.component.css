@@ -545,10 +545,10 @@
 }
 
 .price-label {
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-family: "Bebas Neue", Impact, sans-serif;
 }
 
 .price-value {
@@ -892,9 +892,10 @@
 
 @media (max-width: 600px) {
   .item__prices {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.45rem;
+    display: flex;
+    gap: 1rem;
   }
 
   .price-col {
