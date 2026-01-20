@@ -34,7 +34,7 @@
   --lk-danger-rgb: 230,57,70;
 
   /* Background image (SVG) - served from assets */
-  --lk-bg-image: url('/assets/bg-dark.svg');
+  --lk-bg-image: url('./assets/bg-dark.svg');
 
   /* Overlay color for images (rgb only) and alpha used in gradients */
   --lk-image-overlay-rgb: var(--lk-bg-rgb);
@@ -89,7 +89,7 @@
   --lk-danger-rgb: 230,57,70;
 
   /* Light theme background image */
-  --lk-bg-image: url('/assets/bg-light.svg');
+  --lk-bg-image: url('./assets/bg-light.svg');
 
   /* Use dark overlay (based on text color) with low alpha so image remains visible but text readable */
   --lk-image-overlay-rgb: var(--lk-text-rgb);
