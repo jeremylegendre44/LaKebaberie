@@ -145,7 +145,8 @@
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
   outline: none;
-  flex: 0 1 auto; /* allow chip to shrink and wrap to next line */
+  flex: 0 1 auto;
+  color: var(--lk-white-rgb);
 }
 
 .filter-chip:hover {

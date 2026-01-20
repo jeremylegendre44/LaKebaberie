@@ -138,8 +138,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
-  padding: 1rem 0.75rem;
+  padding: 0.5rem;
   border-radius: 16px;
   text-align: center;
 }
@@ -185,9 +184,12 @@
 
 
 .modal__price-label {
-  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
+  color: var(--lk-text);
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
 }
 .modal__price-value {
   font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;

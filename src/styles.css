@@ -9,8 +9,7 @@
 /* Remove @font-face for BlockBerthold (missing files) - use web fonts/fallbacks instead */
 
 :root {
-  color-scheme: dark;
-
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   /* Couleurs principales */
   --lk-bg: #0a0a0a;
   --lk-surface: #141414;
