@@ -73,7 +73,7 @@ export class ItemDetailModalComponent {
       if (this.isTacos() && (this.item().name.includes('2 viande') || this.item().name.includes('3 viande'))) {
         const max = this.item().name.includes('3 viande') ? 3 : 2;
         const viande = this.selectedViande();
-        if (!Array.isArray(viande) || viande === null || viande.length !== max) return false;
+        if (!Array.isArray(viande) || viande?.length !== max) return false;
       } else {
         if (!this.selectedViande()) return false;
       }
