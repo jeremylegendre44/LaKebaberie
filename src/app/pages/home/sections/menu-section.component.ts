@@ -1,10 +1,20 @@
-import { ChangeDetectionStrategy, Component, input, signal, Input } from '@angular/core';
-import { CurrencyPipe, CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  input,
+  Input,
+  QueryList,
+  signal,
+  ViewChildren
+} from '@angular/core';
+import {CommonModule, CurrencyPipe} from '@angular/common';
 
-import { MenuItem, MenuSection } from '../../../shared/models';
-import { ItemDetailModalComponent } from '../../../shared/components';
-import { ImageModalComponent } from '../../../shared/components/image-modal/image-modal.component';
-import { CartService } from '../../../shared/cart.service';
+import {MenuItem, MenuSection} from '../../../shared/models';
+import {ItemDetailModalComponent} from '../../../shared/components';
+import {ImageModalComponent} from '../../../shared/components/image-modal/image-modal.component';
+import {CartService} from '../../../shared/cart.service';
 
 @Component({
   selector: 'app-menu-section',
@@ -14,26 +24,50 @@ import { CartService } from '../../../shared/cart.service';
   styleUrls: ['./menu-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuSectionComponent {
+export class MenuSectionComponent implements AfterViewInit {
   readonly section = input.required<MenuSection>();
+  // Modal state
+  readonly selectedItem = signal<MenuItem | null>(null);
+  readonly isModalOpen = signal(false);
+  readonly collapsed = signal(true);
+  // Image modal state
+  readonly isImageModalOpen = signal(false);
+  readonly imageModalUrl = signal<string | null>(null);
+  // Ajout d'un signal pour le variant présélectionné
+  readonly selectedVariant = signal<'seul' | 'frites' | 'menu' | null>(null);
+  private observer?: IntersectionObserver;
+  @ViewChildren('itemEl')
+  private readonly items!: QueryList<ElementRef<HTMLElement>>;
+  private readonly isTouchDevice =
+    window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+  constructor(private readonly cartService: CartService) {
+  }
 
   @Input() set forceOpen(value: boolean) {
     this.collapsed.set(!value);
   }
 
-  // Modal state
-  readonly selectedItem = signal<MenuItem | null>(null);
-  readonly isModalOpen = signal(false);
-  readonly collapsed = signal(true);
+  ngAfterViewInit(): void {
+    // Réagit à CHAQUE apparition réelle d’items dans le DOM
+    this.items.changes.subscribe(() => {
+      this.observeItems();
+    });
 
-  // Image modal state
-  readonly isImageModalOpen = signal(false);
-  readonly imageModalUrl = signal<string | null>(null);
+    // Cas où ils sont déjà présents
+    this.observeItems();
+  }
 
-  // Ajout d'un signal pour le variant présélectionné
-  readonly selectedVariant = signal<'seul' | 'frites' | 'menu' | null>(null);
+  toggleCollapsed() {
+    this.collapsed.update(v => !v);
 
-  constructor(private readonly cartService: CartService) {}
+    // Laisser Angular rendre le DOM
+    setTimeout(() => {
+      this.observeItems();
+    });
+  }
+
+
 
   openItemDetail(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
     this.selectedItem.set(item);
@@ -49,9 +83,15 @@ export class MenuSectionComponent {
     document.body.style.overflow = '';
   }
 
-  toggleCollapsed() {
-    this.collapsed.update(v => !v);
+  addToCart(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
+    this.cartService.addToCart(item, variant);
+    // Déclenche l'animation du panier via un Event personnalisé (meilleure pratique Angular)
+    const event = new CustomEvent('cart:animate', {
+      detail: {collapsed: document.querySelector('.cart')?.classList.contains('cart--collapsed')}
+    });
+    document.dispatchEvent(event);
   }
+
 
   openImageModal(url: string) {
     this.imageModalUrl.set(url);
@@ -67,13 +107,31 @@ export class MenuSectionComponent {
     document.body.style.overflow = '';
   }
 
-  addToCart(item: MenuItem, variant?: 'seul' | 'frites' | 'menu') {
-    this.cartService.addToCart(item, variant);
-    // Déclenche l'animation du panier via un Event personnalisé (meilleure pratique Angular)
-    const event = new CustomEvent('cart:animate', {
-      detail: { collapsed: document.querySelector('.cart')?.classList.contains('cart--collapsed') }
+  private observeItems(): void {
+    if (!('IntersectionObserver' in window) || !this.isTouchDevice) {
+      return;
+    }
+
+    if (!this.observer) {
+      this.observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-hovered');
+          } else {
+            entry.target.classList.remove('is-hovered');
+          }
+        });
+      }, {
+        threshold: 0.4
+      });
+    }
+
+    this.items.forEach(ref => {
+      const el = ref.nativeElement;
+      if (el.classList.contains('item--has-image')) {
+        this.observer!.observe(el);
+      }
     });
-    document.dispatchEvent(event);
   }
 
   isSingleChoice(item: MenuItem): boolean {

@@ -343,6 +343,12 @@
   transform: scale(1.1);
 }
 
+.item--has-image:hover .item__view-more,
+.item--has-image.is-hovered .item__view-more {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Bouton "Voir détails" */
 .item__view-more {
   position: absolute;
@@ -365,6 +371,13 @@
 }
 
 .item--has-image:hover .item__view-more {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Hover desktop OU hover simulé mobile */
+.item--has-image:hover .item__view-more,
+.item--has-image.is-hovered .item__view-more {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
