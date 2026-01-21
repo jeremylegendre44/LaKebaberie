@@ -117,6 +117,7 @@ export class MenuSectionComponent implements AfterViewInit {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-hovered');
+            this.observer!.unobserve(entry.target); // ⭐ CRUCIAL
           } else {
             entry.target.classList.remove('is-hovered');
           }
