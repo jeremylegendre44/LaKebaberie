@@ -48,7 +48,11 @@
       <button
         class="filter-chip"
         [class.active]="isCategorySelected(category.id)"
-        (click)="toggleCategory(category.id)">
+        (click)="toggleCategory(category.id)"
+        (touchstart)="$event.preventDefault(); toggleCategory(category.id)"
+        [attr.aria-pressed]="isCategorySelected(category.id)"
+        tabindex="0"
+        >
         <span class="filter-chip__icon">{{ category.icon }}</span>
         <span class="filter-chip__label">{{ category.label }}</span>
       </button>
