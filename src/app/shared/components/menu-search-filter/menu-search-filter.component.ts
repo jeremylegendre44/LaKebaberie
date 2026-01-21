@@ -80,11 +80,23 @@ export class MenuSearchFilterComponent {
     return this.selectedSections().has(sectionId);
   }
 
-  /** Toggle une catégorie */
+  /** Toggle une section OU une catégorie (désélectionne si déjà sélectionné) */
+  toggleSection(sectionId: string) {
+    const sections = new Set(this.selectedSections());
+    if (sections.has(sectionId)) {
+      sections.delete(sectionId);
+    } else {
+      sections.add(sectionId);
+    }
+    this.selectedSections.set(sections);
+    this.emitFilterChange();
+  }
+
+  /** Toggle une catégorie (désélectionne si déjà sélectionné) */
   toggleCategory(categoryId: string) {
     const categories = new Set(this.selectedCategories());
     if (categories.has(categoryId)) {
-      categories.delete(categoryId);
+      categories.delete(categoryId); // Retire si déjà sélectionné
     } else {
       categories.add(categoryId);
     }
@@ -101,18 +113,6 @@ export class MenuSearchFilterComponent {
       ingredients.add(ingredient);
     }
     this.selectedIngredients.set(ingredients);
-    this.emitFilterChange();
-  }
-
-  /** Toggle une section */
-  toggleSection(sectionId: string) {
-    const sections = new Set(this.selectedSections());
-    if (sections.has(sectionId)) {
-      sections.delete(sectionId);
-    } else {
-      sections.add(sectionId);
-    }
-    this.selectedSections.set(sections);
     this.emitFilterChange();
   }
 

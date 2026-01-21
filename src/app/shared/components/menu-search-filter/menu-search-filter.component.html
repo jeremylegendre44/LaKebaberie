@@ -30,9 +30,14 @@
     <!-- sections -->
     @for (section of sectionOptions; track section.id) {
       <button
+        type="button"
         class="filter-chip"
         [class.active]="isSectionSelected(section.id)"
-        (click)="toggleSection(section.id)">
+        (click)="toggleSection(section.id)"
+        (touchstart)="$event.preventDefault(); toggleSection(section.id)"
+        [attr.aria-pressed]="isSectionSelected(section.id)"
+        tabindex="0"
+      >
         <span class="filter-chip__icon">{{ section.icon }}</span>
         <span class="filter-chip__label">{{ section.label }}</span>
       </button>
