@@ -10,7 +10,6 @@
   border: 1px solid rgba(var(--lk-primary-rgb), 0.15);
   background: linear-gradient(180deg, var(--lk-surface) 0%, var(--lk-bg) 100%);
   overflow: hidden;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .card::before {
   content: '';
