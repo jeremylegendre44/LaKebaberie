@@ -630,6 +630,17 @@
 }
 
 @media (max-width: 480px) {
+
+  .card__title {
+    white-space: normal;
+    text-overflow: initial;
+    font-size: 1.7rem;
+  }
+
+  .item__prices {
+    margin-top: 0.3rem;
+  }
+
   .card__banner {
     height: 180px;
   }
@@ -638,12 +649,7 @@
     border-bottom: none;
   }
 
-  .card__title {
-    font-size: 1.7rem;
-  }
-
   .items {
-    grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
     padding: 1rem;
   }
@@ -879,16 +885,4 @@
   .item--has-image .item__name {
     justify-content: center;
   }
-}
-
-@media (max-width: 480px) {
-  .card__title {
-    white-space: normal;
-    text-overflow: initial;
-  }
-
-  .item__prices {
-    margin-top: 0.3rem;
-  }
-
 }
