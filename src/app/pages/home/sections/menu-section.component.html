@@ -72,7 +72,7 @@
                   aria-label="Ajouter {{item.name}} seul au panier">
                   <span class="price-label">Seul</span>
                   <span class="price-value">{{ item.prices.seul | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
-                  <span class="price-badge__cart">🛒</span>
+                  <span class="price-badge__cart"></span>
                 </button>
                 <button type="button" class="price-col price-badge--clickable"
                   (click)="requiresChoice(item, 'frites') ? (openItemDetail(item, 'frites')) : addToCart(item, 'frites'); $event.stopPropagation()"
@@ -80,7 +80,7 @@
                   aria-label="Ajouter {{item.name}} +frites au panier">
                   <span class="price-label">+Frites</span>
                   <span class="price-value">{{ item.prices.frites | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
-                  <span class="price-badge__cart">🛒</span>
+                  <span class="price-badge__cart"></span>
                 </button>
                 <button type="button" class="price-col price-badge--clickable"
                   (click)="requiresChoice(item, 'menu') ? (openItemDetail(item, 'menu')) : addToCart(item, 'menu'); $event.stopPropagation()"
@@ -88,7 +88,7 @@
                   aria-label="Ajouter {{item.name}} en menu au panier">
                   <span class="price-label">Menu</span>
                   <span class="price-value">{{ item.prices.menu | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
-                  <span class="price-badge__cart">🛒</span>
+                  <span class="price-badge__cart"></span>
                 </button>
               </div>
             } @else if (item.priceEuros) {
@@ -97,7 +97,7 @@
                 type="button"
                 style="width: 100%; position: relative;">
                 {{ item.priceEuros | currency: 'EUR' : 'symbol' : '1.2-2' }}
-                <span class="price-badge__cart">🛒</span>
+                <span class="price-badge__cart"></span>
               </button>
             }
           </div>

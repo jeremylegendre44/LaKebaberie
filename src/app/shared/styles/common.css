@@ -292,6 +292,29 @@
   .item__desc {
     color: rgba(var(--lk-text-rgb), 0.6) !important; /* gris pour thème clair */
   }
+  /* Icône panier — gris permanent */
+  .modal__price-cart::before,
+  .price-badge__cart::before {
+    content: "🛒";
+    transition: filter 0.2s ease;
+    filter: grayscale(1) brightness(0.55);
+  }
+
+  /* Bouton disabled → pas d’icône */
+  .modal__add-btn:disabled .modal__price-cart::before {
+    content: "";
+  }
+
+  /* Parent .modal__price-single → même rendu (explicite) */
+  .modal__price-single .modal__price-cart::before {
+    filter: grayscale(1) brightness(0.55);
+  }
+
+  /* Désactive totalement le hover en light */
+  .price-badge--clickable:hover .price-badge__cart::before,
+  .modal__add-btn:hover .price-badge__cart::before {
+    filter: grayscale(1) brightness(0.55);
+  }
 }
 
 /* end common */

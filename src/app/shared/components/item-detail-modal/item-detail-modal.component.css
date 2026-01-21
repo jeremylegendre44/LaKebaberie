@@ -228,6 +228,20 @@
   border-color: var(--lk-accent, #ff9800);
 }
 
+.modal__price-cart::before {
+  content: "🛒";
+  transition: filter 0.2s ease;
+  filter: brightness(1.5);
+}
+.modal__add-btn:disabled .modal__price-cart::before {
+  content: "";
+}
+
+
+.modal__add-btn:hover .modal__price-cart::before {
+  filter: grayscale(1) brightness(0);
+}
+
 .modal__choice--toggle {
   display: flex;
   align-items: center;

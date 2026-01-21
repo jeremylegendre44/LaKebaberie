@@ -791,6 +791,16 @@
   vertical-align: middle;
   pointer-events: none;
 }
+.price-badge__cart::before {
+  content: "🛒";
+  transition: filter 0.2s ease;
+  filter: brightness(1.5);
+}
+
+.price-badge__cart:hover .price-badge__cart::before {
+  filter: grayscale(1) brightness(0);
+}
+
 .item__price--overlay.price-badge--clickable {
   cursor: pointer;
   display: inline-flex;
