@@ -110,6 +110,7 @@
   padding: 0;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--lk-primary);
 }
 
 .theme-toggle svg {
@@ -122,12 +123,23 @@
 
 .theme-toggle[aria-pressed='true'] {
   background: var(--lk-primary-light);
+  border-color: unset;
   color: var(--lk-bg);
+}
+
+.theme-toggle[aria-pressed='true']:hover svg {
+  color: var(--lk-text);
 }
 
 .theme-toggle[aria-pressed='false'] {
   background: rgba(var(--lk-white-rgb), 0.03);
   color: var(--lk-text);
+}
+
+.theme-toggle[aria-pressed='false']:hover svg {
+  color: var(--lk-primary);
+  fill: var(--lk-primary);
+  stroke: var(--lk-primary);
 }
 
 @media (max-width: 699px) {
