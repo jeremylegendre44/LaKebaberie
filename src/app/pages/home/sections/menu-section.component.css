@@ -123,13 +123,7 @@
   }
 }
 
-@media (max-width: 600px) {
-  .card__subtitle {
-    font-size: 0.97rem;
-    margin: 0.08rem 0.7rem 0.3rem 0.7rem;
-    text-align: center;
-  }
-}
+
 
 .chevron {
   flex: 0 0 auto;
@@ -514,6 +508,8 @@
   min-width: 60px;
   transition: transform 0.2s ease;
   will-change: transform;
+  width: 100%;
+  max-width: 220px;
 }
 
 /* Seul - Orange */
@@ -621,21 +617,6 @@
   }
 }
 
-@media (max-width: 600px) {
-  .card__banner {
-    height: 140px;
-    max-height: 22vh;
-  }
-  .card--has-banner .card__header {
-    border-bottom: none;
-  }
-
-  .add-cart-btn {
-    font-size: 0.95em;
-    padding: 0.35em 0.7em;
-  }
-}
-
 @media (max-width: 480px) {
   .card__banner {
     height: 180px;
@@ -723,10 +704,6 @@
   .price-col {
     min-width: 55px;
     padding: 0.35rem 0.45rem;
-  }
-
-  .price-label {
-    font-size: 0.55rem;
   }
 
   .price-value {
@@ -879,6 +856,22 @@
 }
 
 @media (max-width: 600px) {
+  .card__subtitle {
+    font-size: 0.97rem;
+    margin: 0.08rem 0.7rem 0.3rem 0.7rem;
+    text-align: center;
+  }
+  .card__banner {
+    height: 140px;
+    max-height: 22vh;
+  }
+  .card--has-banner .card__header {
+    border-bottom: none;
+  }
+  .add-cart-btn {
+    font-size: 0.95em;
+    padding: 0.35em 0.7em;
+  }
   .item__prices {
     flex-direction: row;
     align-items: center;
