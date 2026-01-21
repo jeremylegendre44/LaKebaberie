@@ -1,0 +1,72 @@
+<button #cart class="cart"
+  [class.cart--collapsed]="collapsed()"
+  [class.cart--vibrate]="vibrate() && !collapsed()"
+  [class.cart--grow]="grow() && collapsed()"
+  (click)="toggleCollapse()"
+  (keydown.enter)="toggleCollapse()"
+  tabindex="0" aria-label="Ouvrir ou fermer le panier">
+  <div class="cart__icon-header">
+    <span class="cart__icon" aria-label="Panier" title="Panier">
+      @if (!collapsed()) {
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" fill="#fff" stroke="#ff6b35" stroke-width="2"/>
+          <path d="M10 13h12l-1.5 8.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L10 13zm2-3a2 2 0 1 1 4 0v1h-4v-1z" fill="#ff6b35"/>
+        </svg>
+      }
+      @if (collapsed()) {
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" fill="#ff6b35" stroke="#fff" stroke-width="2"/>
+          <path d="M10 13h12l-1.5 8.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L10 13zm2-3a2 2 0 1 1 4 0v1h-4v-1z" fill="#fff"/>
+        </svg>
+      }
+    </span>
+    <span class="cart__total-inline">{{ totalValue | currency:'EUR':'symbol':'1.2-2' }}</span>
+    <span class="cart__chevron" *ngIf="collapsed()" [class.cart__chevron--open]="!collapsed()">&#9660;</span>
+    <button *ngIf="!collapsed()" class="cart__close-btn cart__close-btn--inline" (click)="toggleCollapse(); $event.stopPropagation()" aria-label="Fermer le panier">Fermer</button>
+  </div>
+  @if (!collapsed()) {
+    <div class="cart__details" (click)="$event.stopPropagation()" (keydown)="onDetailsKeydown($event)">
+      <ul class="cart__list">
+        @for (ci of items(); track trackCartItem(ci)) {
+          <li class="cart__item-detail">
+            <div class="cart__item-main">
+              <span class="cart__item-name">{{ ci.item.name }}@if (ci.variant) { <span class="cart__item-variant">({{ ci.variant }})</span> }</span>
+              @if (ci.choices && (ci.choices.viande || ci.choices.sauce || ci.choices.boisson || ci.choices.fromagere !== undefined)) {
+                <div class="cart__item-choices">
+                  @if (ci.choices.viande) {<span class="cart__item-choice">Viande : <b>{{ ci.choices.viande }}</b></span>}
+                  @if (ci.choices.sauce) {<span class="cart__item-choice">Sauce : <b>{{ ci.choices.sauce }}</b></span>}
+                  @if (ci.choices.boisson) {<span class="cart__item-choice">Boisson : <b>{{ ci.choices.boisson }}</b></span>}
+                  @if (ci.choices.fromagere !== undefined) {
+                    <span class="cart__item-choice">{{ ci.choices.fromagere ? 'Sauce fromagère' : 'Sans Sauce fromagère' }}</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="cart__item-actions">
+              <span class="cart__item-unit">{{ (ci.variant && ci.item.prices ? ci.item.prices[ci.variant] : ci.item.priceEuros) | currency:'EUR':'symbol':'1.2-2' }}</span>
+              <input type="number" min="1" [value]="ci.quantity" (click)="$event.stopPropagation()" (change)="updateQuantity(ci.item, ci.variant, $event)" class="cart__qty" />
+              <span class="cart__item-total">{{ getLineTotal(ci) | currency:'EUR':'symbol':'1.2-2' }}</span>
+              <button class="cart__remove" (click)="remove(ci.item, ci.variant); $event.stopPropagation()" aria-label="Retirer">
+                <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="#ff6b35"/><path d="M6 6l6 6M12 6l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+      @if (items().length === 0) {
+        <div class="cart__empty">
+          <span>Votre panier est vide.</span>
+        </div>
+      }
+      <div class="cart__total">
+        Total&nbsp;: <span>{{ totalValue | currency:'EUR':'symbol':'1.2-2' }}</span>
+      </div>
+      <div class="cart__actions-row">
+        @if (items().length > 0) {
+          <button class="cart__clear" (click)="clear(); $event.stopPropagation()">Vider</button>
+        }
+        <a class="btn cart__order" [class.disabled]="items().length === 0" [attr.aria-disabled]="items().length === 0 ? true : null" [href]="'tel:' + restaurantPhone" (click)="$event.stopPropagation()" [tabindex]="items().length === 0 ? -1 : 0">Appeler et commander</a>
+      </div>
+    </div>
+  }
+</button>

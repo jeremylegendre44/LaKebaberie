@@ -1,17 +1,17 @@
-/* Section Header — Style Fast Food thème clair */
+/* Section Header — Style O'Tacos */
 
 .section__header {
   text-align: center;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2.5rem;
 }
 
 .section__title {
   margin: 0;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 2.5rem;
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
+  font-size: 3rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #2d2d2d;
+  color: var(--lk-text);
 }
 
 .section__title::after {
@@ -19,13 +19,13 @@
   display: block;
   width: 60px;
   height: 4px;
-  margin: 0.75rem auto 0;
-  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  margin: 1rem auto 0;
+  background: var(--lk-primary);
   border-radius: 2px;
 }
 
 .section__subtitle {
-  margin: 0.75rem 0 0;
-  color: #888888;
-  font-size: 1rem;
+  margin: 1rem 0 0;
+  color: var(--lk-muted);
+  font-size: 1.1rem;
 }

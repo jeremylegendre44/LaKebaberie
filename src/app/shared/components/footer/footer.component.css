@@ -1,10 +1,10 @@
-/* Footer — Style Fast Food thème clair */
+/* Footer — Style O'Tacos : sombre */
 
 .footer {
-  margin-top: 4rem;
-  padding: 2rem 1.5rem;
-  background: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 5rem;
+  padding: 2.5rem 2rem;
+  background: var(--lk-bg);
+  border-top: 1px solid var(--lk-surface);
 }
 
 .footer__inner {
@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
@@ -24,19 +24,21 @@
 }
 
 .footer__brand {
-  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   font-size: 1.5rem;
   letter-spacing: 0.03em;
-  color: #2d2d2d;
+  color: var(--lk-text);
 }
 
 .footer__muted {
-  color: #888888;
+  color: var(--lk-muted);
   font-size: 0.9rem;
 }
 
 .footer__right {
   text-align: right;
+  color: var(--lk-muted);
+  font-size: 0.85rem;
 }
 
 @media (max-width: 600px) {

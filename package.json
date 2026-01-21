@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,html,css}\"",
+    "lint": "eslint --ext .ts,.html src/",
+    "build:gh": "ng build --configuration production --base-href /LaKebaberie/",
+    "deploy:gh": "npx angular-cli-ghpages --dir=dist/LaKebaberie/browser --no-silent"
   },
   "prettier": {
     "printWidth": 100,
@@ -34,8 +39,16 @@
   },
   "devDependencies": {
     "@angular/build": "^21.1.0",
+    "@angular-eslint/builder": "^21.1.0",
+    "@angular-eslint/eslint-plugin": "^21.1.0",
+    "@angular-eslint/eslint-plugin-template": "^21.1.0",
+    "@angular-eslint/template-parser": "^21.1.0",
     "@angular/cli": "^21.1.0",
     "@angular/compiler-cli": "^21.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "angular-cli-ghpages": "^3.0.2",
+    "eslint": "^8.0.0",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

@@ -1,29 +1,122 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Design system global — La Kebaberie
-   Style Fast Food thème clair, chaleureux, gourmand */
+   Inspiré du style O'Tacos : sombre, bold, gourmand */
 
-/* Google Fonts importé dans index.html pour de meilleures performances */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import './app/shared/styles/common.css';
+
+/* Remove @font-face for BlockBerthold (missing files) - use web fonts/fallbacks instead */
 
 :root {
-  color-scheme: light;
-
+  font-family: 'BlockBerthold', 'Bebas Neue', Impact, sans-serif;
   /* Couleurs principales */
-  --lk-bg: #fefcf8;
-  --lk-surface: #ffffff;
-  --lk-text: #2d2d2d;
+  --lk-bg: #0a0a0a;
+  --lk-surface: #141414;
+  --lk-surface-light: #1e1e1e;
+  --lk-text: #ffffff;
   --lk-text-muted: #888888;
 
-  /* Accent Fast Food - Palette chaleureuse */
-  --lk-primary: #d35400;
-  --lk-primary-dark: #b84700;
-  --lk-orange: #e67e22;
-  --lk-yellow: #f39c12;
-  --lk-brown: #8b5a2b;
+  /* Accent */
+  --lk-primary: #f5a623;
+  --lk-primary-light: #ffc857;
+  --lk-primary-dark: #d4890c;
+  --lk-accent: #ff6b35;
+
+  /* Utilitaires RGB pour usages rgba() */
+  --lk-primary-rgb: 245,166,35;
+  --lk-accent-rgb: 255,107,53;
+  --lk-text-rgb: 255,255,255;
+  --lk-white-rgb: 255,255,255;
+  --lk-bg-rgb: 10,10,10;
+  --lk-surface-rgb: 20,20,20;
+  --lk-danger: #e63946;
+  --lk-danger-rgb: 230,57,70;
+
+  /* Background image (SVG) - served from assets */
+  --lk-bg-image: url('./assets/bg-dark.svg');
+
+  /* Overlay color for images (rgb only) and alpha used in gradients */
+  --lk-image-overlay-rgb: var(--lk-bg-rgb);
+  --lk-image-overlay-alpha: 0.95;
+
+  /* Highlights / nuances */
+  --lk-highlight: #ffd98a;
+  --lk-muted: #666666;
 
   /* Fonts */
   --lk-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --lk-font-display: 'Bebas Neue', Impact, sans-serif;
+  --lk-font-display: 'Bebas Neue', 'BlockBerthold', Impact, sans-serif;
+
+  /* Spacing */
+  --lk-radius: 16px;
+  --lk-radius-sm: 8px;
+
+  /* UI element variables (defaults for dark theme) */
+  --lk-filter-chip-bg: rgba(var(--lk-white-rgb), 0.07);
+  --lk-filter-chip-border: rgba(var(--lk-white-rgb), 0.06);
+  --lk-filter-chip-color: var(--lk-text);
+
+  --card-title-text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.5);
+  --card-subtitle-color: var(--lk-highlight);
+
+  --price-seul-bg: linear-gradient(135deg, rgba(var(--lk-primary-rgb),0.15) 0%, rgba(var(--lk-accent-rgb),0.15) 100%);
+  --price-seul-border: rgba(var(--lk-primary-rgb),0.3);
+  --price-frites-bg: rgba(var(--lk-white-rgb),0.05);
+  --price-frites-border: rgba(var(--lk-white-rgb),0.1);
+  --price-menu-bg: linear-gradient(135deg, rgba(var(--lk-danger-rgb),0.15) 0%, rgba(193,18,31,0.15) 100%);
+  --price-menu-border: rgba(var(--lk-danger-rgb),0.3);
+}
+
+/* Theme clair (exemple) -- appliquable via <html data-theme="light"> */
+:root[data-theme="light"] {
+  --lk-bg: #ffffff;
+  --lk-surface: #f6f6f6;
+  --lk-surface-light: #ffffff;
+  --lk-text: #0a0a0a;
+  --lk-text-muted: #666666;
+
+  --lk-primary: #f5a623; /* peut être ajusté selon thème clair */
+  --lk-accent: #ff6b35;
+
+  --lk-primary-rgb: 245,166,35;
+  --lk-accent-rgb: 255,107,53;
+  --lk-text-rgb: 10,10,10;
+  --lk-white-rgb: 255,255,255;
+  --lk-bg-rgb: 255,255,255;
+  --lk-surface-rgb: 246,246,246;
+  --lk-danger: #e63946;
+  --lk-danger-rgb: 230,57,70;
+
+  /* Light theme background image */
+  --lk-bg-image: url('./assets/bg-light.svg');
+
+  /* Use dark overlay (based on text color) with low alpha so image remains visible but text readable */
+  --lk-image-overlay-rgb: var(--lk-text-rgb);
+  --lk-image-overlay-alpha: 0.08;
+
+  --lk-highlight: #ffd98a;
+  --lk-muted: #888888;
+
+  /* Light theme UI variables */
+  --lk-filter-chip-bg: rgba(0,0,0,0.04);
+  --lk-filter-chip-border: rgba(0,0,0,0.06);
+  --lk-filter-chip-color: var(--lk-text);
+
+  --card-title-text-shadow: none;
+  --card-subtitle-color: rgba(var(--lk-text-rgb), 0.65);
+
+  --price-seul-bg: linear-gradient(135deg, rgba(var(--lk-primary-rgb),0.12) 0%, rgba(var(--lk-accent-rgb),0.12) 100%);
+  --price-seul-border: rgba(var(--lk-primary-rgb),0.18);
+  --price-frites-bg: rgba(0,0,0,0.06);
+  --price-frites-border: rgba(0,0,0,0.08);
+  --price-menu-bg: linear-gradient(135deg, rgba(var(--lk-danger-rgb),0.12) 0%, rgba(193,18,31,0.12) 100%);
+  --price-menu-border: rgba(var(--lk-danger-rgb),0.18);
+}
+
+:root,
+:root[data-theme="light"] {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 * {
@@ -41,11 +134,13 @@ body {
 
 body {
   margin: 0;
-  font-family: var(--lk-font);
+  font-family: var(--lk-font), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   background-color: var(--lk-bg);
-  background-image: url('/bg-pattern-modern.svg');
-  background-repeat: repeat;
-  background-size: 500px 500px;
+  background-image: var(--lk-bg-image);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--lk-text);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -53,16 +148,21 @@ body {
   line-height: 1.5;
 }
 
+
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 :where(a, button, [role='button'], input, select, textarea):focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(230, 48, 39, 0.3);
-  border-radius: 8px;
+  outline: 2px solid var(--lk-primary);
+  outline-offset: 2px;
 }
 
 ::selection {
-  background: rgba(230, 48, 39, 0.2);
+  background: rgba(245, 166, 35, 0.3);
+}
+
+li.item.item--single-choice {
+  cursor: pointer;
 }
